@@ -1,0 +1,54 @@
+@import './variables.scss';
+
+$default-span-font-size: 1rem;
+$default-p-font-size: 1rem;
+$default-h1-font-size: 2.5rem;
+$default-h2-font-size: 2rem;
+$default-h3-font-size: 1.8rem;
+$default-h4-font-size: 1.6rem;
+$default-h5-font-size: 1.4rem;
+$default-h6-font-size: 1.2rem;
+
+span {
+  font-size: $default-span-font-size;
+}
+
+p {
+  font-size: $default-p-font-size;
+}
+
+h1 {
+  font-size: $default-h1-font-size;
+}
+
+h2 {
+  font-size: $default-h2-font-size;
+}
+
+h3 {
+  font-size: $default-h3-font-size;
+}
+
+h4 {
+  font-size: $default-h4-font-size;
+}
+
+h5 {
+  font-size: $default-h5-font-size;
+}
+
+h6 {
+  font-size: $default-h6-font-size;
+}
+
+.bg-main-background {
+  background-color: $white-color;
+}
+
+.main-transition {
+  transition: $main-transition;
+}
+
+.main-box-shadow {
+  box-shadow: $main-box-shadow;
+}

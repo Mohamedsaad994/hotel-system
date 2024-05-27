@@ -1,0 +1,77 @@
+@import './variables.scss';
+
+button {
+  font-size: 1rem;
+  padding: 0.2rem 0.4rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  border: none;
+  outline: none;
+  border-radius: 0.2rem;
+  display: block;
+  margin: 0 auto;
+  border: 1px solid transparent;
+
+  &.primary {
+    background-color: $main-btn;
+    color: $white-color;
+    transition: $main-transition;
+
+    &:hover {
+      background-color: transparent;
+      border: 1px solid $main-btn;
+      color: $main-btn;
+    }
+  }
+
+  &.dark {
+    background-color: $main-black;
+    color: $white-color;
+    transition: $main-transition;
+
+    &:hover {
+      background-color: transparent;
+      border: 1px solid $main-black;
+      color: $main-black;
+    }
+  }
+
+  &.dark-outline {
+    background-color: transparent;
+    border: 1px solid $main-black;
+    color: $main-black;
+    transition: $main-transition;
+
+
+    &:hover {
+      background-color: $main-black;
+      color: $white-color;
+    }
+  }
+
+  &.danger {
+    background-color: $main-danger;
+    border: 1px solid transparent;
+    color: $white-color;
+    transition: $main-transition;
+
+    &:hover {
+      background-color: transparent;
+      border: 1px solid $main-danger;
+      color: $main-danger;
+    }
+  }
+
+  &.danger-outline {
+    background-color: transparent;
+    border: 1px solid $main-danger;
+    color: $main-danger;
+    transition: $main-transition;
+
+    &:hover {
+      background-color: $main-danger;
+      border: 1px solid transparent;
+      color: $white-color;
+    }
+  }
+}
