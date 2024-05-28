@@ -1,4 +1,3 @@
-
 .auth-content {
   width: fit-content;
   padding: 40px;
@@ -13,4 +12,20 @@
       padding: 10px 0;
     }
   }
+}
+
+input {
+  position: relative;
+  z-index: 9;
+}
+
+.error {
+  position: relative;
+  transform: translateY(-30px);
+  z-index: 1;
+  transition: 0.3s linear;
+}
+
+.controlName-invalid {
+  transform: translateY(0px)
 }

@@ -12,4 +12,10 @@ export class AuthService {
   login(userData: ILogin): Observable<ILoginResponse> {
     return this._HttpClient.post<ILoginResponse>('admin/users/login', userData);
   }
+
+  welcomeVoice(message: string) {
+    const sp = new SpeechSynthesisUtterance(message);
+    [sp.voice] = speechSynthesis.getVoices();
+    speechSynthesis.speak(sp);
+  }
 }

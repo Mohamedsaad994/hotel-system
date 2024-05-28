@@ -14,8 +14,12 @@
       <input [type]="formField.controlName == 'email' ? 'email' : 'password'" class="form-control border-2 fs-6 p-2"
         [placeholder]="formField.placeholder" [id]="formField.controlName" [formControlName]="formField.controlName">
 
-      <div
-        *ngIf="loginForm.get(formField.controlName)?.invalid && (loginForm.get(formField.controlName)?.dirty || loginForm.get(formField.controlName)?.touched)">
+      <div *ngIf="
+          loginForm.get(formField.controlName)?.invalid &&
+          (loginForm.get(formField.controlName)?.dirty ||
+          loginForm.get(formField.controlName)?.touched)" class="error"
+        [ngClass]="{'controlName-invalid': loginForm.get(formField.controlName)?.invalid}">
+
         <div *ngIf="loginForm.get(formField.controlName)?.errors?.['required']" class="text-danger">
           <p class="text-danger mb-0">{{ formField.label }} is <strong>required.</strong></p>
         </div>

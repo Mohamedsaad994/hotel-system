@@ -42,9 +42,9 @@ export class LoginComponent {
     }
 
     this._AuthService.login(loginForm.value).subscribe({
-      next: (res: ILoginResponse) => { console.log(res); },
+      next: (res: ILoginResponse) => {  },
       error: (error: HttpErrorResponse) => this._HelperService.error(error),
-      complete: () => this._HelperService.success('Logged in Successfully')
+      complete: () => this._AuthService.welcomeVoice('Welcome Back Ya my frienda')
     });
   }
 }
