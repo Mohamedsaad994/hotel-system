@@ -18,3 +18,12 @@ export interface ILoginUserDataResponse {
   username: string;
   role: string;
 }
+
+export interface IForgetPassword {
+  userName: string;
+  country: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
+  role: string;
+}
