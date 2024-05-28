@@ -1,0 +1,15 @@
+@import '../../../../../assets/styles/layout.scss';
+:host {
+  height: 100%;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    font-weight: 500;
+    color: $main-black;
+    cursor: pointer;
+  }
+}

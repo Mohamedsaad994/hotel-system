@@ -14,14 +14,11 @@ const routes: Routes = [
     path: '',
     component: AuthComponent,
     children: [
+      { path: '', redirectTo: '', pathMatch: 'full' },
       { path: '', component: LoginComponent, title: 'Login' },
       { path: 'register',
         component: RegisterComponent,
         title: 'Register'
-      },
-      { path: 'verify',
-        component: VerifyComponent,
-        title: 'Verify'
       },
       {
         path: 'change-password',

@@ -1,1 +1,24 @@
-<p>login works!</p>
+<article class="d-flex flex-column gap-5 w-100">
+  <div class="content d-flex flex-column gap-3">
+    <h3 class="h2 mb-0">Sing in</h3>
+    <p class="mb-0">If you don’t have an account register</p>
+    <p class="mb-0">You can
+      <span>
+        <a class="main-color fw-bolder">Register here !</a>
+      </span>
+    </p>
+  </div>
+  <form class="d-flex flex-column gap-4" (ngSubmit)="onLogin(loginForm)" [formGroup]="loginForm">
+    <div class="d-flex flex-column gap-2" *ngFor="let formField of formFields">
+      <label [for]="formField.label">{{ formField.label }}</label>
+      <input [type]="formField.label == 'email' ? 'email' : 'password'" class="form-control border-2"
+        [placeholder]="formField.placeholder" [id]="formField.label">
+    </div>
+    <div class="links">
+      <a>Register Now!</a>
+      <a>Forget Password ?</a>
+    </div>
+
+    <button class="primary d-block w-100" [disabled]="loginForm.invalid">Log in</button>
+  </form>
+</article>

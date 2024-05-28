@@ -9,6 +9,10 @@ $default-h4-font-size: 1.6rem;
 $default-h5-font-size: 1.4rem;
 $default-h6-font-size: 1.2rem;
 
+body {
+  background-color: #eee;
+}
+
 span {
   font-size: $default-span-font-size;
 }
@@ -51,4 +55,17 @@ h6 {
 
 .main-box-shadow {
   box-shadow: $main-box-shadow;
+}
+
+.main-color {
+  color: $main-btn;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
 }

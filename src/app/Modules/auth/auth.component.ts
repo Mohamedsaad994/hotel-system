@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./auth.component.scss']
 })
 export class AuthComponent {
+  imagePath: string = '';
 
+  // 01 - _Router.events.subscribe()
+  //      inside num 01 _Router.url
+  // 02 - ActivatedRoute.urlConfig
+  // 03 - Resolver
 }
