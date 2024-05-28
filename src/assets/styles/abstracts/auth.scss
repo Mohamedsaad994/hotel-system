@@ -1,13 +1,16 @@
-h1 {
-  background-image: linear-gradient(to right, #f00, #00f);
-  color: transparent;
-  background-size: contain;
-  background-clip: text;
-  --webkit-background-clip: text;
-  padding: 10px 0;
-}
 
 .auth-content {
   width: fit-content;
   padding: 40px;
+
+  div {
+    h1 {
+      background-image: linear-gradient(to right, #f00, #00f);
+      color: transparent;
+      background-size: contain;
+      background-clip: text;
+      --webkit-background-clip: text;
+      padding: 10px 0;
+    }
+  }
 }
