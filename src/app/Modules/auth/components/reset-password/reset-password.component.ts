@@ -14,7 +14,6 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 export class ResetPasswordComponent {
   constructor(private _AuthService:AuthService, private _HelperService:HelperService ){}
-
   resetForm:FormGroup = new FormGroup ({
     email: new FormControl(null, [Validators.required, Validators.email]),
     OTP: new FormControl(null,[Validators.required] ),
