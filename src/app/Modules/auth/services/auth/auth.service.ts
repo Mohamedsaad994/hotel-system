@@ -1,10 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { ILogin, ILoginResponse } from '../../interfaces/auth';
+import { ILogin, ILoginResponse, IForgetPassword } from '../../interfaces/auth';
 import { Observable } from 'rxjs';
 import { Ireset, IresetResponse } from '../../interfaces/Ireset';
-import { ILogin, ILoginResponse, IRegisterUserDataResponse, IForgetPassword } from '../../interfaces/auth';
-import { Observable, ObservedValueOf } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,7 +20,6 @@ export class AuthService {
   }
   forgetPassword(userData: IForgetPassword): Observable<any> {
     return this._HttpClient.post('admin/users', userData);
-
   }
 
   welcomeVoice(message: string) {
