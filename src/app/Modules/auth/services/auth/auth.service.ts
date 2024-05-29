@@ -14,7 +14,7 @@ export class AuthService {
   }
 
   forgetPassword(userData: IForgetPassword): Observable<any> {
-    return this._HttpClient.post<ILoginResponse>('admin/users', userData);
+    return this._HttpClient.post('admin/users', userData);
   }
 
   welcomeVoice(message: string) {
