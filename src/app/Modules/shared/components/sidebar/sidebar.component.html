@@ -1,0 +1,30 @@
+<section class=" bg-dashboard vh-100 side">
+
+  <div class="pt-5">
+    <img src="./assets/Images/3.png" alt="">
+  </div>
+  <div>
+    <ul class="px-0 mt-5">
+      <ng-container *ngFor="let item of menu">
+        <li *ngIf="item.isActive">
+          <a [routerLink]="item.link"  routerLinkActive="active"  class="item d-block">
+            <span><i [class]="item.icon"></i></span>
+            <span>{{item.text}}</span>
+          </a>
+        </li>
+      </ng-container>
+      <li>
+        <a class="item d-block">
+          <span><i class="fa-solid fa-unlock"></i></span>
+          <span>Change Password</span>
+        </a>
+      </li>
+      <li>
+        <a class="item d-block">
+          <span><i class="fa-solid fa-right-from-bracket"></i></span>
+          <span>Log Out</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>

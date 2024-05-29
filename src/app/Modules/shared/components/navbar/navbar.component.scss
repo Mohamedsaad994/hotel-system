@@ -1,0 +1,22 @@
+.nav{
+  background-color: #eee;
+  padding: 15px;
+  border-radius: 20px;
+  .input{
+    background-color: #fff;
+    border-radius: 40px;
+    padding:10px;
+    input{
+      outline: none;
+      border:none
+    }
+  }
+  img{
+    width: 40px;
+    height:40px;
+    border-radius: 50%;
+  }
+}
+i, a{
+  cursor: pointer;
+}
