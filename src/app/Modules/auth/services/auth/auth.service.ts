@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { IForgetPassword, ILogin, ILoginResponse } from '../../interfaces/auth';
-import { Observable } from 'rxjs';
-
-import { ILogin, ILoginResponse, IRegisterUserDataResponse } from '../../interfaces/auth';
+import { ILogin, ILoginResponse, IRegisterUserDataResponse, IForgetPassword } from '../../interfaces/auth';
 import { Observable, ObservedValueOf } from 'rxjs';
 
 
