@@ -3,6 +3,7 @@ import { FormControl, FormControlOptions, FormGroup, Validators } from '@angular
 import { AuthService } from '../../services/auth/auth.service';
 import { IRegisterUserDataResponse } from '../../interfaces/auth';
 import { HttpErrorResponse } from '@angular/common/http';
+import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class RegisterComponent {
 
-  constructor(private _AuthService:AuthService){}
+  constructor(private _AuthService:AuthService, private _HelperService:HelperService){}
 
   image!: File;
   url!: any;
@@ -55,10 +56,10 @@ sendFormData(registerForm: FormGroup):void{
         console.log(res);
       },
       error:(err: HttpErrorResponse)=>{
-        console.log(err);
+        this._HelperService.error(err)
       },
       complete:()=>{
-
+        this._HelperService.success('Sign up successfully')
       }
     })
   }

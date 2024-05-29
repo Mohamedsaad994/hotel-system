@@ -26,6 +26,6 @@ export class AuthService {
   }
 
   register(userData: FormData): Observable<any>{
-    return this._HttpClient.post('portal/users', userData)
+    return this._HttpClient.post('admin/users', userData)
   }
 }
