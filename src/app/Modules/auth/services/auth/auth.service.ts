@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ILogin, ILoginResponse } from '../../interfaces/auth';
 import { Observable } from 'rxjs';
+import { Ireset, IresetResponse } from '../../interfaces/Ireset';
 
 @Injectable({
   providedIn: 'root',
@@ -11,6 +12,10 @@ export class AuthService {
 
   login(userData: ILogin): Observable<ILoginResponse> {
     return this._HttpClient.post<ILoginResponse>('admin/users/login', userData);
+  }
+
+  reset(userData:Ireset):Observable<IresetResponse>{
+    return this._HttpClient.post<IresetResponse>('admin/users/reset-password', userData);
   }
 
   welcomeVoice(message: string) {
