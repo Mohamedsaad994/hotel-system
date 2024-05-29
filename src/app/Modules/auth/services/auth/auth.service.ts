@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { ILogin, ILoginResponse } from '../../interfaces/auth';
 import { Observable } from 'rxjs';
 import { Ireset, IresetResponse } from '../../interfaces/Ireset';
+import { ILogin, ILoginResponse, IRegisterUserDataResponse, IForgetPassword } from '../../interfaces/auth';
+import { Observable, ObservedValueOf } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,13 +16,22 @@ export class AuthService {
     return this._HttpClient.post<ILoginResponse>('admin/users/login', userData);
   }
 
+
   reset(userData:Ireset):Observable<IresetResponse>{
     return this._HttpClient.post<IresetResponse>('admin/users/reset-password', userData);
+  }
+  forgetPassword(userData: IForgetPassword): Observable<any> {
+    return this._HttpClient.post('admin/users', userData);
+
   }
 
   welcomeVoice(message: string) {
     const sp = new SpeechSynthesisUtterance(message);
     [sp.voice] = speechSynthesis.getVoices();
     speechSynthesis.speak(sp);
+  }
+
+  register(userData: FormData): Observable<any>{
+    return this._HttpClient.post('admin/users', userData)
   }
 }

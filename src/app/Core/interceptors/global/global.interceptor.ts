@@ -21,7 +21,7 @@ export class GlobalInterceptor implements HttpInterceptor {
     const modifiedRequest = request.clone({
       url: baseUrl + request.url,
       setHeaders: {
-        Authorization: `Bearer ${token}`
+        Authorization: `${token}`
       }
     })
     return next.handle(modifiedRequest);
