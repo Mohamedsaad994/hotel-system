@@ -19,6 +19,15 @@ export interface ILoginUserDataResponse {
   role: string;
 }
 
+
+export interface IForgetPassword {
+  userName: string;
+  country: string;
+  email: string;
+  password: string;
+  phoneNumber: string;
+  role: string;
+
 export interface IRegisterUserDataResponse {
   success: boolean
   message: string
@@ -41,4 +50,5 @@ export interface UserCreated {
   _id: string
   createdAt: string
   updatedAt: string
+
 }
