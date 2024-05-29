@@ -27,7 +27,7 @@ export interface IForgetPassword {
   password: string;
   phoneNumber: string;
   role: string;
-
+}
 export interface IRegisterUserDataResponse {
   success: boolean
   message: string
