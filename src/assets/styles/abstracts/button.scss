@@ -79,4 +79,8 @@ button {
   &:invalid {
     cursor: no-drop;
   }
+
+  &:disabled{
+    cursor: not-allowed;
+  }
 }

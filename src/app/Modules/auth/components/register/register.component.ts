@@ -39,19 +39,19 @@ export class RegisterComponent {
   }
 }
 
-sendFormData():void{
+sendFormData(registerForm: FormGroup):void{
   const data = new FormData;
 
-  for (let key in this.registerForm.value) {
+  for (let key in registerForm.value) {
     if (key === "profileImage") continue;
-    data.append(key, this.registerForm.value[key]);
+    data.append(key, registerForm.value[key]);
   }
 
   if (this.image) data.append("profileImage", this.image);
 
-  if(this.registerForm.valid){
+  if(registerForm.valid){
     this._AuthService.register(data).subscribe({
-      next:(res:IRegisterUserDataResponse)=>{
+      next:(res)=>{
         console.log(res);
       },
       error:(err: HttpErrorResponse)=>{

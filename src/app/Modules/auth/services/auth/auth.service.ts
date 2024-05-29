@@ -25,7 +25,7 @@ export class AuthService {
     speechSynthesis.speak(sp);
   }
 
-  register(userData: FormData): Observable<IRegisterUserDataResponse>{
-    return this._HttpClient.post<IRegisterUserDataResponse>('portal/users', userData)
+  register(userData: FormData): Observable<any>{
+    return this._HttpClient.post('portal/users', userData)
   }
 }

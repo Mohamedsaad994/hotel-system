@@ -4,7 +4,7 @@
     <p class="mb-0">If you don’t have an account register</p>
     <p class="mb-0">You can
       <span>
-        <a class="main-color fw-bolder">Register here !</a>
+        <a class="main-color fw-bolder" routerLink="register">Register here !</a>
       </span>
     </p>
   </div>
@@ -37,8 +37,7 @@
     </div>
 
     <div class="links">
-      <a>Register Now!</a>
-      <a>Forget Password ?</a>
+      <a routerLink="forget-password">Forget Password ?</a>
     </div>
 
     <button class="primary d-block w-100" [disabled]="loginForm.invalid">Log in</button>
