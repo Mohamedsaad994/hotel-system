@@ -19,6 +19,7 @@ export interface ILoginUserDataResponse {
   role: string;
 }
 
+
 export interface IForgetPassword {
   userName: string;
   country: string;
@@ -26,4 +27,28 @@ export interface IForgetPassword {
   password: string;
   phoneNumber: string;
   role: string;
+
+export interface IRegisterUserDataResponse {
+  success: boolean
+  message: string
+  data: Data
+}
+
+export interface Data {
+  userCreated: UserCreated
+}
+
+export interface UserCreated {
+  userName: string
+  email: string
+  password: string
+  phoneNumber: number
+  country: string
+  role: string
+  profileImage: string
+  verified: boolean
+  _id: string
+  createdAt: string
+  updatedAt: string
+
 }
