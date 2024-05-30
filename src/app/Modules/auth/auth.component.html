@@ -8,11 +8,14 @@
         <router-outlet></router-outlet>
       </div>
       <div class="col-md-6 col-lg-6 col-12 d-md-block d-lg-block d-none">
-        <figure>
+        <figure class="position-relative">
           <div>
-            <img src="../../../assets/images/auth/signin.png" alt="sign in" title="sign image" class="w-100">
+            <img [src]="imagePath" [alt]="imageCaption" [title]="imageCaption" class="w-100">
           </div>
-          <figcaption></figcaption>
+          <figcaption class="position-absolute bottom-0 start-50 translate-middle p-5 w-100 text-white">
+            <h2>{{ imageCaption }}</h2>
+            <p>Homes as unique as you.</p>
+          </figcaption>
         </figure>
       </div>
    

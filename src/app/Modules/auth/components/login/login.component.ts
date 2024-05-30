@@ -5,6 +5,8 @@ import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 import { ILoginResponse } from '../../interfaces/auth';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IFormFields } from 'src/app/Modules/shared/models/shared';
+import { Role } from 'src/app/Core/Enums/role.enum';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +14,13 @@ import { IFormFields } from 'src/app/Modules/shared/models/shared';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  constructor(
-    private _AuthService: AuthService,
-    private _HelperService: HelperService
-  ) {}
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required, Validators.minLength(8)]),
   });
+
+  userData!: ILoginResponse;
 
   formFields: IFormFields[] = [
     {
@@ -35,6 +35,12 @@ export class LoginComponent {
     },
   ];
 
+  constructor(
+    private _AuthService: AuthService,
+    private _HelperService: HelperService,
+    private _Router: Router
+  ) {}
+
   onLogin(loginForm: FormGroup) {
     if (loginForm.invalid) {
       // Optionally handle the case where the form is invalid
@@ -42,9 +48,17 @@ export class LoginComponent {
     }
 
     this._AuthService.login(loginForm.value).subscribe({
-      next: (res: ILoginResponse) => {  },
+      next: (res: ILoginResponse) => { this.userData = res },
       error: (error: HttpErrorResponse) => this._HelperService.error(error),
-      complete: () => this._AuthService.welcomeVoice('Welcome Back Ya my frienda')
+      complete: () => {
+        this._AuthService.welcomeVoice('Welcome Back Ya my frienda');
+        localStorage.setItem('userToken', this.userData.data.token);
+        if (this.userData.data.user.role == Role.user) {
+
+        } else if (this.userData.data.user.role = Role.admin) {
+          this._Router.navigate(['admin/dashboard/facilities'])
+        }
+      }
     });
   }
 }
