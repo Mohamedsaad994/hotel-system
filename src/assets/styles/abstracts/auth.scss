@@ -17,6 +17,7 @@
 input {
   position: relative;
   z-index: 9;
+  background-color: $input-bg;
 }
 
 .error {
