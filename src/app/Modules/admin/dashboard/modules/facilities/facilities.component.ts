@@ -39,7 +39,7 @@ export class FacilitiesComponent {
   onGetAllFacilities() {
     this._FacilitiesService.getAllFacilities().subscribe({
       next: (res: IAllFacilities) => {
-        this.roomFacilities = res;
+        this.roomFacilities = res; 
         this.roomFacilitiesData = this.roomFacilities.data.facilities
       },
 

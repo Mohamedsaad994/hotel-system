@@ -1,0 +1,50 @@
+<section>
+  <div class="container">
+    <div class="row vh-100 align-items-center">
+      <div class="col-md-10 mx-auto">
+        <form [formGroup]="RoomsForm" (ngSubmit)="sendRoomsForm()">
+          <input formControlName="roomNumber" class="form-control py-2 mb-3" type="number" placeholder="Room Number">
+          <div class="row">
+            <div class="col-md-6">
+              <input formControlName="price" class="form-control py-2 mb-3" type="number" placeholder="Price">
+            </div>
+            <div class="col-md-6">
+              <input formControlName="capacity" class="form-control py-2 mb-3" type="text" placeholder="Capacity">
+            </div>
+            <div class="col-md-6">
+              <input formControlName="discount" class="form-control py-2 mb-3" type="number" placeholder="Discount">
+            </div>
+            <div class="col-md-6">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Tags</mat-label>
+                <mat-select formControlName="facilities">
+                  <mat-option *ngFor="let item of FacilitiesData" [value]="item._id">{{item.name}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <div class="d-flex justify-content-center position-relative border rounded-circle overflow-hidden">
+              <label
+                for="Image"
+                class=" h-100 position-relative z-1 curser-pointer p-5"
+                ><i class="fa-solid fa-arrow-up-from-bracket fa-2x" [ngClass]="{ 'opacity-0': url }"></i
+              ></label>
+              <input
+                type="file"
+                formControlName="imgs"
+                id="Image"
+                (change)="onSelect($event)"
+                hidden
+              />
+              <img
+                *ngIf="url"
+                class=" h-100 pointer-event-none position-absolute z-0"
+                [src]="url"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
