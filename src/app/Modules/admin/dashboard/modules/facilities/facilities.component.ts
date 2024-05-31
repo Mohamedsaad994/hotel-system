@@ -24,8 +24,8 @@ export class FacilitiesComponent {
 
   displayHeaders: { [key: string]: string } = {
     name: 'Name',
-    createdAt: 'Created At',
-    updatedAt: 'Updated At',
+    createdAt: 'Created at',
+    updatedAt: 'Updated at',
     actions: 'Actions'
   };
 
