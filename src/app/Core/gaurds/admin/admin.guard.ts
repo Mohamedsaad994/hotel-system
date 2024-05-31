@@ -1,19 +1,32 @@
+// import { adminGuard } from './admin.guard';
+import { inject } from '@angular/core';
+import { Role } from './../../Enums/role.enum';
 import {
   ActivatedRouteSnapshot,
   CanActivateFn,
+  Router,
   RouterStateSnapshot,
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
 
-export const adminGuard: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-):
-  | Observable<UrlTree | boolean>
-  | Promise<UrlTree | boolean>
-  | UrlTree
-  | boolean => {
+export const adminGuard: CanActivateFn = ( route , state ) =>{
+
+
+  // | Observable<UrlTree | boolean>
+  // | Promise<UrlTree | boolean>
+  // | UrlTree
+  // | boolean => {
+
+  const _Router = inject(Router)
+    const role = Role.admin
+
+    if(localStorage.getItem('role') !== null && localStorage.getItem('role') == role){
+      return true;
+    }else{
+      _Router.navigate(['/auth'])
+      return false
+    }
   // role user and admin
   /*
       {
@@ -36,5 +49,5 @@ export const adminGuard: CanActivateFn = (
     }
 }
     */
-  return true;
+
 };
