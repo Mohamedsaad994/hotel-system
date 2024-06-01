@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IAddEditFacility, IAddFacilityResponse, IAllFacilities, IEditFacilityResponse, IFacilitiesDetailsResponse } from '../models/facilities';
+import { IAddEditFacility, IAddFacilityResponse, IAllFacilities, IEditFacilityResponse, IFacilitiesDetails, IFacilitiesDetailsResponse } from '../models/facilities';
 
 @Injectable({
   providedIn: 'root',
@@ -15,10 +15,10 @@ getAllFacilities(): Observable<IAllFacilities> {
 addFacilities(data:IAddEditFacility): Observable<IAddFacilityResponse>{
   return this._HttpClient.post<IAddFacilityResponse>(`admin/room-facilities` , {name:data})
 }
-detailsFacilities(_id:string):Observable<any> {
-  return this._HttpClient.get(`admin/room-facilities/${_id}`)
+detailsFacilities(_id:string):Observable<IFacilitiesDetailsResponse> {
+  return this._HttpClient.get<IFacilitiesDetailsResponse>(`admin/room-facilities/${_id}`)
 }
-editFacilities(_id:string , newName:IAddEditFacility): Observable<any>{
-  return this._HttpClient.put(`admin/room-facilities/${_id}` , {name:newName})
+editFacilities(_id:string , newName:IAddEditFacility): Observable<IEditFacilityResponse>{
+  return this._HttpClient.put<IEditFacilityResponse>(`admin/room-facilities/${_id}` , {name:newName})
 }
 }

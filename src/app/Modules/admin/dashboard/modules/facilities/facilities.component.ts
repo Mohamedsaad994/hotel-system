@@ -13,7 +13,7 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./facilities.component.scss'],
 })
 export class FacilitiesComponent {
- 
+
   constructor(
     private _HelperService: HelperService,
     private _FacilitiesService: FacilitiesService,
