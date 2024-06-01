@@ -1,6 +1,5 @@
-import { Component, Inject } from '@angular/core';
+import { Component, ElementRef, Inject, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { IAddFacilityDataResponse, IFacility } from '../../models/facilities';
 
 @Component({
   selector: 'app-add-edit-facilities',
@@ -17,5 +16,4 @@ export class AddEditFacilitiesComponent {
   onNoClick(): void {
     this.dialogRef.close();
   }
-
 }
