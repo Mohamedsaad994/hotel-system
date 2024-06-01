@@ -1,10 +1,15 @@
 import { FacilitiesService } from './services/facilities.service';
 import { Component } from '@angular/core';
+
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteComponent } from 'src/app/Modules/shared/components/delete/delete.component';
+
+
 import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 import { IAddEditFacility, IAddFacilityDataResponse, IAllFacilities, IEditFacilityResponse, IFacilitiesArrayData, IFacilitiesDetails, IFacilitiesDetailsCreatedBy, IFacilitiesDetailsResponse, IRoom } from './models/facilities';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add-edit-facilities.component';
-import { MatDialog } from '@angular/material/dialog';
+
 
 
 @Component({
@@ -19,6 +24,35 @@ export class FacilitiesComponent {
     private _FacilitiesService: FacilitiesService,
     public dialog: MatDialog
   ) {}
+  
+  openDeleteDialog(id:number): void {
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      data: {itemId: id},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      
+      if(result){
+        this.onDeleteItem(result);
+      }
+    });
+  }
+
+
+  onDeleteItem(id:number){
+    this._FacilitiesService.deleteFacility(id).subscribe({
+      next:(res) => {
+        console.log(res)
+      }, error:(err:HttpErrorResponse)=>{
+        this._HelperService.error(err)
+      },complete:()=> {
+        //get facilities method 
+      }
+    })
+  }
+
 
   headers: string[] = [
     'name',
@@ -29,8 +63,8 @@ export class FacilitiesComponent {
 
   displayHeaders: { [key: string]: string } = {
     name: 'Name',
-    createdAt: 'Created At',
-    updatedAt: 'Updated At',
+    createdAt: 'Created at',
+    updatedAt: 'Updated at',
     actions: 'Actions'
   };
 
@@ -44,7 +78,7 @@ export class FacilitiesComponent {
   onGetAllFacilities() {
     this._FacilitiesService.getAllFacilities().subscribe({
       next: (res: IAllFacilities) => {
-        this.roomFacilities = res;
+        this.roomFacilities = res; 
         this.roomFacilitiesData = this.roomFacilities.data.facilities
       },
 
@@ -110,7 +144,6 @@ onEditFacilities(_id:string,newName:IAddEditFacility){
      this.onAddFacilities(result.name);    
     });
   }
-
 
 
 }
