@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DeleteComponent } from './components/delete/delete.component';
 
 import { MatDialogModule } from '@angular/material/dialog';
 import { DeleteComponent } from './components/delete/delete.component';
@@ -15,6 +16,7 @@ import { DeleteComponent } from './components/delete/delete.component';
   declarations: [
     DeleteComponent
   ]
+
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
@@ -48,6 +50,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     MatInputModule,
     MatFormFieldModule
   ],
+
 
 })
 export class SharedModule {}

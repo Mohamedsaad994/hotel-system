@@ -1,5 +1,7 @@
+
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+
 
 
 @Component({
@@ -15,5 +17,6 @@ export class DeleteComponent {
     onNoClick(): void {
       this.dialogRef.close();
     }
+
 
 }
