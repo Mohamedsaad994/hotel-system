@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { DeleteComponent } from './components/delete/delete.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DeleteComponent } from './components/delete/delete.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
@@ -13,11 +16,11 @@ import { SharedHeaderComponent } from './components/shared-header/shared-header.
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
-    SidebarComponent, NavbarComponent, SharedTableComponent, DynamicPipe, SharedHeaderComponent
+    SidebarComponent, NavbarComponent, SharedTableComponent, DynamicPipe, SharedHeaderComponent, DeleteComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +29,10 @@ import { FormsModule } from '@angular/forms';
     MatMenuModule,
     MatButtonModule,
     MatDialogModule,
-    MatFormFieldModule,MatInputModule,FormsModule
+    MatFormFieldModule,
+    FormsModule,
+    MatSelectModule,
+    MatInputModule,
   ],
   exports: [
     SidebarComponent,
@@ -37,7 +43,12 @@ import { FormsModule } from '@angular/forms';
     MatMenuModule,
     MatButtonModule,
     MatDialogModule,
-    MatFormFieldModule,MatInputModule,FormsModule
+    MatFormFieldModule,
+    FormsModule,
+    MatSelectModule,
+    MatInputModule
   ],
+
+
 })
 export class SharedModule {}

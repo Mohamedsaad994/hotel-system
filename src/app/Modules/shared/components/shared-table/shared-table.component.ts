@@ -1,11 +1,20 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 
 @Component({
   selector: 'app-shared-table',
   templateUrl: './shared-table.component.html',
-  styleUrls: ['./shared-table.component.scss']
+  styleUrls: ['./shared-table.component.scss'],
 })
-export class SharedTableComponent<T extends { [key: string]: any }> {
+export class SharedTableComponent<T extends { [key: string]: any }>
+  implements OnChanges
+{
   @Input() tableHeaders: string[] = [];
   @Input() tableBodyContent: T[] = [];
   @Input() displayHeaders: { [key: string]: string } = {};
@@ -14,8 +23,27 @@ export class SharedTableComponent<T extends { [key: string]: any }> {
   @Output() editItem = new EventEmitter<string>();
   @Output() deleteItem = new EventEmitter<string>();
 
+  filteredTableBodyContent: { row: T; keys: string[] }[] = [];
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['tableHeaders'] || changes['tableBodyContent']) {
+      this.updateFilteredTableBodyContent();
+    }
+  }
+
+  updateFilteredTableBodyContent(): void {
+    if (this.tableBodyContent) {
+      this.filteredTableBodyContent = this.tableBodyContent.map((row) => ({
+        row,
+        keys: this.getFilteredKeys(row),
+      }));
+    } else {
+      this.filteredTableBodyContent = [];
+    }
+  }
+
   getFilteredKeys(object: T): string[] {
-    return Object.keys(object).filter(key => this.tableHeaders.includes(key));
+    return Object.keys(object).filter((key) => this.tableHeaders.includes(key));
   }
 
   onViewItem(id: string): void {
