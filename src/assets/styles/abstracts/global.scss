@@ -25,17 +25,17 @@ h1 {
   font-size: $default-h1-font-size;
 }
 
-h2 {
-  font-size: $default-h2-font-size;
-}
+// h2 {
+//   font-size: $default-h2-font-size;
+// }
 
-h3 {
-  font-size: $default-h3-font-size;
-}
+// h3 {
+//   font-size: $default-h3-font-size;
+// }
 
-h4 {
-  font-size: $default-h4-font-size;
-}
+// h4 {
+//   font-size: $default-h4-font-size;
+// }
 
 h5 {
   font-size: $default-h5-font-size;
@@ -44,24 +44,33 @@ h5 {
 h6 {
   font-size: $default-h6-font-size;
 }
-
+// Colors
 .bg-main-background {
   background-color: $white-color;
 }
-
 .main-transition {
   transition: $main-transition;
 }
-
 .main-box-shadow {
   box-shadow: $main-box-shadow;
 }
-
 .main-color {
   color: $main-btn;
 }
 .main-danger{
   color: $main-danger;
+}
+.main-blue{
+  color: $main-blue;
+}
+.main-gray{
+  color: $main-gray;
+}
+.dark-gray{
+  color: $dark-gray;
+}
+.dark-red{
+  color: $dark-red;
 }
 ul {
   list-style: none;

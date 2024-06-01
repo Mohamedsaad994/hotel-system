@@ -1,8 +1,11 @@
 import { FacilitiesService } from './services/facilities.service';
 import { Component } from '@angular/core';
 import { HelperService } from 'src/app/Modules/shared/services/helper.service';
-import { IAllFacilities, IFacilitiesArrayData } from './models/facilities';
+import { IAddEditFacility, IAddFacilityDataResponse, IAllFacilities, IEditFacilityResponse, IFacilitiesArrayData, IRoom } from './models/facilities';
 import { HttpErrorResponse } from '@angular/common/http';
+import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add-edit-facilities.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Component({
   selector: 'app-facilities',
@@ -12,7 +15,8 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class FacilitiesComponent {
   constructor(
     private _HelperService: HelperService,
-    private _FacilitiesService: FacilitiesService
+    private _FacilitiesService: FacilitiesService,
+    public dialog: MatDialog
   ) {}
 
   headers: string[] = [
@@ -44,22 +48,67 @@ export class FacilitiesComponent {
       },
 
       error: (error: HttpErrorResponse) => this._HelperService.error(error),
-      complete: () =>
-        this._HelperService.success(
-          'Facilities Has Been Retrieved Successfully'
-        ),
+      complete: () =>{}
     });
   }
-
+onAddFacilities(data:IAddEditFacility){
+  this._FacilitiesService.addFacilities(data).subscribe({
+    next:(res)=>{},
+    error:(err: HttpErrorResponse)=> this._HelperService.error(err),
+    complete:()=>{
+      this._HelperService.success('Facilities Added Successfully');
+      this.onGetAllFacilities();
+    }
+  })
+}
+onEditFacilities(_id:string,data:IAddEditFacility){
+  this._FacilitiesService.editFacilities(_id,data).subscribe({
+    next:(res:IEditFacilityResponse)=>{},
+    error:(err: HttpErrorResponse)=> this._HelperService.error(err),
+    complete:()=>{
+      this._HelperService.success('Facilities Updated Successfully');
+      this.onGetAllFacilities();
+    }
+  })
+}
   handleViewItem(id: string): void {
     console.log('View item:', id);
   }
 
-  handleEditItem(id: string): void {
-    console.log('Edit item:', id);
+  handleEditItem(_id:string): void {
+    this.openEditFacilitiesDialog(_id)
   }
 
   handleDeleteItem(id: string): void {
     console.log('Delete item:', id);
   }
+
+  openAddFacilitiesDialog(): void {
+    const dialogRef = this.dialog.open(AddEditFacilitiesComponent, {
+      width:'550px',
+      height:'auto' ,
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+     this.onAddFacilities(result.name);    
+    });
+  }
+  openEditFacilitiesDialog(FacilitiesData:any): void {
+    const dialogRef = this.dialog.open(AddEditFacilitiesComponent, {
+      width:'550px',
+      height:'auto' ,
+      data: {FacilitiesData},
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+     this.onEditFacilities(result._id,result);    
+    });
+  }
+
+
 }
+
+
+
+

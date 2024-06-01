@@ -22,8 +22,8 @@ export class SharedTableComponent<T extends { [key: string]: any }> {
     this.viewItem.emit(id);
   }
 
-  onEditItem(id: string): void {
-    this.editItem.emit(id);
+  onEditItem(_id: string): void {
+    this.editItem.emit(_id);
   }
 
   onDeleteItem(id: string): void {
