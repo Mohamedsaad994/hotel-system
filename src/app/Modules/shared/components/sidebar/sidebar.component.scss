@@ -1,0 +1,21 @@
+@import '../../../../../assets/styles/layout.scss';
+
+ul{
+
+  li{
+    margin:0 0 20px 15px;
+
+    a{
+      color:#fff;
+
+      span{
+        margin-right: 5px 
+      }
+    }
+  }
+}
+
+.active{
+  background-color: #0b185278;
+  padding:10px
+}
