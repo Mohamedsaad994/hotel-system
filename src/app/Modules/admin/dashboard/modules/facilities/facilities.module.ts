@@ -9,8 +9,6 @@ import { FacilitiesService } from './services/facilities.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add-edit-facilities.component';
 
-
-
 @NgModule({
   declarations: [
     FacilitiesComponent,

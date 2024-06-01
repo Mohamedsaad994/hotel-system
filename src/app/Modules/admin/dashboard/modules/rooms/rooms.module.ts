@@ -6,18 +6,25 @@ import { RoomsComponent } from './rooms.component';
 import { AddeditroomsComponent } from './components/addeditrooms/addeditrooms.component';
 import { SharedModule } from 'src/app/Modules/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { RoomsService } from './services/rooms.service';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     RoomsComponent,
     AddeditroomsComponent
   ],
+
   imports: [
     CommonModule,
     RoomsRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
+  ],
+
+  providers: [
+    RoomsService
   ]
 })
 export class RoomsModule { }

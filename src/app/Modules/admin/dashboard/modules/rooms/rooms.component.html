@@ -18,13 +18,13 @@
       <div class="col-md-12">
         <app-shared-table
         [tableHeaders]="headers"
-        [tableBodyContent]="roomsData"
+        [tableBodyContent]="tableData"
         [displayHeaders]="displayHeaders"
         (viewItem)="handleViewItem($event) "
         (editItem)="handleEditItem($event)"
         (deleteItem)="handleDeleteItem($event)">
       </app-shared-table>
-      
+
       </div>
     </div>
   </div>
