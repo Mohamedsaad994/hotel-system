@@ -24,6 +24,8 @@ export class SharedTableComponent<T extends { [key: string]: any }>
   @Output() deleteItem = new EventEmitter<string>();
 
   filteredTableBodyContent: { row: T; keys: string[] }[] = [];
+  sortColumn: string = '';
+  sortDirection: 'asc' | 'desc' = 'asc';
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['tableHeaders'] || changes['tableBodyContent']) {
@@ -37,21 +39,48 @@ export class SharedTableComponent<T extends { [key: string]: any }>
         row,
         keys: this.getFilteredKeys(row),
       }));
+      this.sortTable();
     } else {
       this.filteredTableBodyContent = [];
     }
   }
 
   getFilteredKeys(object: T): string[] {
-    return Object.keys(object).filter((key) => this.tableHeaders.includes(key));
+    return this.tableHeaders.filter((key) => object.hasOwnProperty(key));
+  }
+
+  sortTable(): void {
+    if (this.sortColumn) {
+      this.filteredTableBodyContent.sort((a, b) => {
+        const valueA = a.row[this.sortColumn];
+        const valueB = b.row[this.sortColumn];
+        if (valueA < valueB) {
+          return this.sortDirection === 'asc' ? -1 : 1;
+        } else if (valueA > valueB) {
+          return this.sortDirection === 'asc' ? 1 : -1;
+        } else {
+          return 0;
+        }
+      });
+    }
+  }
+
+  onSort(column: string): void {
+    if (this.sortColumn === column && column !== 'header' && column !== 'images') {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortColumn = column;
+      this.sortDirection = 'asc';
+    }
+    this.sortTable();
   }
 
   onViewItem(id: string): void {
     this.viewItem.emit(id);
   }
 
-  onEditItem(_id: string): void {
-    this.editItem.emit(_id);
+  onEditItem(id: string): void {
+    this.editItem.emit(id);
   }
 
   onDeleteItem(id: string): void {

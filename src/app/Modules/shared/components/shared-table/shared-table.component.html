@@ -1,13 +1,23 @@
 <table class="table table-striped table-bordered table-hover text-center main-box-shadow rounded-3 overflow-hidden">
   <thead>
     <tr>
-      <th *ngFor="let header of tableHeaders">{{ displayHeaders[header] }}</th>
+      <th *ngFor="let header of tableHeaders" (click)="onSort(header)">
+        {{ displayHeaders[header] }}
+        <span *ngIf="sortColumn === header && header !== 'actions' && header !== 'images'">
+          {{ sortDirection === 'asc' ? '▲' : '▼' }}
+        </span>
+      </th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let row of filteredTableBodyContent">
       <td *ngFor="let key of row.keys">
-        {{ row.row[key] | dynamicPipe: key }}
+        <ng-template #otherContent>
+          {{ row.row[key] | dynamicPipe: key }}
+        </ng-template>
+        <ng-container *ngIf="key === 'images'; else otherContent">
+          <img *ngIf="row.row[key]?.length" [src]="row.row[key][0]" alt="Room Image" width="50">
+        </ng-container>
       </td>
       <td>
         <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
