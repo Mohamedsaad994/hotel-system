@@ -4,7 +4,7 @@ import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 import { Ireset, IresetResponse } from '../../interfaces/Ireset';
 import { HttpErrorResponse } from '@angular/common/http';
 import { IFormFields } from 'src/app/Modules/shared/models/shared';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormControlOptions, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,11 +21,9 @@ export class ResetPasswordComponent {
     password: new FormControl(null, [Validators.required, Validators.pattern(
       '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$'
     )]),
-    confirmPassword: new FormControl(null, [Validators.required, Validators.pattern(
-      '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$'
-    )])
-    
-  })
+    confirmPassword: new FormControl(null, [Validators.required, this.passwordMisMatchValidator.bind(this) ])
+  }
+)
 
   formFields: IFormFields[] = [
     {
@@ -53,6 +51,17 @@ export class ResetPasswordComponent {
       type: 'password'
     },
   ];
+  
+  passwordMisMatchValidator(control: AbstractControl): { [key:string]: boolean} | null {
+    const confirmPassword = control.value;
+    const passwordControl = this.resetForm?.get('password');
+
+    if(passwordControl && passwordControl.value !== confirmPassword){
+      return {passwordMisMatch: true}
+    }
+
+    return null
+  }
 
   onReset(resetForm:FormGroup){
     if(resetForm.invalid){
