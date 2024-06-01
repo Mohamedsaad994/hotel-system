@@ -123,6 +123,7 @@ onEditFacilities(_id:string,newName:IAddEditFacility){
 }
   handleViewItem(id: string): void {
     this.onDetailsFacilities(id)
+    
   }
 
   handleEditItem(_id:string): void {
@@ -131,6 +132,9 @@ onEditFacilities(_id:string,newName:IAddEditFacility){
 
   handleDeleteItem(id: string): void {
     console.log('Delete item:', id);
+    
+   this.onDetailsFacilities(id)
+
   }
 
   openAddFacilitiesDialog(): void {
