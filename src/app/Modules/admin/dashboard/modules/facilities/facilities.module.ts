@@ -7,12 +7,14 @@ import { SharedModule } from 'src/app/Modules/shared/shared.module';
 
 import { FacilitiesService } from './services/facilities.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add-edit-facilities.component';
 
 
 
 @NgModule({
   declarations: [
-    FacilitiesComponent
+    FacilitiesComponent,
+    AddEditFacilitiesComponent
   ],
   imports: [
     CommonModule,
