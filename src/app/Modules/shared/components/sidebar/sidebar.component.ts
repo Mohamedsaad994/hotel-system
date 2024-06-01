@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 
 interface IMenu{
@@ -17,6 +18,7 @@ export class SidebarComponent {
 
   custom:boolean = true
 
+  constructor(private _Router:Router){}
 
   menu: IMenu[] = [
     {
@@ -56,4 +58,9 @@ export class SidebarComponent {
       isActive: true
     },
   ]
+
+  logOut(){
+    localStorage.removeItem('userToken')
+    this._Router.navigate(['/auth'])
+  }
 }
