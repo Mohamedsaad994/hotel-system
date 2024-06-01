@@ -21,6 +21,7 @@ export interface IFacilitiesCreatedByData {
   _id: string;
   userName: string;
 }
+//Add
 export interface IAddEditFacility{
   name: string;
 }
@@ -41,7 +42,7 @@ export interface IFacility {
   createdAt: string;
   updatedAt: string;
 }
-
+//Edit
 export interface IEditFacilityResponse {
   success: boolean;
   message: string;
@@ -58,4 +59,27 @@ export interface IRoom {
   createdBy: string
   createdAt: string
   updatedAt: string
+}
+//Details
+export interface IFacilitiesDetailsResponse {
+  success: boolean
+  message: string
+  data: IFacilitiesDataDetails
+}
+
+export interface IFacilitiesDataDetails {
+  facility: IFacilitiesDetails
+}
+
+export interface IFacilitiesDetails {
+  _id: string
+  name: string
+  createdBy: IFacilitiesDetailsCreatedBy
+  createdAt: string
+  updatedAt: string
+}
+
+export interface IFacilitiesDetailsCreatedBy {
+  _id: string
+  userName: string
 }

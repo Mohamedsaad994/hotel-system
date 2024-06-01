@@ -6,7 +6,7 @@ import { DeleteComponent } from 'src/app/Modules/shared/components/delete/delete
 
 
 import { HelperService } from 'src/app/Modules/shared/services/helper.service';
-import { IAddEditFacility, IAddFacilityDataResponse, IAllFacilities, IEditFacilityResponse, IFacilitiesArrayData, IRoom } from './models/facilities';
+import { IAddEditFacility, IAddFacilityDataResponse, IAllFacilities, IEditFacilityResponse, IFacilitiesArrayData, IFacilitiesDetails, IFacilitiesDetailsCreatedBy, IFacilitiesDetailsResponse, IRoom } from './models/facilities';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add-edit-facilities.component';
 
@@ -18,6 +18,7 @@ import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add
   styleUrls: ['./facilities.component.scss'],
 })
 export class FacilitiesComponent {
+
   constructor(
     private _HelperService: HelperService,
     private _FacilitiesService: FacilitiesService,
@@ -95,8 +96,23 @@ onAddFacilities(data:IAddEditFacility){
     }
   })
 }
-onEditFacilities(_id:string,data:IAddEditFacility){
-  this._FacilitiesService.editFacilities(_id,data).subscribe({
+onDetailsFacilities(_id:string){
+  this._FacilitiesService.detailsFacilities(_id).subscribe({
+    next:(res)=>{
+      const dialogRef = this.dialog.open(AddEditFacilitiesComponent, {
+        width:'550px',
+        height:'auto' ,
+        data: {name:res.data.facility.name},
+      });
+    
+      dialogRef.afterClosed().subscribe(result => {
+       this.onEditFacilities(_id,result.name);    
+      });
+    }
+  })
+}
+onEditFacilities(_id:string,newName:IAddEditFacility){
+  this._FacilitiesService.editFacilities(_id,newName).subscribe({
     next:(res:IEditFacilityResponse)=>{},
     error:(err: HttpErrorResponse)=> this._HelperService.error(err),
     complete:()=>{
@@ -106,11 +122,11 @@ onEditFacilities(_id:string,data:IAddEditFacility){
   })
 }
   handleViewItem(id: string): void {
-    console.log('View item:', id);
+    this.onDetailsFacilities(id)
   }
 
   handleEditItem(_id:string): void {
-    this.openEditFacilitiesDialog(_id)
+   this.onDetailsFacilities(_id)
   }
 
   handleDeleteItem(id: string): void {
@@ -128,17 +144,7 @@ onEditFacilities(_id:string,data:IAddEditFacility){
      this.onAddFacilities(result.name);    
     });
   }
-  openEditFacilitiesDialog(FacilitiesData:any): void {
-    const dialogRef = this.dialog.open(AddEditFacilitiesComponent, {
-      width:'550px',
-      height:'auto' ,
-      data: {FacilitiesData},
-    });
-  
-    dialogRef.afterClosed().subscribe(result => {
-     this.onEditFacilities(result._id,result);    
-    });
-  }
+
 
 }
 
