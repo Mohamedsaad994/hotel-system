@@ -1,1 +1,8 @@
-<p>facilities works!</p>
+<app-shared-table
+  [tableHeaders]="headers"
+  [tableBodyContent]="roomFacilitiesData"
+  [displayHeaders]="displayHeaders"
+  (viewItem)="handleViewItem($event)"
+  (editItem)="handleEditItem($event)"
+  (deleteItem)="handleDeleteItem($event)">
+</app-shared-table>

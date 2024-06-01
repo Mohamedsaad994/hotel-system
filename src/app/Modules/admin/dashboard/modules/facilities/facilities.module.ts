@@ -5,6 +5,10 @@ import { FacilitiesRoutingModule } from './facilities-routing.module';
 import { FacilitiesComponent } from './facilities.component';
 import { SharedModule } from 'src/app/Modules/shared/shared.module';
 
+import { FacilitiesService } from './services/facilities.service';
+import { HttpClientModule } from '@angular/common/http';
+
+
 
 @NgModule({
   declarations: [
@@ -13,7 +17,11 @@ import { SharedModule } from 'src/app/Modules/shared/shared.module';
   imports: [
     CommonModule,
     FacilitiesRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+  ],
+  providers: [
+    FacilitiesService
   ]
 })
 export class FacilitiesModule { }
