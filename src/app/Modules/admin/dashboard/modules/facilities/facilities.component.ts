@@ -7,14 +7,9 @@ import { DeleteComponent } from 'src/app/Modules/shared/components/delete/delete
 import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 import {
   IAddEditFacility,
-  IAddFacilityDataResponse,
   IAllFacilities,
   IEditFacilityResponse,
   IFacilitiesArrayData,
-  IFacilitiesDetails,
-  IFacilitiesDetailsCreatedBy,
-  IFacilitiesDetailsResponse,
-  IRoom,
 } from './models/facilities';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add-edit-facilities.component';
