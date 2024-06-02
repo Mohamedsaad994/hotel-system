@@ -7,6 +7,7 @@ import { IAllRooms, IRoomsFilter } from '../models/rooms';
   providedIn: 'root',
 })
 export class RoomsService {
+
   constructor(private _HttpClient: HttpClient) {  }
 
   getAllRooms(data: IRoomsFilter): Observable<IAllRooms> {
@@ -19,5 +20,8 @@ export class RoomsService {
 
   getRoomDetails(id: string):Observable<any>{
     return this._HttpClient.get(`admin/rooms/${id}`)
+  }
+  deleteRoom(id: string):Observable<any>{
+    return this._HttpClient.delete(`admin/rooms/${id}`);
   }
 }

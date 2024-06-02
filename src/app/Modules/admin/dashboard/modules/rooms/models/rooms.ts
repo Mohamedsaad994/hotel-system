@@ -64,3 +64,7 @@ export interface CreatedBy {
   _id: string
   userName: string
 }
+
+// export interface IRoomDelete{
+
+// }
