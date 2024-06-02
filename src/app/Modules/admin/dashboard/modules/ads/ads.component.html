@@ -1,1 +1,21 @@
-<p>ads works!</p>
+<app-shared-header [headertext]=" 'ADS Table Details' "
+[headerCaption]=" 'You can check all details' "
+[headerBtnText]=" 'Add New Ads'" ></app-shared-header>
+
+<section class="facilities mt-5">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <app-shared-table
+            [tableHeaders]="headers"
+            [tableBodyContent]="adsData"
+            [displayHeaders]="displayHeaders"
+            (viewItem)="handleViewItem($event)"
+            (editItem)="handleEditItem($event)"
+            (deleteItem)="handleDeleteItem($event)"
+            >
+        </app-shared-table>
+      </div>
+    </div>
+  </div>
+</section>
