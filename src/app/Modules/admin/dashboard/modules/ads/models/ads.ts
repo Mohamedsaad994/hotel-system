@@ -35,4 +35,13 @@ export interface IAllAds {
     _id: string;
     userName: string;
   }
+
+  export interface IAdDetailsResponse{
+    success:string;
+    message:string;
+    data: IDataAdDetailsResponse;
+  }
+  export interface IDataAdDetailsResponse{
+    ads:IAdsArrayData;
+  }
   

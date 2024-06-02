@@ -116,6 +116,8 @@ export class FacilitiesComponent {
     });
   }
 
+//delete
+
   openDeleteDialog(id: string): void {
     this._FacilitiesService.detailsFacilities(id).subscribe({
       next: (res) => {
