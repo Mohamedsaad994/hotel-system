@@ -4,6 +4,8 @@ import { RoomsService } from './services/rooms.service';
 import { IAllRooms, IRoomsArrayData, IRoomsFilter } from './models/rooms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteComponent } from 'src/app/Modules/shared/components/delete/delete.component';
 
 @Component({
   selector: 'app-rooms',
@@ -19,7 +21,8 @@ export class RoomsComponent implements OnInit {
   constructor(
     private _HelperService: HelperService,
     private _RoomsService: RoomsService,
-    private _Router:Router
+    private _Router:Router,
+    public dialog:MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -53,10 +56,6 @@ export class RoomsComponent implements OnInit {
     this._Router.navigate([`/admin/dashboard/rooms/edit/${id}`])
   }
 
-  handleDeleteItem(id: string): void {
-    console.log('Delete item:', id);
-  }
-
   onGetAllRooms() {
     const params: IRoomsFilter = {
       size: this.pageSize,
@@ -72,4 +71,39 @@ export class RoomsComponent implements OnInit {
       complete: () => this._HelperService.success('Rooms have been Retrieved Successfully'),
     });
   }
+
+  //delete
+
+openDeleteDialog(id:string):void{
+  this._RoomsService.getRoomDetails(id).subscribe({
+    next: (res) =>{
+      const dialogRef = this.dialog.open(DeleteComponent, {
+        data: {name: res.data.roomNumber},
+      });
+      dialogRef.afterClosed().subscribe((result) => {
+        if(result){
+          this.onDeleteItem(id);
+        }
+      })
+    }
+  })
+}
+
+onDeleteItem(id:string){
+  this._RoomsService.deleteRoom(id).subscribe({
+    next: (res) =>{},
+    error: (err:HttpErrorResponse) =>{
+      this._HelperService.error(err)
+    },
+    complete: () => {
+      this._HelperService.success('room has been deleted');
+      this.onGetAllRooms();
+    }
+  })
+}
+
+  handleDeleteItem(id: string): void {
+    this.openDeleteDialog(id);
+  }
+
 }
