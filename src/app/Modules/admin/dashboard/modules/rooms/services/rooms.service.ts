@@ -16,4 +16,8 @@ export class RoomsService {
   AddRoom(roomData: FormData): Observable<any> {
     return this._HttpClient.post('admin/rooms', roomData);
   }
+
+  getRoomDetails(id: string):Observable<any>{
+    return this._HttpClient.get(`admin/rooms/${id}`)
+  }
 }

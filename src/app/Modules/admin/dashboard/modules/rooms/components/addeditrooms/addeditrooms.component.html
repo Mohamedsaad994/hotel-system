@@ -17,14 +17,15 @@
             <div class="col-md-6">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Tags</mat-label>
-                <mat-select formControlName="facilities">
+                <mat-select multiple formControlName="facilities">
                   <mat-option *ngFor="let item of FacilitiesData" [value]="item._id">{{item.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
 
-            <div class="d-flex justify-content-center position-relative border rounded-circle overflow-hidden">
+            <div class="d-flex justify-content-center w-100 position-relative border overflow-hidden mt-5">
               <label
+                *ngIf="images.length < 5"
                 for="Image"
                 class=" h-100 position-relative z-1 curser-pointer p-5"
                 ><i class="fa-solid fa-arrow-up-from-bracket fa-2x" [ngClass]="{ 'opacity-0': url }"></i
@@ -34,14 +35,25 @@
                 formControlName="imgs"
                 id="Image"
                 (change)="onSelect($event)"
+                multiple
                 hidden
               />
-              <img
-                *ngIf="url"
-                class=" h-100 pointer-event-none position-absolute z-0"
-                [src]="url"
-              />
+              <div *ngFor="let item of images; let index = index">
+                <div class="img-holder">
+                  <div class="icon" (click)="deletImg(index)">
+                    <i class="fa-solid fa-close" (click)="deletImg(index)"></i>
+                  </div>
+                  <img
+                    class=" h-100 image z-0"
+                    src="{{item}}"
+                  />
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="buttons d-flex w-50 ms-auto mt-5">
+            <button type="button" class="primary-outline">Cancel</button>
+            <button type="submit" class="primary">Save</button>
           </div>
         </form>
       </div>
