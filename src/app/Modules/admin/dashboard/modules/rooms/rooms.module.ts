@@ -8,6 +8,7 @@ import { SharedModule } from 'src/app/Modules/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoomsService } from './services/rooms.service';
 import { HttpClientModule } from '@angular/common/http';
+import { FacilitiesModule } from '../facilities/facilities.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     RoomsRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FacilitiesModule
   ],
 
   providers: [

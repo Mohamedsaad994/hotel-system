@@ -23,6 +23,19 @@ button {
     }
   }
 
+  &.primary-outline{
+    background-color: transparent;
+    border: 1px solid $main-btn;
+    color: $main-btn;
+    transition: $main-transition;
+
+
+    &:hover {
+      background-color: $main-btn;
+      color: $white-color;
+    }
+  }
+
   &.dark {
     background-color: $main-black;
     color: $white-color;
