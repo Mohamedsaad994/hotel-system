@@ -43,7 +43,7 @@ export class LoginComponent {
 
   onLogin(loginForm: FormGroup) {
     if (loginForm.invalid) {
-      // Optionally handle the case where the form is invalid
+
       return;
     }
 
