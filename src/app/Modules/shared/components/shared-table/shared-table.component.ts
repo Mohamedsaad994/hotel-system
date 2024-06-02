@@ -46,14 +46,14 @@ export class SharedTableComponent<T extends { [key: string]: any }>
   }
 
   getFilteredKeys(object: T): string[] {
-    return this.tableHeaders.filter((key) => object.hasOwnProperty(key));
+    return this.tableHeaders.filter((key) => object.hasOwnProperty(key) || key.includes('.'));
   }
 
   sortTable(): void {
     if (this.sortColumn) {
       this.filteredTableBodyContent.sort((a, b) => {
-        const valueA = a.row[this.sortColumn];
-        const valueB = b.row[this.sortColumn];
+        const valueA = this.getNestedValue(a.row, this.sortColumn);
+        const valueB = this.getNestedValue(b.row, this.sortColumn);
         if (valueA < valueB) {
           return this.sortDirection === 'asc' ? -1 : 1;
         } else if (valueA > valueB) {
@@ -66,7 +66,7 @@ export class SharedTableComponent<T extends { [key: string]: any }>
   }
 
   onSort(column: string): void {
-    if (this.sortColumn === column && column !== 'header' && column !== 'images') {
+    if (this.sortColumn === column && column !== 'actions' && column !== 'images') {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
       this.sortColumn = column;
@@ -85,5 +85,9 @@ export class SharedTableComponent<T extends { [key: string]: any }>
 
   onDeleteItem(id: string): void {
     this.deleteItem.emit(id);
+  }
+
+  getNestedValue(object: T, key: string): any {
+    return key.split('.').reduce((o, k) => (o ? o[k] : null), object);
   }
 }
