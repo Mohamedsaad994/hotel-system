@@ -1,5 +1,7 @@
+import { MatDialog } from '@angular/material/dialog';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ChangePasswordComponent } from 'src/app/Modules/auth/components/change-password/change-password.component';
 
 
 interface IMenu{
@@ -18,7 +20,7 @@ export class SidebarComponent {
 
   custom:boolean = true
 
-  constructor(private _Router:Router){}
+  constructor(private _Router:Router, public dialog: MatDialog){}
 
   menu: IMenu[] = [
     {
@@ -58,6 +60,19 @@ export class SidebarComponent {
       isActive: true
     },
   ]
+
+  openDialog(): void {
+
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+    data: {},
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log('result',result);
+    });
+  }
 
   logOut(){
     localStorage.removeItem('userToken')
