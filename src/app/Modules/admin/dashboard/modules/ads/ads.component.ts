@@ -64,15 +64,6 @@ export class AdsComponent implements OnInit {
     });
   }
 
-
-handleViewItem(id: string): void{
-  console.log(id, 'view');   
-}  
-handleEditItem(id: string): void{
-  console.log(id, 'Edit');   
-} 
-
-
 //delete
 
 openDeleteDialog(id: string): void {
@@ -115,7 +106,5 @@ handleDeleteItem(id: string): void {
   handleEditItem(id: string): void {
     console.log(id, 'Edit');
   }
-  handleDeleteItem(id: string): void {
-    console.log(id, 'Delete');
-  }
+  
 }
