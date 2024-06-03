@@ -6,17 +6,23 @@ import { AdsRoutingModule } from './ads-routing.module';
 import { AdsComponent } from './ads.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdsService } from './services/ads.service';
+import { AddeditadsComponent } from './components/addeditads/addeditads.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RoomsModule } from '../rooms/rooms.module';
 
 
 @NgModule({
   declarations: [
-    AdsComponent
+    AdsComponent,
+    AddeditadsComponent
   ],
   imports: [
     CommonModule,
     AdsRoutingModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    RoomsModule
   ],
   providers:[
     AdsService
