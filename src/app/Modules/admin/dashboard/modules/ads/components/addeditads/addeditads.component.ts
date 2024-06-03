@@ -77,9 +77,14 @@ export class AddeditadsComponent implements OnInit{
         this._HelperService.error(err)
       },
       complete:()=>{
+
         this.onNoClick()
         this._HelperService.success('Ads Updated Successfully')
       }
     })
   }
+
+ 
+
+
 }

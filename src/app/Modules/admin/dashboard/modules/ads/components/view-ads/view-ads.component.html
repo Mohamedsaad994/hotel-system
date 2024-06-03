@@ -1,0 +1,35 @@
+<section class="p-4">
+    <div class="d-flex justify-content-between mb-4">
+      <h2>Ads</h2>
+      <a class="text-danger" (click)="onNoClick()"><i class="fa-solid fa-xmark-circle fa-2x"></i></a>
+    </div>
+    <form [formGroup]="adsForm" >
+      <div class="input-holder">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Room Number</mat-label>
+          <mat-select [ngModel]="data.room" formControlName="room">
+            <mat-option *ngFor="let item of roomsData" [value]="item._id">{{item.roomNumber}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="input-holder" >
+        <input formControlName="discount" [ngModel]="data.discount" type="text"  class="form-control mb-3 p-3" placeholder="Discount" >
+      </div>
+      <!-- <div class="input-holder"> -->
+        <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Active</mat-label>
+        <mat-select [ngModel]="data.active" formControlName="isActive">
+          <mat-option [value]="true">True</mat-option>
+          <mat-option [value]="false">False</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <!-- </div> -->
+  
+      
+      <div *ngIf="data.adsId" class="mt-4 d-flex justify-content-end">
+        <button type="button" (click)="onNoClick()" class="primary">Cancel</button>
+      </div>
+    </form>
+  
+  </section>
+  
