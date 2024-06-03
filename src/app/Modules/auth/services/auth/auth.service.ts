@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ILogin, ILoginResponse, IForgetPassword } from '../../interfaces/auth';
 import { Observable } from 'rxjs';
 import { Ireset, IresetResponse } from '../../interfaces/Ireset';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,9 @@ export class AuthService {
     return this._HttpClient.post<ILoginResponse>('admin/users/login', userData);
   }
 
+  changePassword(data: FormGroup):Observable<any>{
+    return this._HttpClient.post('admin/users/change-password', data)
+  }
 
   reset(userData:Ireset):Observable<IresetResponse>{
     return this._HttpClient.post<IresetResponse>('admin/users/reset-password', userData);
