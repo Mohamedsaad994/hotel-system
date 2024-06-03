@@ -25,12 +25,13 @@
     </mat-form-field>
     <!-- </div> -->
 
-    <div *ngIf="!data.adsId" class="mt-4">
+    <div *ngIf="!data.adsId" class="mt-4 d-flex justify-content-end">
       <button type="submit" class="primary">Add</button>
     </div>
-    <div *ngIf="data.adsId" class="mt-4">
+    <div *ngIf="data.adsId" class="mt-4 d-flex justify-content-end">
       <button type="button" (click)="sendUpdate(data)" class="primary">Update</button>
     </div>
+
   </form>
 
 </section>

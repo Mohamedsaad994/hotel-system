@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { DeleteComponent } from 'src/app/Modules/shared/components/delete/delete.component';
 import { MatDialog } from '@angular/material/dialog';
 import { AddeditadsComponent } from './components/addeditads/addeditads.component';
+import { ViewAdsComponent } from './components/view-ads/view-ads.component';
 
 @Component({
   selector: 'app-ads',
@@ -104,43 +105,69 @@ handleDeleteItem(id: string): void {
 }
 
   handleViewItem(id: string): void {
-    console.log(id, 'view');
+   // console.log(id, 'view');
+    this.openViewDialog(id)
   }
   handleEditItem(id: string): void {
-    this.openEditDialog(id)
+    this.openEditDialog(id , 'Edit')
   }
 
-  openEditDialog(id: string): void {
+  openEditDialog(id: string, mode:string): void {
     this._AdsService.getAdDetails(id).subscribe({
       next: (res)=>{
         this.currentAdsData = res.data.ads
         const dialogRef = this.dialog.open(AddeditadsComponent, {
+          width: '500px',
+          height: 'auto',
           data: {
             adsId:id,
             room: this.currentAdsData.room._id,
             active: this.currentAdsData.isActive,
-            discount: this.currentAdsData.room.discount
+            discount: this.currentAdsData.room.discount,
+            mode: mode
           },
         });
 
         dialogRef.afterClosed().subscribe(result => {
           console.log('The dialog was closed');
           console.log(result);
-          this.onGetAllAds()
+           this.onGetAllAds() 
         });
       }
     })
   }
 
+  openViewDialog(id: string): void {
+    this._AdsService.getAdDetails(id).subscribe({
+      next: (res)=>{
+        this.currentAdsData = res.data.ads
+        const dialogRef = this.dialog.open(ViewAdsComponent, {
+          width: '500px',
+          height: 'auto',
+          data: {
+            adsId:id,
+            room: this.currentAdsData.room._id,
+            active: this.currentAdsData.isActive,
+            discount: this.currentAdsData.room.discount,
+         
+          },
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+         // this.onGetAllAds()
+        });
+      }
+    })
+  }
   openAddDialog(): void {
     const dialogRef = this.dialog.open(AddeditadsComponent, {
+      width: '500px',
+      height: 'auto',
       data: {},
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
-      this.onGetAllAds()
+     this.onGetAllAds()
     });
   }
 

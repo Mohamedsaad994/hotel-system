@@ -9,12 +9,14 @@ import { AdsService } from './services/ads.service';
 import { AddeditadsComponent } from './components/addeditads/addeditads.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RoomsModule } from '../rooms/rooms.module';
+import { ViewAdsComponent } from './components/view-ads/view-ads.component';
 
 
 @NgModule({
   declarations: [
     AdsComponent,
-    AddeditadsComponent
+    AddeditadsComponent,
+    ViewAdsComponent
   ],
   imports: [
     CommonModule,
