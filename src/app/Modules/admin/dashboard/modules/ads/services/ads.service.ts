@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IAllAds, IAdDetailsResponse } from '../models/ads';
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,14 @@ getAdDetails(id:string):Observable<IAdDetailsResponse>{
 
 deleteAd(id:string):Observable<any>{
   return this._HttpClient.delete(`admin/ads/${id}`);
+}
+
+createAds(adsData: FormGroup): Observable<any>{
+  return this._HttpClient.post('admin/ads', adsData)
+}
+
+updateAds(id: string,adsData: any): Observable<any>{
+  return this._HttpClient.put(`admin/ads/${id}`, adsData)
 }
 
 }

@@ -5,6 +5,7 @@ import { AdsService } from './services/ads.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { DeleteComponent } from 'src/app/Modules/shared/components/delete/delete.component';
 import { MatDialog } from '@angular/material/dialog';
+import { AddeditadsComponent } from './components/addeditads/addeditads.component';
 
 @Component({
   selector: 'app-ads',
@@ -15,6 +16,8 @@ export class AdsComponent implements OnInit {
   ads!: IAllAds;
   tableData!: IAdsData;
   adsData!: any[];
+
+  currentAdsData!: IAdsArrayData
 
   headers: string[] = [
     'roomNumber',
@@ -33,11 +36,11 @@ export class AdsComponent implements OnInit {
     isActive: 'Active',
     actions: 'Actions',
   };
- 
- 
+
+
   constructor(private _HelperService:HelperService ,
   private _AdsService:AdsService,
-  public dialog:MatDialog
+  public dialog:MatDialog,
 ){}
 
   ngOnInit(): void {
@@ -97,14 +100,48 @@ onDeleteItem(id: string) {
 }
 
 handleDeleteItem(id: string): void {
-  this.openDeleteDialog(id);  
+  this.openDeleteDialog(id);
 }
 
   handleViewItem(id: string): void {
     console.log(id, 'view');
   }
   handleEditItem(id: string): void {
-    console.log(id, 'Edit');
+    this.openEditDialog(id)
   }
-  
+
+  openEditDialog(id: string): void {
+    this._AdsService.getAdDetails(id).subscribe({
+      next: (res)=>{
+        this.currentAdsData = res.data.ads
+        const dialogRef = this.dialog.open(AddeditadsComponent, {
+          data: {
+            adsId:id,
+            room: this.currentAdsData.room._id,
+            active: this.currentAdsData.isActive,
+            discount: this.currentAdsData.room.discount
+          },
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+          console.log('The dialog was closed');
+          console.log(result);
+          this.onGetAllAds()
+        });
+      }
+    })
+  }
+
+  openAddDialog(): void {
+    const dialogRef = this.dialog.open(AddeditadsComponent, {
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      this.onGetAllAds()
+    });
+  }
+
 }
