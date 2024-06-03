@@ -54,9 +54,9 @@ export class ResetPasswordComponent {
   
   passwordMisMatchValidator(control: AbstractControl): { [key:string]: boolean} | null {
     const confirmPassword = control.value;
-    const passwordControl = this.resetForm?.get('password');
+    const password = this.resetForm?.get('password')?.value;
 
-    if(passwordControl && passwordControl.value !== confirmPassword){
+    if(password !== confirmPassword){
       return {passwordMisMatch: true}
     }
 
