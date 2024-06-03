@@ -42,7 +42,7 @@ export interface UserCreated {
   userName: string
   email: string
   password: string
-  phoneNumber: number
+  phoneNumber: number 
   country: string
   role: string
   profileImage: string

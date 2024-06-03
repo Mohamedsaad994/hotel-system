@@ -4,8 +4,8 @@
     <input type="text" class="w-75 ms-3" placeholder="Search Here">
   </div>
   <div class="d-flex align-items-center">
-    <img class="me-2" [src]="emptyImge" alt="">
-    <p class="m-0">userName</p>
+    <img class="me-2" [src]="currentUser?.profileImage" alt="">
+    <p class="m-0">{{currentUser?.userName}}</p>
   </div>
   <i class="fa-solid fa-gear "></i>
   <i class="fa-solid fa-bell"></i>

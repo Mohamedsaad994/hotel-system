@@ -31,4 +31,8 @@ export class AuthService {
   register(userData: FormData): Observable<any>{
     return this._HttpClient.post('admin/users', userData)
   }
+
+  getUserProfile(id: string):Observable<any>{
+    return this._HttpClient.get(`admin/users/${id}`)
+  }
 }

@@ -54,6 +54,7 @@ export class LoginComponent {
         this._AuthService.welcomeVoice('Welcome Back Ya my frienda');
         localStorage.setItem('userToken', this.userData.data.token);
         localStorage.setItem('role', this.userData.data.user.role);
+        localStorage.setItem('userId', this.userData.data.user._id)
         if (this.userData.data.user.role == Role.user) {
 
         } else if (this.userData.data.user.role = Role.admin) {
