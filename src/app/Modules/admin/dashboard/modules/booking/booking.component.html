@@ -1,1 +1,20 @@
-<p>booking works!</p>
+<app-shared-header [headertext]=" 'Booking Table Details' "
+[headerCaption]=" 'You can check all details' "></app-shared-header>
+
+<section class="facilities mt-5">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <app-shared-table
+            [tableHeaders]="headers"
+            [tableBodyContent]="BookingData"
+            [displayHeaders]="displayHeaders"
+            (viewItem)="handleViewItem($event)"
+            (editItem)="handleEditItem($event)"
+            (deleteItem)="handleDeleteItem($event)"
+            >
+        </app-shared-table>
+      </div>
+    </div>
+  </div>
+</section>
