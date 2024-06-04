@@ -11,6 +11,9 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class UsersComponent {
   userData!: IUser[];
+  pageSize: number = 0;
+  pageNumber: number = 0;
+  userResponse!: IUserApiResponse;
 
   constructor(
     private _HelperService: HelperService,
@@ -31,7 +34,7 @@ export class UsersComponent {
     'verified',
     'createdAt',
     'updatedAt',
-    'actions'
+    'actions',
   ];
 
   displayHeaders: { [key: string]: string } = {
@@ -44,17 +47,18 @@ export class UsersComponent {
     verified: 'Verified',
     createdAt: 'Created at',
     updatedAt: 'Updated at',
-    actions: 'Actions'
+    actions: 'Actions',
   };
 
   getAllUsers() {
     const userParams: IUserParams = {
-      page: 1,
-      size: 10,
+      page: this.pageNumber,
+      size: this.pageSize,
     };
     this._UsersService.getAllUsers(userParams).subscribe({
       next: (res: IUserApiResponse) => {
-        this.userData = res.data.users
+        this.userResponse = res;
+        this.userData = res.data.users;
       },
       error: (error: HttpErrorResponse) =>
         this._HelperService.error(error.error.message),
@@ -63,5 +67,15 @@ export class UsersComponent {
           'Users data has been retrieved Successfully'
         ),
     });
+  }
+
+  pageNumberEvent(event: number) {
+    this.pageNumber = event;
+    this.getAllUsers();
+  }
+
+  pageSizeEvent(event: number) {
+    this.pageSize = event;
+    this.getAllUsers();
   }
 }

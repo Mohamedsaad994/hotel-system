@@ -13,6 +13,9 @@
             (viewItem)="handleViewItem($event)"
             (editItem)="handleEditItem($event)"
             (deleteItem)="handleDeleteItem($event)"
+            [totalCount]="roomFacilities.data.totalCount"
+            (pageIndexChanged)="pageNumberEvent($event)"
+            (pageSizeChanged)="pageSizeEvent($event)"
             >
         </app-shared-table>
       </div>

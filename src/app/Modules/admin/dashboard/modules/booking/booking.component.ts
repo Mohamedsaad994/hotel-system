@@ -8,8 +8,11 @@ import { MatDialog } from '@angular/material/dialog';
 @Component({
   selector: 'app-booking',
   templateUrl: './booking.component.html',
-  styleUrls: ['./booking.component.scss']
+  styleUrls: ['./booking.component.scss'],
 })
+
+ 
+
 export class BookingComponent implements OnInit {
   pageSize: number = 10;
   pageNumber: number = 1;
@@ -21,11 +24,19 @@ export class BookingComponent implements OnInit {
   private _HelperService:HelperService ,
   public dialog:MatDialog){}
 
+
   ngOnInit(): void {
-    this.onGetAllBooking()
+    this.onGetAllBooking();
   }
 
-  headers: string[] = ['roomNumber', 'totalPrice', 'startDate','endDate',  'userName', 'actions'];
+  headers: string[] = [
+    'roomNumber',
+    'totalPrice',
+    'startDate',
+    'endDate',
+    'userName',
+    'actions',
+  ];
   displayHeaders: { [key: string]: string } = {
     roomNumber: 'Room number',
     totalPrice: 'Price',
@@ -35,6 +46,7 @@ export class BookingComponent implements OnInit {
     actions: 'Actions',
   };
   onGetAllBooking(){
+
     const params = {
       pageSize: this.pageSize,
       pageNumber: this.pageNumber,
@@ -42,22 +54,42 @@ export class BookingComponent implements OnInit {
    this._BookingService.getAllBooking(params).subscribe({
       next: (res) => {
         this.tableResponse = res.data;
-       this.BookingData = this.tableResponse?.booking.map(ad => ({
-        _id:ad._id,
-        roomNumber:ad.room.roomNumber,
-        totalPrice:ad.totalPrice,
-        startDate:ad.startDate,
-        endDate:ad.endDate,
-        userName:ad.user.userName,
-       }) )
+        this.BookingData = this.tableResponse?.booking.map((ad) => ({
+          _id: ad._id,
+          roomNumber: ad.room.roomNumber,
+          totalPrice: ad.totalPrice,
+          startDate: ad.startDate,
+          endDate: ad.endDate,
+          userName: ad.user.userName,
+        }));
       },
       error: (err: HttpErrorResponse) => this._HelperService.error(err),
-      complete: () => {},
-    });
 
+      complete: () =>
+        this._HelperService.success('Booking have been Retrieved Successfully'),
+
+    });
   }
 
+  handleViewItem(id: string) {
+    console.log(id);
+  }
+  handleEditItem(id: string) {
+    console.log(id);
+  }
+  handleDeleteItem(id: string) {
+    console.log(id);
+  }
 
+  pageNumberEvent(event: number) {
+    this.pageNumber = event;
+    this.onGetAllBooking();
+  }
+
+  pageSizeEvent(event: number) {
+    this.pageSize = event;
+    this.onGetAllBooking();
+  }
 
   onGetBookingDetailsById(id:string , userData:any){
     this._BookingService.getBookingDetailsById(id).subscribe({
@@ -84,11 +116,6 @@ export class BookingComponent implements OnInit {
 handleViewItem(id:string){
  this.openViewBookingDialog(id)
 }
-
-
-
-
-
 
 
 
