@@ -15,13 +15,14 @@ import { Facility, IRoomsArrayData, Room } from '../../models/rooms';
 export class AddeditroomsComponent{
 
   Facilities!: IAllFacilities;
-  FacilitiesData!: IFacilitiesArrayData[]
+  FacilitiesData: IFacilitiesArrayData[] = []
 
   images: any[] = []
   image!: File;
   url!: any;
   roomId: any;
   oneRoomData!: Room;
+  files: File[] = []
 
   constructor(
     private _FacilitiesService:FacilitiesService,
@@ -85,9 +86,20 @@ export class AddeditroomsComponent{
 
     for (let key in this.RoomsForm.value) {
       if (key === "imgs") continue;
+      if(key === "facilities"){
+        for(let i = 0; i< this.RoomsForm.value.facilities.length; i++){
+          data.append(key, this.RoomsForm.value.facilities[i])
+        }
+        continue;
+      }
       data.append(key, this.RoomsForm.value[key]);
     }
-    if (this.image) data.append("profileImage", this.image);
+    if (this.images){
+      for(let i =0; i <this.images.length; i++){
+        data.append('imgs', this.images[i])
+      }
+    // data.append('imgs', this.images);
+    }
 
     this._RoomsService.AddRoom(data).subscribe({
       next: (res)=>{ },
@@ -99,24 +111,10 @@ export class AddeditroomsComponent{
   }
 
   onSelect(event: any) {
-    const files = event.target.files;
-    // if (files.length === 0)
-    //     return;
 
-    // const mimeType = files[0].type;
-    // if (mimeType.match(/image\/*/) == null) {
-    //     // this.message = "Only images are supported.";
-    //     return;
-    // }
+    // const files = event.target.files;
 
-    for(let i = 0; i < files.length; i++){
-      let file = files[i];
-      let reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload=()=>{
-        this.images.push(reader.result)
-      }
-    }
+     
 
   }
   deletImg(index:number){
