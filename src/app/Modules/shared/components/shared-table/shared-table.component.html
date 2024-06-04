@@ -20,19 +20,19 @@
         </ng-container>
       </td>
       <td>
-        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-          <mat-icon>more_vert</mat-icon>
+        <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" >
+          <mat-icon >more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
           <button mat-menu-item (click)="onViewItem(row.row['_id'])">
             <mat-icon>visibility</mat-icon>
             <span>View</span>
           </button>
-          <button mat-menu-item (click)="onEditItem(row.row['_id'])">
+          <button mat-menu-item (click)="onEditItem(row.row['_id'])" *ngIf="editBtnVisibility">
             <mat-icon>edit_square</mat-icon>
             <span>Edit</span>
           </button>
-          <button mat-menu-item (click)="onDeleteItem(row.row['_id'])">
+          <button mat-menu-item (click)="onDeleteItem(row.row['_id'])" *ngIf="deleteBtnVisibility">
             <mat-icon>delete</mat-icon>
             <span>Delete</span>
           </button>
