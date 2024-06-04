@@ -8,17 +8,23 @@ import { SharedTableComponent } from './components/shared-table/shared-table.com
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DynamicPipe } from './pipes/dynamic.pipe';
 import { SharedHeaderComponent } from './components/shared-header/shared-header.component';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
-    SidebarComponent, NavbarComponent, SharedTableComponent, DynamicPipe, SharedHeaderComponent, DeleteComponent
+    SidebarComponent,
+    NavbarComponent,
+    SharedTableComponent,
+    DynamicPipe,
+    SharedHeaderComponent,
+    DeleteComponent,
   ],
   imports: [
     CommonModule,
@@ -31,6 +37,7 @@ import {MatSelectModule} from '@angular/material/select';
     FormsModule,
     MatSelectModule,
     MatInputModule,
+    MatPaginatorModule
   ],
   exports: [
     SidebarComponent,
@@ -44,9 +51,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatFormFieldModule,
     FormsModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule
   ],
-
-
 })
 export class SharedModule {}
