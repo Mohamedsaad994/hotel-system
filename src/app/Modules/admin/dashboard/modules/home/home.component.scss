@@ -1,0 +1,29 @@
+.cart{
+
+  background-color: #1A1B1E;
+  color:#fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 20px;
+
+  h3{
+    font-size: 23px
+  }
+
+  .icon{
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background-color: #203FC733;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    i{
+      font-size: 20px;
+      color:#203FC7
+    }
+  }
+}
