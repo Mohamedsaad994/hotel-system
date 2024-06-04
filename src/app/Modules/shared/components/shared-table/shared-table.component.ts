@@ -22,8 +22,14 @@ export class SharedTableComponent<T extends { [key: string]: any }>
   @Input() tableHeaders: string[] = [];
   @Input() tableBodyContent: T[] = [];
   @Input() displayHeaders: { [key: string]: string } = {};
+
   @Output() pageSizeChanged: EventEmitter<number> = new EventEmitter<number>();
   @Output() pageIndexChanged: EventEmitter<number> = new EventEmitter<number>();
+
+  @Input() editBtnVisibility:boolean = true;
+  @Input() deleteBtnVisibility:boolean = true;
+  @Input() vertIconVisibility:boolean = true;
+
   @Output() viewItem = new EventEmitter<string>();
   @Output() editItem = new EventEmitter<string>();
   @Output() deleteItem = new EventEmitter<string>();
