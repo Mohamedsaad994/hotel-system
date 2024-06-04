@@ -6,6 +6,7 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-shared-table',
@@ -15,10 +16,14 @@ import {
 export class SharedTableComponent<T extends { [key: string]: any }>
   implements OnChanges
 {
+  pageSize = 10;
+  pageIndex = 1;
+  @Input() totalCount: number = 0;
   @Input() tableHeaders: string[] = [];
   @Input() tableBodyContent: T[] = [];
   @Input() displayHeaders: { [key: string]: string } = {};
-
+  @Output() pageSizeChanged: EventEmitter<number> = new EventEmitter<number>();
+  @Output() pageIndexChanged: EventEmitter<number> = new EventEmitter<number>();
   @Output() viewItem = new EventEmitter<string>();
   @Output() editItem = new EventEmitter<string>();
   @Output() deleteItem = new EventEmitter<string>();
@@ -46,7 +51,9 @@ export class SharedTableComponent<T extends { [key: string]: any }>
   }
 
   getFilteredKeys(object: T): string[] {
-    return this.tableHeaders.filter((key) => object.hasOwnProperty(key) || key.includes('.'));
+    return this.tableHeaders.filter(
+      (key) => object.hasOwnProperty(key) || key.includes('.')
+    );
   }
 
   sortTable(): void {
@@ -66,7 +73,11 @@ export class SharedTableComponent<T extends { [key: string]: any }>
   }
 
   onSort(column: string): void {
-    if (this.sortColumn === column && column !== 'actions' && column !== 'images') {
+    if (
+      this.sortColumn === column &&
+      column !== 'actions' &&
+      column !== 'images'
+    ) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
       this.sortColumn = column;
@@ -89,5 +100,12 @@ export class SharedTableComponent<T extends { [key: string]: any }>
 
   getNestedValue(object: T, key: string): any {
     return key.split('.').reduce((o, k) => (o ? o[k] : null), object);
+  }
+
+  handlePageEvent(event: PageEvent) {
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+    this.pageSizeChanged.emit(this.pageSize);
+    this.pageIndexChanged.emit(this.pageIndex);
   }
 }
