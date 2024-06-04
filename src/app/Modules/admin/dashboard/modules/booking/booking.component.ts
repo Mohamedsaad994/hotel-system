@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { IAllBooking, IBooking } from './models/booking';
+import { IAllBooking, IBooking, IBookingData } from './models/booking';
+import { BookingService } from './services/booking.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 
 @Component({
   selector: 'app-booking',
@@ -7,18 +10,58 @@ import { IAllBooking, IBooking } from './models/booking';
   styleUrls: ['./booking.component.scss']
 })
 export class BookingComponent {
-  headers: string[] = ['roomNumber', 'price', 'startAt', 'user', 'actions'];
+  pageSize: number = 10;
+  pageNumber: number = 1;
 
+
+  constructor(private _BookingService:BookingService , private _HelperService:HelperService){}
+
+  ngOnInit(): void {
+    this.onGetAllBooking()
+  }
+
+  headers: string[] = ['roomNumber', 'totalPrice', 'startDate','endDate',  'userName', 'actions'];
   displayHeaders: { [key: string]: string } = {
     roomNumber: 'Room number',
-    price: 'Price',
-    startAt: 'Start at',
-    user: 'User',
+    totalPrice: 'Price',
+    startDate: 'Start Date',
+    endDate: 'End Date',
+    userName: 'User',
     actions: 'Actions',
   };
-
   allBooking!: IAllBooking;
-  BookingData!: IBooking[];
+  BookingData: any[]=[];
+  tableResponse: IBookingData|undefined;
+ 
+  onGetAllBooking(){
+    const params = {
+      pageSize: this.pageSize,
+      pageNumber: this.pageNumber,
+    };
+
+    this._BookingService.getAllBooking(params).subscribe({
+      next: (res) => {
+        this.tableResponse = res.data;
+       this.BookingData = this.tableResponse?.booking.map(ad => ({
+        _id:ad._id,
+        roomNumber:ad.room.roomNumber,
+        totalPrice:ad.totalPrice,
+        startDate:ad.startDate,
+        endDate:ad.endDate,
+        userName:ad.user.userName,
+       }) )
+      },
+      error: (err: HttpErrorResponse) => this._HelperService.error(err),
+      complete: () => this._HelperService.success('Booking have been Retrieved Successfully'),
+    });
+
+  }
+
+
+
+
+
+
 
 handleViewItem(id:string){
   console.log(id);
