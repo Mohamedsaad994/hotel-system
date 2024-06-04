@@ -21,6 +21,8 @@ import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add
 })
 export class FacilitiesComponent {
   headers: string[] = ['name', 'createdAt', 'updatedAt', 'actions'];
+  pageNumber: number = 0;
+  pageSize: number = 0;
 
   displayHeaders: { [key: string]: string } = {
     name: 'Name',
@@ -150,5 +152,15 @@ export class FacilitiesComponent {
 
   handleDeleteItem(id: string): void {
     this.openDeleteDialog(id);
+  }
+
+  pageNumberEvent(event: number) {
+    this.pageNumber = event;
+    this.onGetAllFacilities();
+  }
+
+  pageSizeEvent(event: number) {
+    this.pageSize = event;
+    this.onGetAllFacilities();
   }
 }

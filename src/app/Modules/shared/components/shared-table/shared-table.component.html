@@ -19,7 +19,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let row of filteredTableBodyContent">
+      <tr *ngFor="let row of filteredTableBodyContent; trackBy: trackByRowId">
         <td *ngFor="let key of row.keys">
           <ng-template #otherContent>
             {{ row.row[key] | dynamicPipe : key }}
@@ -71,6 +71,5 @@
     [pageSizeOptions]="[5, 10, 25]"
     [pageIndex]="pageIndex"
     aria-label="Select page"
-  >
-  </mat-paginator>
+  ></mat-paginator>
 </section>
