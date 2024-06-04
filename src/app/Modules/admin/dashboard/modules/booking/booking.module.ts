@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { BookingRoutingModule } from './booking-routing.module';
 import { BookingComponent } from './booking.component';
 import { SharedModule } from 'src/app/Modules/shared/shared.module';
+import { BookingService } from './services/booking.service';
 
 
 @NgModule({
@@ -14,6 +15,9 @@ import { SharedModule } from 'src/app/Modules/shared/shared.module';
     CommonModule,
     BookingRoutingModule,
     SharedModule
+  ],
+  providers: [
+    BookingService
   ]
 })
 export class BookingModule { }

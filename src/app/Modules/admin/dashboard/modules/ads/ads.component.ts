@@ -53,7 +53,7 @@ export class AdsComponent implements OnInit {
       next: (res) => {
         this.ads = res;
         this.tableData = this.ads.data;
-        this.adsData = this.tableData.ads.map(ad => ({
+        this.adsData = this.tableData.ads.map ( ad => ({
           _id: ad._id,
           roomNumber: ad.room.roomNumber,
           price: ad.room.price,

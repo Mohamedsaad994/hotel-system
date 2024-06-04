@@ -9,6 +9,7 @@ export class SharedHeaderComponent {
 
 @Input() headertext:string = '' ;
 @Input() headerCaption:string = '' ;
+@Input() headerBtnVisibility: boolean = true;
 @Input() headerBtnText:string = '' ;
 @Input() headerBtnClick:string = '';
 

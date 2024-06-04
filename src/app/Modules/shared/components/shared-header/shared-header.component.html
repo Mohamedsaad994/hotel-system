@@ -7,8 +7,8 @@
                     <p class="main-gray">{{headerCaption}}</p>
                 </div>
             </div>
-            <div class="header-btn">
-                <button class="primary" (click)="headerBtnClick">{{headerBtnText}}</button>
+            <div class="header-btn" *ngIf="headerBtnVisibility">
+                <button   class="primary" (click)="headerBtnClick">{{headerBtnText}}</button>
             </div>
         </div>
     </div>
