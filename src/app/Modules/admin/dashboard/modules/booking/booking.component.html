@@ -10,9 +10,15 @@
             [tableBodyContent]="BookingData"
             [displayHeaders]="displayHeaders"
             (viewItem)="handleViewItem($event)"
+
             [totalCount]="tableResponse.totalCount"
             (pageIndexChanged)="pageNumberEvent($event)"
             (pageSizeChanged)="pageSizeEvent($event)"
+
+            [vertIconVisibility]="false"
+            [editBtnVisibility]="false"
+            [deleteBtnVisibility]="false"
+
             >
         </app-shared-table>
       </div>
