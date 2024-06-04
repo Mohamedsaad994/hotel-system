@@ -15,13 +15,14 @@ import { Facility, IRoomsArrayData, Room } from '../../models/rooms';
 export class AddeditroomsComponent{
 
   Facilities!: IAllFacilities;
-  FacilitiesData!: IFacilitiesArrayData[]
+  FacilitiesData: IFacilitiesArrayData[] = []
 
-  images: any[] = []
-  image!: File;
-  url!: any;
+  // images: any[] = []
+  // image!: File;
+  url!: any[];
   roomId: any;
   oneRoomData!: Room;
+  files:any[] = []
 
   constructor(
     private _FacilitiesService:FacilitiesService,
@@ -40,22 +41,39 @@ export class AddeditroomsComponent{
     }
   }
 
+  async fetchImage(url: any) {
+    var res = await fetch(url);
+    var blob = await res.blob();
+    for(let i = 0; i < this.files.length; i++){
+    // this.imgSrc = blob;
+      this.files[i] = blob;
+
+    }
+  };
+
   getRoomDetails(){
     this._RoomsService.getRoomDetails(this.roomId).subscribe({
       next: (res)=>{
-        this.oneRoomData = res.data
+        this.oneRoomData = res.data.room
         console.log(this.oneRoomData);
       },
       error: (err)=>{
         console.log(err);
       },
       complete: ()=>{
+        this.url = this.oneRoomData.images
+
+        for(let i = 0; i< this.url.length; i++){
+          this.fetchImage(this.url[i])
+        }
+
         this.RoomsForm.patchValue({
           roomNumber: this.oneRoomData.roomNumber,
           price: this.oneRoomData.price,
           capacity: this.oneRoomData.capacity,
           discount: this.oneRoomData.discount,
-          facilities: this.oneRoomData.facilities.map((value: Facility)=> value._id)
+          facilities: this.oneRoomData.facilities.map((value: Facility)=> value._id),
+          imgs: this.oneRoomData.images
         })
       }
     })
@@ -85,9 +103,20 @@ export class AddeditroomsComponent{
 
     for (let key in this.RoomsForm.value) {
       if (key === "imgs") continue;
+      if(key === "facilities"){
+        for(let i = 0; i< this.RoomsForm.value.facilities.length; i++){
+          data.append(key, this.RoomsForm.value.facilities[i])
+        }
+        continue;
+      }
       data.append(key, this.RoomsForm.value[key]);
     }
-    if (this.image) data.append("profileImage", this.image);
+    if (this.files){
+      for(let i =0; i <this.files.length; i++){
+        data.append('imgs', this.files[i])
+      }
+    // data.append('imgs', this.images);
+    }
 
     this._RoomsService.AddRoom(data).subscribe({
       next: (res)=>{ },
@@ -98,28 +127,15 @@ export class AddeditroomsComponent{
     })
   }
 
-  onSelect(event: any) {
-    const files = event.target.files;
-    // if (files.length === 0)
-    //     return;
 
-    // const mimeType = files[0].type;
-    // if (mimeType.match(/image\/*/) == null) {
-    //     // this.message = "Only images are supported.";
-    //     return;
-    // }
 
-    for(let i = 0; i < files.length; i++){
-      let file = files[i];
-      let reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload=()=>{
-        this.images.push(reader.result)
-      }
-    }
+onSelect(event:any) {
+  console.log(event);
+  this.files.push(...event.addedFiles);
+}
 
-  }
-  deletImg(index:number){
-    this.images.splice(index, 1)
-  }
+onRemove(event: any) {
+  console.log(event);
+  this.files.splice(this.files.indexOf(event), 1);
+}
 }

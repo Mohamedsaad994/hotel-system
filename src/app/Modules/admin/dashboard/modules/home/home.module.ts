@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeService } from './service/home.service';
 
 
 @NgModule({
@@ -11,7 +13,11 @@ import { HomeComponent } from './home.component';
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    HttpClientModule
+  ],
+  providers: [
+    HomeService
   ]
 })
 export class HomeModule { }
