@@ -14,11 +14,18 @@ import { ViewAdsComponent } from './components/view-ads/view-ads.component';
   styleUrls: ['./ads.component.scss'],
 })
 export class AdsComponent implements OnInit {
-  ads!: IAllAds;
+  ads: IAllAds = {
+    data: {
+      ads: [],
+      totalCount: 0
+    },
+    message: '',
+    success: false
+  };
   tableData!: IAdsData;
   adsData!: any[];
-  pageNumber: number = 0;
-  pageSize: number = 0;
+  pageNumber: number = 5;
+  pageSize: number = 1;
 
   currentAdsData!: IAdsArrayData;
 
@@ -55,7 +62,7 @@ export class AdsComponent implements OnInit {
       page: this.pageNumber,
       size: this.pageSize
     }
-    
+
     this._AdsService.getAllAds(adsParams).subscribe({
       next: (res) => {
         this.ads = res;

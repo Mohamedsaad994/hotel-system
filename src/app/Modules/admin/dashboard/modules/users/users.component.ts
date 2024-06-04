@@ -13,7 +13,14 @@ export class UsersComponent {
   userData!: IUser[];
   pageSize: number = 0;
   pageNumber: number = 0;
-  userResponse!: IUserApiResponse;
+  userResponse: IUserApiResponse = {
+    data: {
+      users: [],
+      totalCount: 0
+    },
+    success: false,
+    message: ''
+  };;
 
   constructor(
     private _HelperService: HelperService,

@@ -1,7 +1,7 @@
 import { Data } from './../../../../../../auth/interfaces/auth';
 import { Component, OnInit } from '@angular/core';
 import { FacilitiesService } from '../../../facilities/services/facilities.service';
-import { IAllFacilities, IFacilitiesArrayData } from '../../../facilities/models/facilities';
+import { IAllFacilities, IFacilitiesArrayData, IFacilitiesParams } from '../../../facilities/models/facilities';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RoomsService } from '../../services/rooms.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -80,7 +80,11 @@ export class AddeditroomsComponent{
   }
 
   getAllFacilities(){
-    this._FacilitiesService.getAllFacilities().subscribe({
+    const params: IFacilitiesParams = {
+      page: 1,
+      size: 10,
+    }
+    this._FacilitiesService.getAllFacilities(params).subscribe({
       next:(res)=>{
         this.Facilities= res
         this.FacilitiesData= this.Facilities.data.facilities

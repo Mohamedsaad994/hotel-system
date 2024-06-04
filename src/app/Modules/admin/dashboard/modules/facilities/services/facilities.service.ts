@@ -8,6 +8,7 @@ import {
   IEditFacilityResponse,
   IFacilitiesDetails,
   IFacilitiesDetailsResponse,
+  IFacilitiesParams,
 } from '../models/facilities';
 
 @Injectable({
@@ -16,8 +17,8 @@ import {
 export class FacilitiesService {
   constructor(private _HttpClient: HttpClient) {}
 
-  getAllFacilities(): Observable<IAllFacilities> {
-    return this._HttpClient.get<IAllFacilities>('admin/room-facilities');
+  getAllFacilities(facilitiesParams: IFacilitiesParams): Observable<IAllFacilities> {
+    return this._HttpClient.get<IAllFacilities>('admin/room-facilities', { params: facilitiesParams });
   }
   addFacilities(data: IAddEditFacility): Observable<IAddFacilityResponse> {
     return this._HttpClient.post<IAddFacilityResponse>(

@@ -47,12 +47,17 @@ export class SharedTableComponent<T extends { [key: string]: any }>
   }
 
   updateFilteredTableBodyContent(): void {
-    this.filteredTableBodyContent = this.tableBodyContent.map((row) => ({
-      row,
-      keys: this.getFilteredKeys(row),
-    }));
-    this.sortTable();
+    if (this.tableBodyContent) {
+      this.filteredTableBodyContent = this.tableBodyContent.map((row) => ({
+        row,
+        keys: this.getFilteredKeys(row),
+      }));
+      this.sortTable();
+    } else {
+      this.filteredTableBodyContent = [];
+    }
   }
+
 
   getFilteredKeys(object: T): string[] {
     return this.tableHeaders.filter(
@@ -109,7 +114,6 @@ export class SharedTableComponent<T extends { [key: string]: any }>
     this.pageIndex = event.pageIndex;
     this.pageSizeChanged.emit(this.pageSize);
     this.pageIndexChanged.emit(this.pageIndex);
-    this.updateFilteredTableBodyContent();
   }
 
   trackByRowId(index: number, item: { row: T; keys: string[] }): any {

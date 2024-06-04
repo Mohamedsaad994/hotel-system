@@ -4,6 +4,12 @@ export interface IAllFacilities {
   data: IFacilitiesData;
 }
 
+export interface IFacilitiesParams {
+  page: number;
+  size: number;
+  [key: string]: any;
+}
+
 export interface IFacilitiesData {
   facilities: IFacilitiesArrayData[];
   totalCount: number;
