@@ -17,8 +17,8 @@ export class AddeditroomsComponent{
   Facilities!: IAllFacilities;
   FacilitiesData: IFacilitiesArrayData[] = []
 
-  images: any[] = []
-  image!: File;
+  // images: any[] = []
+  // image!: File;
   url!: any;
   roomId: any;
   oneRoomData!: Room;
@@ -94,9 +94,9 @@ export class AddeditroomsComponent{
       }
       data.append(key, this.RoomsForm.value[key]);
     }
-    if (this.images){
-      for(let i =0; i <this.images.length; i++){
-        data.append('imgs', this.images[i])
+    if (this.files){
+      for(let i =0; i <this.files.length; i++){
+        data.append('imgs', this.files[i])
       }
     // data.append('imgs', this.images);
     }
@@ -110,14 +110,25 @@ export class AddeditroomsComponent{
     })
   }
 
-  onSelect(event: any) {
+  // onSelect(event: any) {
 
-    // const files = event.target.files;
+  //   // const files = event.target.files;
 
-     
 
-  }
-  deletImg(index:number){
-    this.images.splice(index, 1)
-  }
+
+  // }
+  // deletImg(index:number){
+  //   this.images.splice(index, 1)
+  // }
+
+
+onSelect(event:any) {
+  console.log(event);
+  this.files.push(...event.addedFiles);
+}
+
+onRemove(event: any) {
+  console.log(event);
+  this.files.splice(this.files.indexOf(event), 1);
+}
 }

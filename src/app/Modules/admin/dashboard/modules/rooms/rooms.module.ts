@@ -9,6 +9,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RoomsService } from './services/rooms.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FacilitiesModule } from '../facilities/facilities.module';
+import { NgxDropzoneModule } from 'ngx-dropzone';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { FacilitiesModule } from '../facilities/facilities.module';
     SharedModule,
     ReactiveFormsModule,
     HttpClientModule,
-    FacilitiesModule
+    FacilitiesModule,
+    NgxDropzoneModule
   ],
 
   providers: [
