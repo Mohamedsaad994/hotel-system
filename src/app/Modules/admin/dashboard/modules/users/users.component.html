@@ -1,7 +1,7 @@
 <app-shared-header
-  [headertext]="'Facilities Table Details'"
+  [headertext]="'Users Table Details'"
   [headerCaption]="'You can check all details'"
-  [headerBtnText]="'Add New Facility'"
+  [headerBtnText]="'Register as Admin'"
 ></app-shared-header>
 
 <section class="facilities mt-5">
@@ -12,6 +12,7 @@
           [tableHeaders]="headers"
           [tableBodyContent]="userData"
           [displayHeaders]="displayHeaders"
+          (viewItem)="handleViewItem($event)"
           [totalCount]="userResponse.data.totalCount"
           (pageIndexChanged)="pageNumberEvent($event)"
           (pageSizeChanged)="pageSizeEvent($event)"

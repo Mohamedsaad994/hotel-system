@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewCurrentUserComponent } from 'src/app/Modules/admin/dashboard/components/view-current-user/view-current-user.component';
 import { UserCreated } from 'src/app/Modules/auth/interfaces/auth';
 import { AuthService } from 'src/app/Modules/auth/services/auth/auth.service';
 
@@ -13,11 +15,25 @@ export class NavbarComponent implements OnInit{
   userId: any = ''
   currentUser!: UserCreated
 
-  constructor(private _AuthService:AuthService){}
+  constructor(private _AuthService:AuthService, public dialog: MatDialog){}
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId')
     this.getCurrentUser()
+  }
+
+  openDialog(): void {
+
+    const dialogRef = this.dialog.open(ViewCurrentUserComponent, {
+      data: this.currentUser,
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log('result',result);
+      // this.getCurrentUser()
+    });
   }
 
   getCurrentUser(){

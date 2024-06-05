@@ -1,0 +1,13 @@
+<section class="py-4">
+  <div class="text-end px-4">
+    <a class="text-danger" (click)="onNoClick()"><i class="fa-solid fa-xmark-circle fa-2x"></i></a>
+  </div>
+  <div class="container">
+    <img [src]="data.profileImage" alt="">
+    <h1>{{data.userName}}</h1>
+    <p>{{data.role}}: <span class="fw-bold">{{data.email}}</span></p>
+    <p>Country: <span class="fw-bold">{{data.country}}</span></p>
+    <p>Phone: <span class="fw-bold">{{data.phoneNumber}}</span></p>
+  </div>
+
+</section>
