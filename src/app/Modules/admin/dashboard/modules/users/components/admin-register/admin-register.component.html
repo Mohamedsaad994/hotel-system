@@ -1,0 +1,91 @@
+<section class="w-75 mx-auto">
+  <h1 class="mt-4">Sign Up as Admin</h1>
+
+  <form (ngSubmit)="sendFormData(registerForm)" [formGroup]="registerForm" >
+    <div class="d-flex justify-content-center mb-1">
+      <div class="d-flex justify-content-center position-relative border rounded-circle overflow-hidden">
+        <label
+          for="Image"
+          class=" h-100 position-relative z-1 curser-pointer p-5"
+          ><i class="fa-solid fa-camera" [ngClass]="{ 'opacity-0': url }"></i
+        ></label>
+        <input
+          type="file"
+          formControlName="profileImage"
+          id="Image"
+          (change)="onSelect($event)"
+          hidden
+        />
+        <img
+          *ngIf="url"
+          class=" h-100 pointer-event-none position-absolute z-0"
+          [src]="url"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="mb-3">
+        <div class="form-item">
+          <label for="userName" class="fw-bold fs-5">User Name</label>
+          <input formControlName="userName" class="form-control border-2 fs-6 p-2" type="text" id="userName" placeholder="Your Name">
+        </div>
+        <div *ngIf="registerForm.get('userName')?.errors&&registerForm.get('userName')?.touched" class="warning text-danger text-center fw-bold">
+          <p *ngIf="registerForm.get('userName')?.getError('required')">* userName is Requierd</p>
+          <p *ngIf="registerForm.get('userName')?.getError('pattern')">* The userName must contain characters 4,8 and end with one numeric without spaces.</p>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <div class="form-item">
+          <label class="fw-bold fs-5" for="phone">Phone Number</label>
+          <input class="form-control border-2 fs-6 p-2" formControlName="phoneNumber" type="tel" id="phone" placeholder="Your Phone">
+        </div>
+        <div *ngIf="registerForm.get('phoneNumber')?.errors&&registerForm.get('phoneNumber')?.touched" class="warning text-danger text-center fw-bold">
+          <p *ngIf="registerForm.get('phoneNumber')?.getError('required')">* Phone is Requierd</p>
+          <p *ngIf="registerForm.get('phoneNumber')?.getError('pattern')">* Accept only Egyption Phone Numbers</p>
+        </div>
+      </div>
+      <div class="col-md-6 mb-3">
+        <div class="form-item">
+          <label class="fw-bold fs-5" for="country">Country</label>
+          <input formControlName="country" class="form-control border-2 fs-6 p-2" type="tel" id="country" placeholder="Your Country">
+        </div>
+        <div *ngIf="registerForm.get('country')?.errors&&registerForm.get('country')?.touched" class="warning text-danger text-center fw-bold">
+          <p *ngIf="registerForm.get('country')?.getError('required')">* Country is Requierd</p>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <div class="form-item">
+          <label class="fw-bold fs-5" for="email">email</label>
+          <input formControlName="email" class="form-control border-2 fs-6 p-2" type="email" id="email" placeholder="Your E-mail">
+        </div>
+        <div *ngIf="registerForm.get('email')?.errors&&registerForm.get('email')?.touched" class="warning text-danger text-center fw-bold">
+          <p *ngIf="registerForm.get('email')?.getError('required')">* Email is Requierd</p>
+          <p *ngIf="registerForm.get('email')?.getError('pattern')">* Email Invalid Format</p>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-item">
+          <label class="fw-bold fs-5" for="password">Password</label>
+          <input formControlName="password" class="form-control border-2 fs-6 p-2" type="password" id="password" placeholder="Your Password">
+        </div>
+        <div *ngIf="registerForm.get('password')?.errors&&registerForm.get('password')?.touched" class="warning text-danger text-center fw-bold">
+          <p *ngIf="registerForm.get('password')?.getError('required')">* Password is Requierd</p>
+          <p *ngIf="registerForm.get('password')?.getError('pattern')">* Must be Contain Uppercase Letter, Lowercase Letter, Numeric Value, Special Symbol(!@#$%^&*_+=-) and the total length should be between 8 - 16</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-item">
+          <label class="fw-bold fs-5" for="repassword">Confirm Password</label>
+          <input formControlName="confirmPassword" class="form-control border-2 fs-6 p-2" type="password" id="repassword" placeholder="Confirm Your Password">
+        </div>
+        <div *ngIf="registerForm.get('confirmPassword')?.errors&&registerForm.get('confirmPassword')?.touched" class="warning text-danger text-center fw-bold">
+          <p *ngIf="registerForm.get('confirmPassword')?.getError('required')">* rePassword is Requierd</p>
+          <p *ngIf="registerForm.get('confirmPassword')?.getError('mismatch')">* Password confirmation Is incorrected</p>
+        </div>
+      </div>
+    </div>
+    <button class="primary mt-3 d-block w-100" [disabled]="registerForm.invalid">Sign Up</button>
+  </form>
+</section>
