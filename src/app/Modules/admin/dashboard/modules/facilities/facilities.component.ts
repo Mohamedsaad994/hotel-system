@@ -10,6 +10,7 @@ import {
   IAllFacilities,
   IEditFacilityResponse,
   IFacilitiesArrayData,
+  IFacilitiesParams,
 } from './models/facilities';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add-edit-facilities.component';
@@ -21,8 +22,8 @@ import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add
 })
 export class FacilitiesComponent {
   headers: string[] = ['name', 'createdAt', 'updatedAt', 'actions'];
-  pageNumber: number = 0;
-  pageSize: number = 0;
+  pageNumber: number = 10;
+  pageSize: number = 1;
 
   displayHeaders: { [key: string]: string } = {
     name: 'Name',
@@ -31,7 +32,14 @@ export class FacilitiesComponent {
     actions: 'Actions',
   };
 
-  roomFacilities!: IAllFacilities;
+  roomFacilities: IAllFacilities = {
+    data: {
+      facilities: [],
+      totalCount: 0
+    },
+    success: false,
+    message: ''
+  };;
   roomFacilitiesData!: IFacilitiesArrayData[];
 
   constructor(
@@ -45,7 +53,11 @@ export class FacilitiesComponent {
   }
 
   onGetAllFacilities() {
-    this._FacilitiesService.getAllFacilities().subscribe({
+    const params: IFacilitiesParams = {
+      page: this.pageNumber,
+      size: this.pageSize
+    }
+    this._FacilitiesService.getAllFacilities(params).subscribe({
       next: (res: IAllFacilities) => {
         this.roomFacilities = res;
         this.roomFacilitiesData = this.roomFacilities.data.facilities;

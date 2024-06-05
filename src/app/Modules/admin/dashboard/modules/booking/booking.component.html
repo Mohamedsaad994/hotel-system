@@ -1,24 +1,21 @@
 <app-shared-header [headertext]=" 'Booking Table Details' "
-[headerCaption]=" 'You can check all details' "  [headerBtnVisibility]="false"></app-shared-header>
+[headerCaption]=" 'You can check all details'"  [headerBtnVisibility]="false"></app-shared-header>
 
 <section class="facilities mt-5">
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-md-12">
         <app-shared-table
-            [tableHeaders]="headers"
-            [tableBodyContent]="BookingData"
-            [displayHeaders]="displayHeaders"
-            (viewItem)="handleViewItem($event)"
-
-            [totalCount]="tableResponse.totalCount"
-            (pageIndexChanged)="pageNumberEvent($event)"
-            (pageSizeChanged)="pageSizeEvent($event)"
-
-            [vertIconVisibility]="false"
-            [editBtnVisibility]="false"
-            [deleteBtnVisibility]="false"
-
+              [tableHeaders]="headers"
+              [tableBodyContent]="BookingData"
+              [displayHeaders]="displayHeaders"
+              (viewItem)="handleViewItem($event)"
+              [totalCount]="allBooking.data.totalCount"
+              (pageIndexChanged)="pageNumberEvent($event)"
+              (pageSizeChanged)="pageSizeEvent($event)"
+              [vertIconVisibility]="true"
+              [editBtnVisibility]="false"
+              [deleteBtnVisibility]="false"
             >
         </app-shared-table>
       </div>

@@ -1,31 +1,25 @@
 <section class="view p-2">
-    <div class="d-flex justify-content-between mb-4 p-2">
-        <h2 class="">List Booking</h2>
-        <a class="text-danger" (click)="onNoClick()"><i class="fa-solid fa-xmark-circle fa-2x"></i></a>
-      </div>
-    <div class="container py-5">
-       
-       
-        <div class="row">
-            <div class="col-md-6  d-flex align-items-center">
-                <div class="user-caption">
-                  <ul>
-                    <li class="pb-2">Room number: <span>{{data.room.roomNumber}}</span></li>
-                    <li class="pb-2">Price: <span>{{data.totalPrice}}</span></li>
-                    <li class="pb-2">Start date: <span>{{data.startDate}}</span></li>
-                    <li class="pb-2">End date: <span>{{data.endDate}}</span></li>
-                    <li class="pb-2">User: <span>{{data.user.userName}}</span></li>
-                  </ul>
-                </div>
-            </div>
-               
-            </div>
+  <div class="d-flex justify-content-between mb-4 p-2">
+    <h2 class="">List Booking</h2>
+    <a class="text-danger" (click)="onNoClick()"><i class="fa-solid fa-xmark-circle fa-2x"></i></a>
+  </div>
+  <div class="container py-5">
+
+
+    <div class="row">
+      <div class="col-md-6  d-flex align-items-center">
+        <div class="user-caption">
+          <ul>
+            <li class="pb-2">Room number: <span>{{data.bookData.data.booking['room']['roomNumber']}}</span></li>
+            <li class="pb-2">Price: <span>{{data.bookData.data.booking['totalPrice']}}</span></li>
+            <li class="pb-2">Start date: <span>{{data.bookData.data.booking['startDate']}}</span></li>
+            <li class="pb-2">End date: <span>{{data.bookData.data.booking['endDate']}}</span></li>
+            <li class="pb-2">User: <span>{{data.bookData.data.booking['user']['userName']}}</span></li>
+          </ul>
         </div>
-   
+      </div>
+
+    </div>
+  </div>
+
 </section>
-
-
-
-
-
-
