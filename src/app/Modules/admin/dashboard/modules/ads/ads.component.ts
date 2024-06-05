@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IAdsArrayData, IAdsData, IAllAds } from './models/ads';
+import { IAdsArrayData, IAdsData, IAllAds, IParams, IAdsRoom } from './models/ads';
 import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 import { AdsService } from './services/ads.service';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -17,8 +17,23 @@ export class AdsComponent implements OnInit {
   ads!: IAllAds;
   tableData!: IAdsData;
   adsData!: any[];
+  currentAdsData!: IAdsArrayData;
 
-  currentAdsData!: IAdsArrayData
+   //search
+  
+adsArrayData:IAdsArrayData[]=[]
+ searchValue!:string;
+ pageIndex = 0;
+ pageSize = 10;
+ totalCount!:number;
+ allAdsData:IAdsArrayData[]=[]
+
+  
+  params:IParams= {
+   page :this.pageIndex,
+   size:this.pageSize
+ }
+
 
   headers: string[] = [
     'roomNumber',
@@ -49,7 +64,7 @@ export class AdsComponent implements OnInit {
   }
 
   onGetAllAds(): void {
-    this._AdsService.getAllAds().subscribe({
+    this._AdsService.getAllAds(this.params).subscribe({
       next: (res) => {
         this.ads = res;
         this.tableData = this.ads.data;
@@ -62,10 +77,29 @@ export class AdsComponent implements OnInit {
           isActive: ad.isActive,
           images: ad.room.images
         }));
+        this.allAdsData = this.tableData.ads;
+        this.totalCount = this.tableData.totalCount;
+
       },
       error: (err: HttpErrorResponse) => this._HelperService.error(err),
       complete: () => this._HelperService.success('Success'),
     });
+  }
+
+  
+  resetSearchInput() {
+    this.searchValue = '';
+    this.onGetAllAds();
+  }
+
+  filterByRoomNumber(searchVal: HTMLInputElement) {
+    if (searchVal) {
+      this.allAdsData = this.allAdsData.filter((param: IAdsArrayData) => param.room.roomNumber.includes(searchVal.value));
+      console.log(this.allAdsData);
+      this.totalCount = this.tableData.totalCount;
+      console.log(this.totalCount);
+
+    }
   }
 
 //delete

@@ -1,11 +1,27 @@
+
+<mat-form-field class=" input" class="w-100" appearance="outline" >
+  <mat-label>Search here</mat-label>
+  <input matInput type="text" 
+  placeholder="Search Here" 
+  #searchName 
+  [(ngModel)]=" searchValue" 
+  (keyup.enter)="filterByName(searchName)" >
+  <button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearchInput()">
+    <mat-icon>close</mat-icon>
+  </button>
+</mat-form-field>
+
+
 <app-shared-header [headertext]=" 'Facilities Table Details' "
 [headerCaption]=" 'You can check all details' "
-[headerBtnText]=" 'Add New Facility'" (click)='openAddFacilitiesDialog()'></app-shared-header>
+[headerBtnText]=" 'Add New Facility'" (click)='openAddFacilitiesDialog()'>
+</app-shared-header>
 
 <section class="facilities mt-5">
   <div class="container-fluid">
     <div class="row justify-content-center">
       <div class="col-md-12">
+
         <app-shared-table
             [tableHeaders]="headers"
             [tableBodyContent]="roomFacilitiesData"

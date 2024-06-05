@@ -1,3 +1,20 @@
+
+<section>
+  <mat-form-field class=" input" class="w-100" appearance="outline" >
+    <mat-label>Search here</mat-label>
+    <input matInput type="text" 
+    placeholder="Search Here" 
+    #searchVal 
+    [(ngModel)]=" searchValue" 
+    (keyup.enter)="filterByRoomNumber(searchVal)" >
+    <button *ngIf="searchValue" 
+      matSuffix mat-icon-button aria-label="Clear" 
+      (click)="resetSearchInput()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</section>
+
 <app-shared-header [headertext]=" 'Booking Table Details' "
 [headerCaption]=" 'You can check all details' "  [headerBtnVisibility]="false"></app-shared-header>
 

@@ -11,8 +11,8 @@ export class AdsService {
 
 constructor(private _HttpClient:HttpClient) { }
 
-getAllAds():Observable<IAllAds>{
-  return this._HttpClient.get<IAllAds>('admin/ads');
+getAllAds(myParams:any):Observable<IAllAds>{
+  return this._HttpClient.get<IAllAds>('admin/ads', {params:myParams});
 }
 
 getAdDetails(id:string):Observable<IAdDetailsResponse>{

@@ -12,7 +12,7 @@ export interface IFacilitiesData {
 export interface IFacilitiesArrayData {
   _id: string;
   name: string;
-  createdBy: {};
+  createdBy:IFacilitiesCreatedByData;
   createdAt: string;
   updatedAt: string;
 }
@@ -36,9 +36,9 @@ export interface IAddFacilityDataResponse {
 }
 
 export interface IFacility {
-  name: string;
-  createdBy: string;
   _id: string;
+  name: string;
+  createdBy: IFacilitiesCreatedByData;
   createdAt: string;
   updatedAt: string;
 }

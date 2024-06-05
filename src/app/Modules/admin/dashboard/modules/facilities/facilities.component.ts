@@ -10,6 +10,8 @@ import {
   IAllFacilities,
   IEditFacilityResponse,
   IFacilitiesArrayData,
+  IFacilitiesCreatedByData,
+  IFacility
 } from './models/facilities';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add-edit-facilities.component';
@@ -32,6 +34,21 @@ export class FacilitiesComponent {
   roomFacilities!: IAllFacilities;
   roomFacilitiesData!: IFacilitiesArrayData[];
 
+  //search
+  searchValue!: string;
+  totalCount!:number;
+  createdBy: IFacilitiesCreatedByData = {
+    _id: '',
+    userName: ''
+  }
+  facilities: IFacility = {
+    _id: '',
+    name: '',
+    createdBy: this.createdBy,
+    createdAt: '',
+    updatedAt: ''
+  }
+
   constructor(
     private _HelperService: HelperService,
     private _FacilitiesService: FacilitiesService,
@@ -42,17 +59,45 @@ export class FacilitiesComponent {
     this.onGetAllFacilities();
   }
 
+  //search
+
+
+
+
   onGetAllFacilities() {
-    this._FacilitiesService.getAllFacilities().subscribe({
+
+    let paramData = {
+      name:this.searchValue,
+      id: this.facilities._id,
+      createdBy:this.facilities.createdBy,
+      createdAt:this.facilities.createdAt,
+      updatedAt:this.facilities.updatedAt
+    }
+
+    this._FacilitiesService.getAllFacilities(paramData).subscribe({
       next: (res: IAllFacilities) => {
         this.roomFacilities = res;
         this.roomFacilitiesData = this.roomFacilities.data.facilities;
+        this.totalCount = res.data.totalCount;
       },
 
       error: (error: HttpErrorResponse) => this._HelperService.error(error),
       complete: () => {},
     });
   }
+  
+  resetSearchInput() {
+    this.searchValue = '';
+    this.onGetAllFacilities();
+  }
+
+  filterByName(searchName: HTMLInputElement) {
+    if (searchName) {
+      this.roomFacilitiesData = this.roomFacilitiesData.filter((param: IFacility) => param.name.includes(searchName.value));
+      this.totalCount = this.roomFacilities.data.totalCount
+    }
+  }
+
 
   onAddFacilities(data: IAddEditFacility) {
     this._FacilitiesService.addFacilities(data).subscribe({

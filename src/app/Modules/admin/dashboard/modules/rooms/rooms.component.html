@@ -1,3 +1,18 @@
+
+<section>
+    <mat-form-field class=" input" class="w-100" appearance="outline" >
+      <mat-label>Search here</mat-label>
+      <input matInput type="text" 
+      placeholder="Search Here" 
+      #searchVal 
+      [(ngModel)]=" searchValue" 
+      (keyup.enter)="filterByRoomNumber(searchVal)" >
+      <button *ngIf="searchValue" matSuffix mat-icon-button aria-label="Clear" (click)="resetSearchInput()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </section>
+
 <section>
   <div class="d-flex justify-content-between heading">
     <div>
@@ -11,6 +26,7 @@
     </div>
   </div>
 </section>
+
 
 <section class="facilities mt-5">
   <div class="container-fluid">

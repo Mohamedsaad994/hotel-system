@@ -6,7 +6,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RoomsService } from '../../services/rooms.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Facility, IRoomsArrayData, Room } from '../../models/rooms';
-
+import {IFacilitiesCreatedByData, IFacility} from '../../../facilities/models/facilities'
 @Component({
   selector: 'app-addeditrooms',
   templateUrl: './addeditrooms.component.html',
@@ -23,6 +23,18 @@ export class AddeditroomsComponent{
   roomId: any;
   oneRoomData!: Room;
   files: File[] = []
+
+  createdBy: IFacilitiesCreatedByData = {
+    _id: '',
+    userName: ''
+  }
+  facilities: IFacility = {
+    _id: '',
+    name: '',
+    createdBy: this.createdBy,
+    createdAt: '',
+    updatedAt: ''
+  }
 
   constructor(
     private _FacilitiesService:FacilitiesService,
@@ -63,7 +75,15 @@ export class AddeditroomsComponent{
   }
 
   getAllFacilities(){
-    this._FacilitiesService.getAllFacilities().subscribe({
+    
+    let paramData = {
+      name:this.facilities.name,
+      id: this.facilities._id,
+      createdBy:this.facilities.createdBy,
+      createdAt:this.facilities.createdAt,
+      updatedAt:this.facilities.updatedAt
+    }
+    this._FacilitiesService.getAllFacilities(paramData).subscribe({
       next:(res)=>{
         this.Facilities= res
         this.FacilitiesData= this.Facilities.data.facilities

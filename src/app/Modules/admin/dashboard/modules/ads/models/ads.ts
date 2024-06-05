@@ -44,4 +44,9 @@ export interface IAllAds {
   export interface IDataAdDetailsResponse{
     ads:IAdsArrayData;
   }
+
+  export interface IParams{
+    page :number,
+   size:number
+  }
   

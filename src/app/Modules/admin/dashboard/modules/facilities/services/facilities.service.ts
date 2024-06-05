@@ -6,6 +6,7 @@ import {
   IAddFacilityResponse,
   IAllFacilities,
   IEditFacilityResponse,
+  IFacilitiesCreatedByData,
   IFacilitiesDetails,
   IFacilitiesDetailsResponse,
 } from '../models/facilities';
@@ -16,8 +17,8 @@ import {
 export class FacilitiesService {
   constructor(private _HttpClient: HttpClient) {}
 
-  getAllFacilities(): Observable<IAllFacilities> {
-    return this._HttpClient.get<IAllFacilities>('admin/room-facilities');
+  getAllFacilities(myParams:any): Observable<IAllFacilities> {
+    return this._HttpClient.get<IAllFacilities>('admin/room-facilities', {params:myParams});
   }
   addFacilities(data: IAddEditFacility): Observable<IAddFacilityResponse> {
     return this._HttpClient.post<IAddFacilityResponse>(
