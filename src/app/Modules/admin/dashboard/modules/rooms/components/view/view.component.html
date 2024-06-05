@@ -1,0 +1,84 @@
+<section>
+  <div class="container">
+    <h1 class="py-3">Details of Room Number {{currentRoomData.roomNumber}}</h1>
+
+    <div class="carousel">
+      <owl-carousel-o [options]="customOptions">
+
+        <ng-container *ngFor="let img of currentRoomData.images">
+          <ng-template carouselSlide>
+            <img height="300" [src]="img">
+          </ng-template>
+        </ng-container>
+
+      </owl-carousel-o>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-4">
+        <div class="cart">
+          <div>
+            <p>Room Number</p>
+            <h3>{{currentRoomData.roomNumber}}</h3>
+          </div>
+          <div class="icon">
+            <i class="fa-solid fa-arrow-down-1-9"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="cart">
+          <div>
+            <p>Room Price</p>
+            <h3>{{currentRoomData.price | currency: 'EGP '}}</h3>
+          </div>
+          <div class="icon">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="cart">
+          <div>
+            <p>Room Capacity</p>
+            <h3>{{currentRoomData.capacity}}</h3>
+          </div>
+          <div class="icon">
+            <i class="fa-solid fa-people-group"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row justify-content-between mt-5">
+      <div class="col-md-5">
+        <div class="cart">
+          <div>
+            <p>Room Discount</p>
+            <h3>{{currentRoomData.discount}}</h3>
+          </div>
+          <div class="icon">
+            <i class="fa-solid fa-magnifying-glass-dollar"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="cart">
+          <div>
+            <p>Room Facilities</p>
+            <h3>
+              <span *ngFor="let fac of currentRoomData.facilities">{{fac.name}}, </span>
+            </h3>
+          </div>
+          <div class="icon">
+            <i class="fa-solid fa-circle-exclamation"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
