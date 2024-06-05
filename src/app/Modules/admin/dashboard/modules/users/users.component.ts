@@ -3,6 +3,10 @@ import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 import { UsersService } from './services/users.service';
 import { IUser, IUserApiResponse, IUserParams } from './models/users';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ViewCurrentUserComponent } from '../../components/view-current-user/view-current-user.component';
+import { MatDialog } from '@angular/material/dialog';
+import { AuthService } from 'src/app/Modules/auth/services/auth/auth.service';
+import { UserCreated } from 'src/app/Modules/auth/interfaces/auth';
 
 @Component({
   selector: 'app-users',
@@ -20,11 +24,16 @@ export class UsersComponent {
     },
     success: false,
     message: ''
-  };;
+  };
+  // dialog: any;
+  currentUser: any;
+  currentUserData!: UserCreated
 
   constructor(
     private _HelperService: HelperService,
-    private _UsersService: UsersService
+    private _UsersService: UsersService,
+    private _AuthService:AuthService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -40,9 +49,34 @@ export class UsersComponent {
     'profileImage',
     'verified',
     'createdAt',
-    'updatedAt',
+    // 'updatedAt',
     'actions',
   ];
+
+  handleViewItem(id: string): void {
+    this.openViewDialog(id)
+  }
+
+
+  openViewDialog(id: string): void {
+
+    this._AuthService.getUserProfile(id).subscribe({
+      next:(res)=>{
+        this.currentUser = res.data.user
+        const dialogRef = this.dialog.open(ViewCurrentUserComponent, {
+          data: this.currentUser,
+        });
+
+
+        dialogRef.afterClosed().subscribe((result: any) => {
+          console.log('The dialog was closed');
+          console.log('result',result);
+          // this.getCurrentUser()
+        });
+      }
+    })
+
+  }
 
   displayHeaders: { [key: string]: string } = {
     userName: 'User name',
