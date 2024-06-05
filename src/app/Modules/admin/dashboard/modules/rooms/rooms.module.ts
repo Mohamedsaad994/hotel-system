@@ -10,12 +10,16 @@ import { RoomsService } from './services/rooms.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FacilitiesModule } from '../facilities/facilities.module';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { ViewComponent } from './components/view/view.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 
 @NgModule({
   declarations: [
     RoomsComponent,
-    AddeditroomsComponent
+    AddeditroomsComponent,
+    ViewComponent,
+
   ],
 
   imports: [
@@ -25,7 +29,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     ReactiveFormsModule,
     HttpClientModule,
     FacilitiesModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    CarouselModule
   ],
 
   providers: [

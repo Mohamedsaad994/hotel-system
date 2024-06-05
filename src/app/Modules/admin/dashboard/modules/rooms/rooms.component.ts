@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 import { RoomsService } from './services/rooms.service';
-import { IAllRooms, IRoomsArrayData, IRoomsFilter } from './models/rooms';
+import { IAllRooms, IRoomsArrayData, IRoomsFilter, Room } from './models/rooms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteComponent } from 'src/app/Modules/shared/components/delete/delete.component';
+import { ViewComponent } from './components/view/view.component';
 
 @Component({
   selector: 'app-rooms',
@@ -24,7 +25,7 @@ export class RoomsComponent implements OnInit {
     success: false,
   };
   tableData: IRoomsArrayData[] = [];
-
+  currentRoomData!: Room;
   constructor(
     private _HelperService: HelperService,
     private _RoomsService: RoomsService,
@@ -48,8 +49,10 @@ export class RoomsComponent implements OnInit {
   };
 
   handleViewItem(id: string): void {
-    console.log('View item:', id);
+    // console.log('View item:', id);
+    this._Router.navigate([`/admin/dashboard/rooms/view/${id}`])
   }
+
 
   handleEditItem(id: string): void {
     console.log('Edit item:', id);
