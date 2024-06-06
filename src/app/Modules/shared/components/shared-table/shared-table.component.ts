@@ -5,24 +5,37 @@ import {
   EventEmitter,
   OnChanges,
   SimpleChanges,
+  ChangeDetectionStrategy
 } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-shared-table',
   templateUrl: './shared-table.component.html',
   styleUrls: ['./shared-table.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SharedTableComponent<T extends { [key: string]: any }>
   implements OnChanges
 {
+  @Input() totalCount: number = 0;
   @Input() tableHeaders: string[] = [];
   @Input() tableBodyContent: T[] = [];
   @Input() displayHeaders: { [key: string]: string } = {};
+
+  @Output() pageSizeChanged: EventEmitter<number> = new EventEmitter<number>();
+  @Output() pageIndexChanged: EventEmitter<number> = new EventEmitter<number>();
+
+  @Input() editBtnVisibility:boolean = true;
+  @Input() deleteBtnVisibility:boolean = true;
+  @Input() vertIconVisibility:boolean = true;
 
   @Output() viewItem = new EventEmitter<string>();
   @Output() editItem = new EventEmitter<string>();
   @Output() deleteItem = new EventEmitter<string>();
 
+  pageSize = 10;
+  pageIndex = 1;
   filteredTableBodyContent: { row: T; keys: string[] }[] = [];
   sortColumn: string = '';
   sortDirection: 'asc' | 'desc' = 'asc';
@@ -45,8 +58,11 @@ export class SharedTableComponent<T extends { [key: string]: any }>
     }
   }
 
+
   getFilteredKeys(object: T): string[] {
-    return this.tableHeaders.filter((key) => object.hasOwnProperty(key) || key.includes('.'));
+    return this.tableHeaders.filter(
+      (key) => object.hasOwnProperty(key) || key.includes('.')
+    );
   }
 
   sortTable(): void {
@@ -54,19 +70,21 @@ export class SharedTableComponent<T extends { [key: string]: any }>
       this.filteredTableBodyContent.sort((a, b) => {
         const valueA = this.getNestedValue(a.row, this.sortColumn);
         const valueB = this.getNestedValue(b.row, this.sortColumn);
-        if (valueA < valueB) {
-          return this.sortDirection === 'asc' ? -1 : 1;
-        } else if (valueA > valueB) {
-          return this.sortDirection === 'asc' ? 1 : -1;
-        } else {
-          return 0;
-        }
+        return this.sortDirection === 'asc'
+          ? this.compareValues(valueA, valueB)
+          : this.compareValues(valueB, valueA);
       });
     }
   }
 
+  compareValues(valueA: any, valueB: any): number {
+    if (valueA < valueB) return -1;
+    if (valueA > valueB) return 1;
+    return 0;
+  }
+
   onSort(column: string): void {
-    if (this.sortColumn === column && column !== 'actions' && column !== 'images') {
+    if (this.sortColumn === column) {
       this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
     } else {
       this.sortColumn = column;
@@ -89,5 +107,16 @@ export class SharedTableComponent<T extends { [key: string]: any }>
 
   getNestedValue(object: T, key: string): any {
     return key.split('.').reduce((o, k) => (o ? o[k] : null), object);
+  }
+
+  handlePageEvent(event: PageEvent): void {
+    this.pageSize = event.pageSize;
+    this.pageIndex = event.pageIndex;
+    this.pageSizeChanged.emit(this.pageSize);
+    this.pageIndexChanged.emit(this.pageIndex);
+  }
+
+  trackByRowId(index: number, item: { row: T; keys: string[] }): any {
+    return item.row['_id'];
   }
 }

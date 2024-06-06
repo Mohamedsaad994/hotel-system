@@ -27,9 +27,13 @@
             [tableHeaders]="headers"
             [tableBodyContent]="adsData"
             [displayHeaders]="displayHeaders"
+            [totalCount]="ads.data.totalCount"
             (viewItem)="handleViewItem($event)"
             (editItem)="handleEditItem($event)"
-            (deleteItem)="handleDeleteItem($event)">
+            (deleteItem)="handleDeleteItem($event)"
+            (pageIndexChanged)="pageNumberEvent($event)"
+            (pageSizeChanged)="pageSizeEvent($event)"
+            >
         </app-shared-table>
       </div>
     </div>

@@ -33,13 +33,17 @@
     <div class="row justify-content-center">
       <div class="col-md-12">
         <app-shared-table
-        [tableHeaders]="headers"
-        [tableBodyContent]="tableData"
-        [displayHeaders]="displayHeaders"
-        (viewItem)="handleViewItem($event)"
-        (editItem)="handleEditItem($event)"
-        (deleteItem)="handleDeleteItem($event)">
-      </app-shared-table>
+          [tableHeaders]="headers"
+          [tableBodyContent]="tableData"
+          [displayHeaders]="displayHeaders"
+          (viewItem)="handleViewItem($event)"
+          (editItem)="handleEditItem($event)"
+          (deleteItem)="handleDeleteItem($event)"
+          [totalCount]="tableResponse.data.totalCount"
+          (pageIndexChanged)="pageNumberEvent($event)"
+          (pageSizeChanged)="pageSizeEvent($event)"
+        >
+        </app-shared-table>
       </div>
     </div>
   </div>

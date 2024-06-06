@@ -11,7 +11,8 @@ import {
   IEditFacilityResponse,
   IFacilitiesArrayData,
   IFacilitiesCreatedByData,
-  IFacility
+  IFacility,
+  IFacilitiesParams,
 } from './models/facilities';
 import { HttpErrorResponse } from '@angular/common/http';
 import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add-edit-facilities.component';
@@ -23,6 +24,8 @@ import { AddEditFacilitiesComponent } from './components/add-edit-facilities/add
 })
 export class FacilitiesComponent {
   headers: string[] = ['name', 'createdAt', 'updatedAt', 'actions'];
+  pageNumber: number = 10;
+  pageSize: number = 1;
 
   displayHeaders: { [key: string]: string } = {
     name: 'Name',
@@ -31,7 +34,14 @@ export class FacilitiesComponent {
     actions: 'Actions',
   };
 
-  roomFacilities!: IAllFacilities;
+  roomFacilities: IAllFacilities = {
+    data: {
+      facilities: [],
+      totalCount: 0
+    },
+    success: false,
+    message: ''
+  };;
   roomFacilitiesData!: IFacilitiesArrayData[];
 
   //search
@@ -75,6 +85,7 @@ export class FacilitiesComponent {
     }
 
     this._FacilitiesService.getAllFacilities(paramData).subscribe({
+
       next: (res: IAllFacilities) => {
         this.roomFacilities = res;
         this.roomFacilitiesData = this.roomFacilities.data.facilities;
@@ -195,5 +206,15 @@ export class FacilitiesComponent {
 
   handleDeleteItem(id: string): void {
     this.openDeleteDialog(id);
+  }
+
+  pageNumberEvent(event: number) {
+    this.pageNumber = event;
+    this.onGetAllFacilities();
+  }
+
+  pageSizeEvent(event: number) {
+    this.pageSize = event;
+    this.onGetAllFacilities();
   }
 }

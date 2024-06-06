@@ -14,10 +14,16 @@ import { ViewAdsComponent } from './components/view-ads/view-ads.component';
   styleUrls: ['./ads.component.scss'],
 })
 export class AdsComponent implements OnInit {
-  ads!: IAllAds;
+  ads: IAllAds = {
+    data: {
+      ads: [],
+      totalCount: 0
+    },
+    message: '',
+    success: false
+  };
   tableData!: IAdsData;
   adsData!: any[];
-  currentAdsData!: IAdsArrayData;
 
    //search
   
@@ -33,6 +39,12 @@ adsArrayData:IAdsArrayData[]=[]
    page :this.pageIndex,
    size:this.pageSize
  }
+
+
+  pageNumber: number = 5;
+  pageSize: number = 1;
+
+  currentAdsData!: IAdsArrayData;
 
 
   headers: string[] = [
@@ -53,29 +65,31 @@ adsArrayData:IAdsArrayData[]=[]
     actions: 'Actions',
   };
 
-
-  constructor(private _HelperService:HelperService ,
-  private _AdsService:AdsService,
-  public dialog:MatDialog,
-){}
+  constructor(
+    private _HelperService: HelperService,
+    private _AdsService: AdsService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.onGetAllAds();
   }
 
   onGetAllAds(): void {
+
     this._AdsService.getAllAds(this.params).subscribe({
+
       next: (res) => {
         this.ads = res;
         this.tableData = this.ads.data;
-        this.adsData = this.tableData.ads.map ( ad => ({
+        this.adsData = this.tableData.ads.map((ad) => ({
           _id: ad._id,
           roomNumber: ad.room.roomNumber,
           price: ad.room.price,
           discount: ad.room.discount,
           capacity: ad.room.capacity,
           isActive: ad.isActive,
-          images: ad.room.images
+          images: ad.room.images,
         }));
         this.allAdsData = this.tableData.ads;
         this.totalCount = this.tableData.totalCount;
@@ -85,6 +99,7 @@ adsArrayData:IAdsArrayData[]=[]
       complete: () => this._HelperService.success('Success'),
     });
   }
+
 
   
   resetSearchInput() {
@@ -98,100 +113,109 @@ adsArrayData:IAdsArrayData[]=[]
       console.log(this.allAdsData);
       this.totalCount = this.tableData.totalCount;
       console.log(this.totalCount);
-
     }
   }
 
 //delete
 
-openDeleteDialog(id: string): void {
-  this._AdsService.getAdDetails(id).subscribe({
-    next: (res) => {
-      const dialogRef = this.dialog.open(DeleteComponent, {
-        data: { name: res.data.ads.room.roomNumber },
-      });
+  pageNumberEvent(event: number) {
+    this.pageNumber = event;
+    this.onGetAllAds();
+  }
 
-      dialogRef.afterClosed().subscribe((result) => {
-        if (result) {
-          this.onDeleteItem(id);
-        }
-      });
-    },
-  });
-}
 
-onDeleteItem(id: string) {
-  this._AdsService.deleteAd(id).subscribe({
-    next: (res) => {  },
-    error: (err: HttpErrorResponse) => {
-      console.log(err);
-      this._HelperService.error(err);
-    },
-    complete: () => {
-      this._HelperService.success('Ad Has Been Deleted');
-      this.onGetAllAds();
-    }
-  });
-}
+  pageSizeEvent(event: number) {
+    this.pageSize = event;
+    this.onGetAllAds();
+  }
 
-handleDeleteItem(id: string): void {
-  this.openDeleteDialog(id);
-}
+  openDeleteDialog(id: string): void {
+    this._AdsService.getAdDetails(id).subscribe({
+      next: (res) => {
+        const dialogRef = this.dialog.open(DeleteComponent, {
+          data: { name: res.data.ads.room.roomNumber },
+        });
+
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result) {
+            this.onDeleteItem(id);
+          }
+        });
+      },
+    });
+  }
+
+  onDeleteItem(id: string) {
+    this._AdsService.deleteAd(id).subscribe({
+      next: (res) => {},
+      error: (err: HttpErrorResponse) => {
+        console.log(err);
+        this._HelperService.error(err);
+      },
+      complete: () => {
+        this._HelperService.success('Ad Has Been Deleted');
+        this.onGetAllAds();
+      },
+    });
+  }
+
+  handleDeleteItem(id: string): void {
+    this.openDeleteDialog(id);
+  }
 
   handleViewItem(id: string): void {
-   // console.log(id, 'view');
-    this.openViewDialog(id)
+    // console.log(id, 'view');
+    this.openViewDialog(id);
   }
   handleEditItem(id: string): void {
-    this.openEditDialog(id , 'Edit')
+    this.openEditDialog(id, 'Edit');
   }
 
-  openEditDialog(id: string, mode:string): void {
+  openEditDialog(id: string, mode: string): void {
     this._AdsService.getAdDetails(id).subscribe({
-      next: (res)=>{
-        this.currentAdsData = res.data.ads
+      next: (res) => {
+        this.currentAdsData = res.data.ads;
         const dialogRef = this.dialog.open(AddeditadsComponent, {
           width: '500px',
           height: 'auto',
           data: {
-            adsId:id,
+            adsId: id,
             room: this.currentAdsData.room._id,
             active: this.currentAdsData.isActive,
             discount: this.currentAdsData.room.discount,
-            mode: mode
+            mode: mode,
           },
         });
 
-        dialogRef.afterClosed().subscribe(result => {
+        dialogRef.afterClosed().subscribe((result) => {
           console.log('The dialog was closed');
           console.log(result);
-           this.onGetAllAds() 
+          this.onGetAllAds();
         });
-      }
-    })
+      },
+    });
   }
 
   openViewDialog(id: string): void {
     this._AdsService.getAdDetails(id).subscribe({
-      next: (res)=>{
-        this.currentAdsData = res.data.ads
+      next: (res) => {
+        this.currentAdsData = res.data.ads;
         const dialogRef = this.dialog.open(ViewAdsComponent, {
           width: '500px',
           height: 'auto',
           data: {
-            adsId:id,
+            adsId: id,
             room: this.currentAdsData.room._id,
             active: this.currentAdsData.isActive,
             discount: this.currentAdsData.room.discount,
-         
           },
         });
 
-        dialogRef.afterClosed().subscribe(result => {
-         // this.onGetAllAds()
+        dialogRef.afterClosed().subscribe((result) => {
+          // this.onGetAllAds()
         });
-      }
-    })
+      },
+    });
   }
   openAddDialog(): void {
     const dialogRef = this.dialog.open(AddeditadsComponent, {
@@ -200,9 +224,8 @@ handleDeleteItem(id: string): void {
       data: {},
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-     this.onGetAllAds()
+    dialogRef.afterClosed().subscribe((result) => {
+      this.onGetAllAds();
     });
   }
-
 }

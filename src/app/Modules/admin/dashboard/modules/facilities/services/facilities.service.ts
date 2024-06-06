@@ -9,6 +9,7 @@ import {
   IFacilitiesCreatedByData,
   IFacilitiesDetails,
   IFacilitiesDetailsResponse,
+  IFacilitiesParams,
 } from '../models/facilities';
 
 @Injectable({
@@ -19,6 +20,7 @@ export class FacilitiesService {
 
   getAllFacilities(myParams:any): Observable<IAllFacilities> {
     return this._HttpClient.get<IAllFacilities>('admin/room-facilities', {params:myParams});
+
   }
   addFacilities(data: IAddEditFacility): Observable<IAddFacilityResponse> {
     return this._HttpClient.post<IAddFacilityResponse>(

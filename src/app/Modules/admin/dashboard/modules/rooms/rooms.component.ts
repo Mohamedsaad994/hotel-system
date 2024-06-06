@@ -6,6 +6,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteComponent } from 'src/app/Modules/shared/components/delete/delete.component';
+import { ViewComponent } from './components/view/view.component';
 
 
 @Component({
@@ -15,11 +16,17 @@ import { DeleteComponent } from 'src/app/Modules/shared/components/delete/delete
 })
 export class RoomsComponent implements OnInit {
   pageSize: number = 10;
-  pageNumber: number = 1;
-  tableResponse!: IAllRooms;
+  pageNumber: number = 0;
+  tableResponse: IAllRooms = {
+    data: {
+      rooms: [],
+      totalCount: 0,
+    },
+    message: '',
+    success: false,
+  };
   tableData: IRoomsArrayData[] = [];
 
-  
   //search
   
  searchValue!:string;
@@ -27,25 +34,21 @@ export class RoomsComponent implements OnInit {
   totalCount!:number;
  
 
+
+  currentRoomData!: Room;
+
   constructor(
     private _HelperService: HelperService,
     private _RoomsService: RoomsService,
-    private _Router:Router,
-    public dialog:MatDialog
+    private _Router: Router,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.onGetAllRooms();
   }
 
-  headers: string[] = [
-    'roomNumber',
-    'images',
-    'price',
-    'discount',
-    'capacity',
-    'actions',
-  ];
+  headers: string[] = ['roomNumber', 'images', 'price', 'discount', 'capacity', 'actions'];
 
   displayHeaders: { [key: string]: string } = {
     roomNumber: 'Room number',
@@ -57,15 +60,17 @@ export class RoomsComponent implements OnInit {
   };
 
   handleViewItem(id: string): void {
-    console.log('View item:', id);
+    // console.log('View item:', id);
+    this._Router.navigate([`/admin/dashboard/rooms/view/${id}`])
   }
+
 
   handleEditItem(id: string): void {
     console.log('Edit item:', id);
-    this._Router.navigate([`/admin/dashboard/rooms/edit/${id}`])
+    this._Router.navigate([`/admin/dashboard/rooms/edit/${id}`]);
   }
 
-  onGetAllRooms() {
+  onGetAllRooms(): void {
     const params: IRoomsFilter = {
       size: this.pageSize,
       page: this.pageNumber,
@@ -78,10 +83,9 @@ export class RoomsComponent implements OnInit {
         this.totalCount = res.data.totalCount;
       },
       error: (err: HttpErrorResponse) => this._HelperService.error(err),
-      complete: () => this._HelperService.success('Rooms have been Retrieved Successfully'),
+      complete: () => this._HelperService.success('Rooms have been retrieved successfully'),
     });
   }
-
   
   resetSearchInput() {
     this.searchValue = '';
@@ -97,36 +101,46 @@ export class RoomsComponent implements OnInit {
 
   //delete
 
-openDeleteDialog(id:string):void{
-  this._RoomsService.getRoomDetails(id).subscribe({
-    next: (res) =>{
-      const dialogRef = this.dialog.open(DeleteComponent, {
-        data: {name: res.data.roomNumber},
-      });
-      dialogRef.afterClosed().subscribe((result) => {
-        if(result){
-          this.onDeleteItem(id);
-        }
-      })
-    }
-  })
-}
+  openDeleteDialog(id: string): void {
+    this._RoomsService.getRoomDetails(id).subscribe({
+      next: (res) => {
+        const dialogRef = this.dialog.open(DeleteComponent, {
+          data: { name: res.data.roomNumber },
+        });
+        dialogRef.afterClosed().subscribe((result) => {
+          if (result) {
+            this.onDeleteItem(id);
+          }
+        });
+      },
+    });
+  }
 
-onDeleteItem(id:string){
-  this._RoomsService.deleteRoom(id).subscribe({
-    next: (res) =>{},
-    error: (err:HttpErrorResponse) =>{
-      this._HelperService.error(err)
-    },
-    complete: () => {
-      this._HelperService.success('room has been deleted');
-      this.onGetAllRooms();
-    }
-  })
-}
+
+  onDeleteItem(id: string): void {
+    this._RoomsService.deleteRoom(id).subscribe({
+      next: () => {},
+      error: (err: HttpErrorResponse) => {
+        this._HelperService.error(err);
+      },
+      complete: () => {
+        this._HelperService.success('Room has been deleted');
+        this.onGetAllRooms();
+      },
+    });
+  }
 
   handleDeleteItem(id: string): void {
     this.openDeleteDialog(id);
   }
 
+  pageNumberEvent(event: number): void {
+    this.pageNumber = event;
+    this.onGetAllRooms();
+  }
+
+  pageSizeEvent(event: number): void {
+    this.pageSize = event;
+    this.onGetAllRooms();
+  }
 }

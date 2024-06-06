@@ -1,7 +1,7 @@
 import { Data } from './../../../../../../auth/interfaces/auth';
 import { Component, OnInit } from '@angular/core';
 import { FacilitiesService } from '../../../facilities/services/facilities.service';
-import { IAllFacilities, IFacilitiesArrayData } from '../../../facilities/models/facilities';
+import { IAllFacilities, IFacilitiesArrayData, IFacilitiesParams } from '../../../facilities/models/facilities';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { RoomsService } from '../../services/rooms.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -19,10 +19,10 @@ export class AddeditroomsComponent{
 
   // images: any[] = []
   // image!: File;
-  url!: any;
+  url!: any[];
   roomId: any;
   oneRoomData!: Room;
-  files: File[] = []
+  files:any[] = []
 
   createdBy: IFacilitiesCreatedByData = {
     _id: '',
@@ -53,28 +53,46 @@ export class AddeditroomsComponent{
     }
   }
 
+  async fetchImage(url: any) {
+    var res = await fetch(url);
+    var blob = await res.blob();
+    for(let i = 0; i < this.files.length; i++){
+    // this.imgSrc = blob;
+      this.files[i] = blob;
+
+    }
+  };
+
   getRoomDetails(){
     this._RoomsService.getRoomDetails(this.roomId).subscribe({
       next: (res)=>{
-        this.oneRoomData = res.data
+        this.oneRoomData = res.data.room
         console.log(this.oneRoomData);
       },
       error: (err)=>{
         console.log(err);
       },
       complete: ()=>{
+        this.url = this.oneRoomData.images
+
+        for(let i = 0; i< this.url.length; i++){
+          this.fetchImage(this.url[i])
+        }
+
         this.RoomsForm.patchValue({
           roomNumber: this.oneRoomData.roomNumber,
           price: this.oneRoomData.price,
           capacity: this.oneRoomData.capacity,
           discount: this.oneRoomData.discount,
-          facilities: this.oneRoomData.facilities.map((value: Facility)=> value._id)
+          facilities: this.oneRoomData.facilities.map((value: Facility)=> value._id),
+          imgs: this.oneRoomData.images
         })
       }
     })
   }
 
   getAllFacilities(){
+
     
     let paramData = {
       name:this.facilities.name,
@@ -84,6 +102,7 @@ export class AddeditroomsComponent{
       updatedAt:this.facilities.updatedAt
     }
     this._FacilitiesService.getAllFacilities(paramData).subscribe({
+
       next:(res)=>{
         this.Facilities= res
         this.FacilitiesData= this.Facilities.data.facilities
@@ -130,16 +149,6 @@ export class AddeditroomsComponent{
     })
   }
 
-  // onSelect(event: any) {
-
-  //   // const files = event.target.files;
-
-
-
-  // }
-  // deletImg(index:number){
-  //   this.images.splice(index, 1)
-  // }
 
 
 onSelect(event:any) {

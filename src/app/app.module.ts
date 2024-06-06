@@ -10,6 +10,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GlobalInterceptor } from './Core/interceptors/global/global.interceptor';
 import { LoadingInterceptor } from './Core/interceptors/loading/loading.interceptor';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -19,7 +21,8 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
-    NgxDropzoneModule
+    NgxDropzoneModule,
+    CarouselModule
   ],
   providers: [
     {

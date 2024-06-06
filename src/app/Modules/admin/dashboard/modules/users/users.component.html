@@ -1,1 +1,24 @@
-<p>users works!</p>
+<app-shared-header
+  [headertext]="'Users Table Details'"
+  [headerCaption]="'You can check all details'"
+  [headerBtnText]="'Register as Admin'" routerLink='adminregister' 
+></app-shared-header>
+
+<section class="facilities mt-5">
+  <div class="container-fluid">
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <app-shared-table
+          [tableHeaders]="headers"
+          [tableBodyContent]="userData"
+          [displayHeaders]="displayHeaders"
+          (viewItem)="handleViewItem($event)"
+          [totalCount]="userResponse.data.totalCount"
+          (pageIndexChanged)="pageNumberEvent($event)"
+          (pageSizeChanged)="pageSizeEvent($event)"
+        >
+        </app-shared-table>
+      </div>
+    </div>
+  </div>
+</section>
