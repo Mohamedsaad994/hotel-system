@@ -64,23 +64,22 @@ export class BookingComponent implements OnInit {
     actions: 'Actions',
   };
 
-  allBooking!: IAllBooking;
-  BookingData: any[]=[];
+
   bookingList: IBooking[]=[];
   sortedData: IBooking[]=[];
   searchValue!: string;
   pageIndex = 0;
   totalCount!: number;
-  tableResponse: IBookingData|undefined;
- 
-  onGetAllBooking(){
-    const params = {
-      // roomNumber: ,
-      // user: ,
-      // price: ,
-      page: this.pageSize,
-      size: this.pageNumber,
-    };
+
+
+  // onGetAllBooking(){
+  //   const params = {
+  //     // roomNumber: ,
+  //     // user: ,
+  //     // price: ,
+  //     page: this.pageSize,
+  //     size: this.pageNumber,
+  //   };
 
 
   onGetAllBooking() {
@@ -104,7 +103,7 @@ export class BookingComponent implements OnInit {
         startDate:ad.startDate,
         endDate:ad.endDate,
         userName:ad.user.userName,
-       }) 
+       })
       )
         this.allBooking.data = res.data;
         this.allBooking.success = res.success;
@@ -139,14 +138,14 @@ export class BookingComponent implements OnInit {
   //   }
   // }
 
-  
+
   filterByRoomNumber(searchVal: HTMLInputElement) {
     if (searchVal) {
       this.bookingList = this.bookingList.filter((param) => param.room.roomNumber.includes(searchVal.value));
       console.log(this.bookingList);
       this.totalCount = this.bookingList.length
     }
-
+  }
   handleDeleteItem(id: string) {
     console.log(id);
   }
@@ -188,3 +187,4 @@ export class BookingComponent implements OnInit {
     this.openViewBookingDialog(id);
   }
 }
+

@@ -57,8 +57,9 @@ export class LoginComponent {
         localStorage.setItem('userId', this.userData.data.user._id)
         if (this.userData.data.user.role == Role.user) {
 
+          this._Router.navigate(['/landing-page'])
         } else if (this.userData.data.user.role = Role.admin) {
-          this._Router.navigate(['admin/dashboard/facilities'])
+          this._Router.navigate(['admin/dashboard/home'])
         }
       }
     });

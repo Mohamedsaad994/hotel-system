@@ -26,7 +26,7 @@ export class AdsComponent implements OnInit {
   adsData!: any[];
 
    //search
-  
+
 adsArrayData:IAdsArrayData[]=[]
  searchValue!:string;
  pageIndex = 0;
@@ -34,7 +34,7 @@ adsArrayData:IAdsArrayData[]=[]
  totalCount!:number;
  allAdsData:IAdsArrayData[]=[]
 
-  
+
   params:IParams= {
    page :this.pageIndex,
    size:this.pageSize
@@ -42,7 +42,7 @@ adsArrayData:IAdsArrayData[]=[]
 
 
   pageNumber: number = 5;
-  pageSize: number = 1;
+
 
   currentAdsData!: IAdsArrayData;
 
@@ -101,7 +101,7 @@ adsArrayData:IAdsArrayData[]=[]
   }
 
 
-  
+
   resetSearchInput() {
     this.searchValue = '';
     this.onGetAllAds();

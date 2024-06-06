@@ -10,9 +10,7 @@ import { FormGroup } from '@angular/forms';
 export class AdsService {
   constructor(private _HttpClient: HttpClient) {}
 
-  getAllAds(adsParams: IAdsParams): Observable<IAllAds> {
-    return this._HttpClient.get<IAllAds>('admin/ads', { params: adsParams });
-  }
+
 
 getAllAds(myParams:any):Observable<IAllAds>{
   return this._HttpClient.get<IAllAds>('admin/ads', {params:myParams});

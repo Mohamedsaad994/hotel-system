@@ -25,7 +25,7 @@ export class RegisterComponent {
     phoneNumber : new FormControl('', [Validators.required, Validators.pattern(/^01[0125][0-9]{8}$/)]),
     profileImage: new FormControl(''),
     role: new FormControl('user'),
-    password : new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}$/)]),
+    password : new FormControl('', [Validators.required, Validators.minLength(8)]),
     confirmPassword : new FormControl(''),
   }, {validators: [this.confirmPass]} as FormControlOptions)
 
