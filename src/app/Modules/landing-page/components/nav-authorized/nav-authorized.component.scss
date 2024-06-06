@@ -7,3 +7,7 @@ img{
 i,a{
   cursor: pointer;
 }
+
+.dropdown-menu[data-bs-popper]{
+  left: -100px
+}

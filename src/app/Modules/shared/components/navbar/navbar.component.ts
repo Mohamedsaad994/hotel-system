@@ -42,6 +42,7 @@ export class NavbarComponent implements OnInit{
         this.currentUser = res.data.user
       },
       error: (err)=> {
+        
       }
     })
   }

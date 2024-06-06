@@ -4,6 +4,7 @@ import { AuthService } from '../../services/auth/auth.service';
 import { IRegisterUserDataResponse } from '../../interfaces/auth';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HelperService } from 'src/app/Modules/shared/services/helper.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,11 @@ import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 })
 export class RegisterComponent {
 
-  constructor(private _AuthService:AuthService, private _HelperService:HelperService){}
+  constructor(
+    private _AuthService:AuthService,
+    private _HelperService:HelperService,
+    private _Router:Router
+  ){}
 
   image!: File;
   url!: any;
@@ -60,6 +65,7 @@ sendFormData(registerForm: FormGroup):void{
       },
       complete:()=>{
         this._HelperService.success('Sign up successfully')
+        this._Router.navigate(['/auth'])
       }
     })
   }

@@ -75,7 +75,7 @@ export class SidebarComponent {
   }
 
   logOut(){
-    localStorage.removeItem('userToken')
+    localStorage.clear()
     this._Router.navigate(['/auth'])
   }
 }
