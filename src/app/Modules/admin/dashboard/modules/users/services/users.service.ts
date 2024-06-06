@@ -3,7 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IUserApiResponse, IUserParams } from '../models/users';
 
-@Injectable()
+import { IAllUsers } from '../models/users';
+
+@Injectable({
+  providedIn: 'root'
+})
+
 export class UsersService {
   constructor(private _HttpClient: HttpClient) {}
 
@@ -13,3 +18,4 @@ export class UsersService {
     });
   }
 }
+

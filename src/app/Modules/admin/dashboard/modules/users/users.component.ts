@@ -8,12 +8,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { AuthService } from 'src/app/Modules/auth/services/auth/auth.service';
 import { UserCreated } from 'src/app/Modules/auth/interfaces/auth';
 
+
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent {
+
   userData!: IUser[];
   pageSize: number = 0;
   pageNumber: number = 0;
@@ -119,4 +121,5 @@ export class UsersComponent {
     this.pageSize = event;
     this.getAllUsers();
   }
+
 }

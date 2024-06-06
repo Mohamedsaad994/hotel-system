@@ -14,9 +14,14 @@ export class AdsService {
     return this._HttpClient.get<IAllAds>('admin/ads', { params: adsParams });
   }
 
+getAllAds(myParams:any):Observable<IAllAds>{
+  return this._HttpClient.get<IAllAds>('admin/ads', {params:myParams});
+}
+
   getAdDetails(id: string): Observable<IAdDetailsResponse> {
     return this._HttpClient.get<IAdDetailsResponse>(`admin/ads/${id}`);
   }
+
 
   deleteAd(id: string): Observable<any> {
     return this._HttpClient.delete(`admin/ads/${id}`);

@@ -4,6 +4,13 @@ export interface IAllAds {
   data: IAdsData;
 }
 
+
+
+  export interface IParams{
+    page :number,
+   size:number
+  }
+
 export interface IAdsData {
   ads: IAdsArrayData[];
   totalCount: number;
@@ -50,3 +57,4 @@ export interface IAdsParams {
   size: number;
   [Key: string]: any
 }
+

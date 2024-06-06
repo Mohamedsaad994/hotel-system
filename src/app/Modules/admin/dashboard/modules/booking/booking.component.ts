@@ -20,6 +20,11 @@ import { MatDialog } from '@angular/material/dialog';
 export class BookingComponent implements OnInit {
   pageSize: number = 10;
   pageNumber: number = 1;
+
+  room: string = '';
+  price: string = '';
+  user: string = '';
+
   allBooking: IAllBooking = {
     data: {
       booking: [],
@@ -30,6 +35,7 @@ export class BookingComponent implements OnInit {
   };
   BookingData: any[] = [];
   tableResponse!: IBookingData;
+
 
   constructor(
     private _BookingService: BookingService,
@@ -58,6 +64,25 @@ export class BookingComponent implements OnInit {
     actions: 'Actions',
   };
 
+  allBooking!: IAllBooking;
+  BookingData: any[]=[];
+  bookingList: IBooking[]=[];
+  sortedData: IBooking[]=[];
+  searchValue!: string;
+  pageIndex = 0;
+  totalCount!: number;
+  tableResponse: IBookingData|undefined;
+ 
+  onGetAllBooking(){
+    const params = {
+      // roomNumber: ,
+      // user: ,
+      // price: ,
+      page: this.pageSize,
+      size: this.pageNumber,
+    };
+
+
   onGetAllBooking() {
     const params: IBookingParams = {
       size: this.pageSize,
@@ -66,17 +91,25 @@ export class BookingComponent implements OnInit {
     this._BookingService.getAllBooking(params).subscribe({
       next: (res) => {
         this.tableResponse = res.data;
-        this.BookingData = this.tableResponse?.booking.map((ad) => ({
-          _id: ad._id,
-          roomNumber: ad.room.roomNumber,
-          totalPrice: ad.totalPrice,
-          startDate: ad.startDate,
-          endDate: ad.endDate,
-          userName: ad.user.userName,
-        }));
+        // this.bookingListCount = res.data.totalCount;
+        this.bookingList = res.data.booking;
+        console.log(this.bookingList);
+       this.sortedData = this.bookingList.slice();
+               console.log(this.bookingList);
+       this.totalCount = res.data.totalCount;
+       this.BookingData = this.tableResponse?.booking.map(ad => ({
+        _id:ad._id,
+        roomNumber:ad.room.roomNumber,
+        totalPrice:ad.totalPrice,
+        startDate:ad.startDate,
+        endDate:ad.endDate,
+        userName:ad.user.userName,
+       }) 
+      )
         this.allBooking.data = res.data;
         this.allBooking.success = res.success;
         this.allBooking.message = res.message;
+
       },
       error: (err: HttpErrorResponse) => this._HelperService.error(err),
       complete: () =>
@@ -87,6 +120,32 @@ export class BookingComponent implements OnInit {
   handleEditItem(id: string) {
     console.log(id);
   }
+
+
+  resetSearchInput() {
+    this.searchValue = '';
+    this.onGetAllBooking();
+  }
+
+  // filterByRoomNumber(searchValue: HTMLInputElement) {
+  //   if (searchValue) {
+  //     this.sortedData = this.sortedData.filter((param) =>
+  //       param.room.roomNumber.includes(searchValue.value)
+
+  //     );
+  //     console.log(this.sortedData)
+
+  //     this.totalCount = this.sortedData.length;
+  //   }
+  // }
+
+  
+  filterByRoomNumber(searchVal: HTMLInputElement) {
+    if (searchVal) {
+      this.bookingList = this.bookingList.filter((param) => param.room.roomNumber.includes(searchVal.value));
+      console.log(this.bookingList);
+      this.totalCount = this.bookingList.length
+    }
 
   handleDeleteItem(id: string) {
     console.log(id);
@@ -108,6 +167,7 @@ export class BookingComponent implements OnInit {
         console.log(res);
       },
     });
+
   }
 
   openViewBookingDialog(id: string): void {

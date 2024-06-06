@@ -65,6 +65,10 @@ export interface CreatedBy {
   userName: string
 }
 
+export interface IParams{
+  page :number,
+  size:number
+}
 // export interface IRoomDelete{
 
 // }

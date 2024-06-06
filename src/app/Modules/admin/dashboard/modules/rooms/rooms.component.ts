@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 import { RoomsService } from './services/rooms.service';
-import { IAllRooms, IRoomsArrayData, IRoomsFilter, Room } from './models/rooms';
+import { IAllRooms, IRoomsArrayData, IRoomsFilter,IParams, Room } from './models/rooms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteComponent } from 'src/app/Modules/shared/components/delete/delete.component';
 import { ViewComponent } from './components/view/view.component';
+
 
 @Component({
   selector: 'app-rooms',
@@ -25,7 +26,17 @@ export class RoomsComponent implements OnInit {
     success: false,
   };
   tableData: IRoomsArrayData[] = [];
+
+  //search
+  
+ searchValue!:string;
+  pageIndex = 0;
+  totalCount!:number;
+ 
+
+
   currentRoomData!: Room;
+
   constructor(
     private _HelperService: HelperService,
     private _RoomsService: RoomsService,
@@ -69,11 +80,26 @@ export class RoomsComponent implements OnInit {
       next: (res) => {
         this.tableResponse = res;
         this.tableData = this.tableResponse.data.rooms;
+        this.totalCount = res.data.totalCount;
       },
       error: (err: HttpErrorResponse) => this._HelperService.error(err),
       complete: () => this._HelperService.success('Rooms have been retrieved successfully'),
     });
   }
+  
+  resetSearchInput() {
+    this.searchValue = '';
+    this.onGetAllRooms();
+  }
+
+  filterByRoomNumber(searchVal: HTMLInputElement) {
+    if (searchVal) {
+      this.tableData = this.tableData.filter((param: Room) => param.roomNumber.includes(searchVal.value));
+      this.totalCount = this.tableResponse.data.totalCount
+    }
+  }
+
+  //delete
 
   openDeleteDialog(id: string): void {
     this._RoomsService.getRoomDetails(id).subscribe({
@@ -89,6 +115,7 @@ export class RoomsComponent implements OnInit {
       },
     });
   }
+
 
   onDeleteItem(id: string): void {
     this._RoomsService.deleteRoom(id).subscribe({
