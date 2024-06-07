@@ -1,6 +1,6 @@
 <section [dir]="lang == 'en'? 'ltr': 'rtl'">
   <app-nav-unautorized *ngIf="!isAuthorized()"></app-nav-unautorized>
   <app-nav-authorized *ngIf="isAuthorized()"></app-nav-authorized>
-  <h1>{{"hello" | translate}}</h1>
+  <h1 [dir]="lang == 'en' ? 'ltr' : 'rtl'">{{"hello" | translate}}</h1>
   <router-outlet></router-outlet>
 </section>

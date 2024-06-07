@@ -9,7 +9,9 @@ const routes: Routes = [
     {path: '', redirectTo: 'user-home', pathMatch: 'full'},
     {path: 'user-home', component: HomeUserComponent},
     {path: 'explore', component: ExploreComponent},
-  ]}
+  ]},
+  { path: 'home', loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule) },
+  { path: 'clientHome', loadChildren: () => import('./modules/client-home/client-home.module').then(m => m.ClientHomeModule) }
 ];
 
 @NgModule({

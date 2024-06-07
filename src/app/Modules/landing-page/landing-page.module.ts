@@ -7,39 +7,34 @@ import { NavUnautorizedComponent } from './components/nav-unautorized/nav-unauto
 import { NavAuthorizedComponent } from './components/nav-authorized/nav-authorized.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '../auth/auth.module';
-import { HomeUserComponent } from './components/home-user/home-user.component';
 import { ExploreComponent } from './components/explore/explore.component';
 import { SharedModule } from '../shared/shared.module';
 import { TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 
-
 @NgModule({
   declarations: [
     LandingPageComponent,
     NavUnautorizedComponent,
     NavAuthorizedComponent,
-    HomeUserComponent,
-    ExploreComponent
+    ExploreComponent,
   ],
   imports: [
     CommonModule,
     LandingPageRoutingModule,
     HttpClientModule,
     AuthModule,
-    // SharedModule,
+    SharedModule,
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
-          provide: TranslateLoader,
-          useFactory: HttpLoaderFactory,
-          deps: [HttpClient]
-      }
-  })
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
   ],
-  providers:[
-    TranslateService,
-  ]
+  providers: [TranslateService],
 })
-export class LandingPageModule { }
+export class LandingPageModule {}
