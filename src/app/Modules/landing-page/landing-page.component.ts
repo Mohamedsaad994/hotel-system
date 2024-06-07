@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Role } from 'src/app/Core/Enums/role.enum';
 
+
 @Component({
   selector: 'app-landing-page',
   templateUrl: './landing-page.component.html',
@@ -8,8 +9,12 @@ import { Role } from 'src/app/Core/Enums/role.enum';
 })
 export class LandingPageComponent implements OnInit{
 
-
   getRole = localStorage.getItem('role')
+  lang: string | any = localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en';
+
+  constructor(){
+    
+  }
 
   ngOnInit(): void {
     this.isAuthorized()

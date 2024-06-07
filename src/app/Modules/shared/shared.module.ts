@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     MatSelectModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    TranslateModule
+
   ],
   exports: [
     SidebarComponent,
@@ -52,7 +55,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     FormsModule,
     MatSelectModule,
     MatInputModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    TranslateModule
   ],
 })
 export class SharedModule {}
