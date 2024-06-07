@@ -17,7 +17,7 @@ import { ExploreComponent } from './components/explore/explore.component';
     NavUnautorizedComponent,
     NavAuthorizedComponent,
     HomeUserComponent,
-    ExploreComponent
+    ExploreComponent,
   ],
   imports: [
     CommonModule,

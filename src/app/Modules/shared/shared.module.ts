@@ -16,6 +16,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     DynamicPipe,
     SharedHeaderComponent,
     DeleteComponent,
+    FooterComponent,
   ],
   imports: [
     CommonModule,
