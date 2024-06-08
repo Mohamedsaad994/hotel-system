@@ -1,0 +1,36 @@
+
+<section class="mt-5" [dir]="language == 'en' ? 'ltr' : 'rtl'">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-md-6">
+        <div>
+          <h2 class="mb-4"> {{"first-h2" | translate}} </h2>
+          <h2> {{"second h2" | translate}} </h2>
+          <p> {{"p" | translate}} </p>
+
+
+          <h3 class="fw-bold"> {{"booking" | translate}} </h3>
+
+          <div class="input-item">
+            <label for="date"> {{"date" | translate}} </label>
+            <input class="form-control" id="date" type="date">
+          </div>
+          <div class="input-item">
+            <label for="number"> {{"capacity" | translate}} </label>
+            <div class="d-flex">
+              <button class="control minus">-</button>
+              <input class="form-control" id="number" type="text">
+              <button class=" control plus">+</button>
+            </div>
+          </div>
+          <button class="primary w-50"> {{"explore" | translate}} </button>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="img-holder text-end">
+          <img src="../../../../../assets/images/image 3.png" alt="">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

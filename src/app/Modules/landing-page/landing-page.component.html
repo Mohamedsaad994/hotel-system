@@ -1,4 +1,8 @@
-<app-nav-unautorized *ngIf="!isAuthorized()"></app-nav-unautorized>
-<app-nav-authorized *ngIf="isAuthorized()"></app-nav-authorized>
-<router-outlet></router-outlet>
-<app-footer></app-footer>
+
+<section [dir]="lang == 'en'? 'ltr': 'rtl'">
+  <app-nav-unautorized *ngIf="!isAuthorized()"></app-nav-unautorized>
+  <app-nav-authorized *ngIf="isAuthorized()"></app-nav-authorized>
+  <router-outlet></router-outlet>
+  <app-footer></app-footer>
+</section>
+

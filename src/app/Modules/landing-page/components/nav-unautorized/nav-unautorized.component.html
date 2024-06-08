@@ -1,33 +1,47 @@
-<nav
-  class="navbar navbar-expand-sm navbar-light bg-white"
->
-  <div class="container">
-    <a class="navbar-brand" href="#">Staycation</a>
-    <button
-      class="navbar-toggler d-lg-none"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapsibleNavId"
-      aria-controls="collapsibleNavId"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavId">
-      <ul class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-center">
+<section [dir]="lang == 'en'? 'ltr': 'rtl'">
+  <nav
+    class="navbar navbar-expand-sm navbar-light bg-white"
+  >
+    <div class="container">
+      <a class="navbar-brand" href="#">Staycation</a>
+      <button
+        class="navbar-toggler d-lg-none"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav  mt-2 mt-lg-0 align-items-center"  [class]="lang == 'en'? 'ms-auto' : 'me-auto'">
 
-        <li class="nav-item">
-          <a class="nav-link" routerLink="user-home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link"  routerLink="explore" >Explore</a>
-        </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="clientHome">{{"home" | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link"  routerLink="explore" > {{"explore" | translate}} </a>
+          </li>
 
-        <button class="primary" routerLink="/auth/register">Register</button>
-        <button class="primary" routerLink="/auth">Login Now</button>
-      </ul>
+          <button class="primary" routerLink="/auth/register"> {{"register" | translate}} </button>
+          <button class="primary" routerLink="/auth"> {{"login" | translate}} </button>
 
-    </div>
-  </div>
-</nav>
+
+        </ul>
+
+        <select name="" [class]="lang == 'en'? 'ms-3': 'me-3'" id="" #myLang (change)="onChangeValue(myLang.value)">
+          <option value="en">EN</option>
+          <option value="ar">AR</option>
+        </select>
+        <!-- <div class="dropdown-center"> -->
+          <!-- <button class="btn btn-close-white dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Lang
+          </button> -->
+
+        </div>
+      </div>
+    <!-- </div> -->
+  </nav>
+</section>

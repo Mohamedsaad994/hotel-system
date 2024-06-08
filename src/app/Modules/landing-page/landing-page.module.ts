@@ -5,10 +5,14 @@ import { LandingPageRoutingModule } from './landing-page-routing.module';
 import { LandingPageComponent } from './landing-page.component';
 import { NavUnautorizedComponent } from './components/nav-unautorized/nav-unautorized.component';
 import { NavAuthorizedComponent } from './components/nav-authorized/nav-authorized.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '../auth/auth.module';
 import { ExploreComponent } from './components/explore/explore.component';
 import { FooterComponent } from '../shared/components/footer/footer.component';
+import { SharedModule } from '../shared/shared.module';
+import { TranslateLoader, TranslateService } from '@ngx-translate/core';
+import { TranslateModule } from '@ngx-translate/core';
+import { HttpLoaderFactory } from 'src/app/app.module';
 
 
 @NgModule({
@@ -18,12 +22,23 @@ import { FooterComponent } from '../shared/components/footer/footer.component';
     NavAuthorizedComponent,
     ExploreComponent,
     FooterComponent
+
   ],
   imports: [
     CommonModule,
     LandingPageRoutingModule,
     HttpClientModule,
-    AuthModule
-  ]
+    AuthModule,
+    SharedModule,
+    TranslateModule.forRoot({
+      defaultLanguage: 'en',
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
+  ],
+  providers: [TranslateService],
 })
-export class LandingPageModule { }
+export class LandingPageModule {}
