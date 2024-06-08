@@ -14,6 +14,8 @@ import { TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
 
+import { ROUTES, RouterModule } from '@angular/router';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -21,8 +23,7 @@ import { HttpLoaderFactory } from 'src/app/app.module';
     NavUnautorizedComponent,
     NavAuthorizedComponent,
     ExploreComponent,
-    FooterComponent
-
+    FooterComponent,
   ],
   imports: [
     CommonModule,
@@ -30,6 +31,8 @@ import { HttpLoaderFactory } from 'src/app/app.module';
     HttpClientModule,
     AuthModule,
     SharedModule,
+    CarouselModule,
+
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
@@ -40,5 +43,7 @@ import { HttpLoaderFactory } from 'src/app/app.module';
     }),
   ],
   providers: [TranslateService],
+    
+  
 })
 export class LandingPageModule {}
