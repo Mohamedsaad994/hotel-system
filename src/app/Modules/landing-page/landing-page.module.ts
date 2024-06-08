@@ -16,6 +16,7 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 
 import { ROUTES, RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { DetailsComponent } from './components/details/details.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     NavAuthorizedComponent,
     ExploreComponent,
     FooterComponent,
+
+    DetailsComponent,
 
   ],
   imports: [

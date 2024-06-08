@@ -1,17 +1,24 @@
-img{
-  width:40px;
-  height: 40px;
-  border-radius: 50%;
+nav{
+  border-bottom: 1px #E5E5E5 solid;
+  img{
+    width:40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  
+  i,a{
+    cursor: pointer;
+  }
+  
+  .dropdown-menu[data-bs-popper]{
+    left: -100px
+  }
 }
 
-i,a{
-  cursor: pointer;
-}
 
-.dropdown-menu[data-bs-popper]{
-  left: -100px
-}
+
 select{
   border: none;
   outline: none;
 }
+

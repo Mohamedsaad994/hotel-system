@@ -1,0 +1,133 @@
+<!-- pics section  -->
+<section>
+    <article class="container">
+        <div class="d-flex flex-column justify-content-center pb-5">
+            <h1 class="text-center mb-1">Village Angga</h1>
+            <span class="text-center">Bogor, Indonesia</span>
+        </div>
+
+        <div class="row">
+            <div class="col-md-7 ">
+                <div class="img">
+                    <img class="w-100 h-100" src="../../../../../assets/images/landing-page/details/details-header1.png" alt="">
+                </div>
+            </div>
+            <div class="col-md-5 d-flex flex-column g-1 ">
+                <div class="img h-50">
+                    <img class="w-100" src="../../../../../assets/images/landing-page/details/details-header2.png" alt="">
+                </div>
+                <div class="img h-50">
+                    <img class="w-100" src="../../../../../assets/images/landing-page/details/details-header3.png" alt="">
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+
+<section>
+    <article class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="text">
+                    <p>
+                        Minimal techno is a minimalist subgenre of techno music. 
+                        It is characterized by a stripped-down aesthetic that exploits the use of repetition and understated development. 
+                        Minimal techno is thought to have been originally developed in the early 1990s by Detroit-based producers Robert Hood and Daniel Bell.
+                    </p>
+                    <p>
+                        Such trends saw the demise of the soul-infused techno that typified the original Detroit sound. 
+                        Robert Hood has noted that he and Daniel Bell both realized something was missing from techno in the post-rave era.
+                    </p>
+                    <p>
+                        Design is a plan or specification for the construction of an object or system or for the implementation of an activity or process, 
+                        or the result of that plan or specification in the form of a prototype, product or process. The national agency for design: 
+                        enabling Singapore to use design for economic growth and to make lives better.
+                    </p>
+                </div>
+                
+                <div class="features-icons py-3">
+                    <div class="row">
+                        <div class="col-md-3 pb-3 ">
+                            <img src="../../../../../assets/images/landing-page/details/icon-bedroom.svg" alt="">
+                            <span class="d-block mt-1">5 bedroom</span>
+                        </div>
+                        <div class="col-md-3 pb-3 ">
+                            <img src="../../../../../assets/images/landing-page/details/living-icon.svg" alt="">
+                            <span class="d-block mt-1">1 living room</span>
+                        </div>
+                        <div class="col-md-3 pb-3 ">
+                            <img src="../../../../../assets/images/landing-page/details/icon-bathroom.svg" alt="">
+                            <span class="d-block mt-1">3 bathroom</span>
+                        </div>
+                        <div class="col-md-3 pb-3 ">
+                            <img src="../../../../../assets/images/landing-page/details/icon-dining.svg" alt="">
+                            <span class="d-block mt-1">1 dining room</span>
+                        </div>
+                        <div class="col-md-3 pb-3 ">
+                            <img src="../../../../../assets/images/landing-page/details/icon-wifi.svg" alt="">
+                            <span class="d-block mt-1">10 mbp/s</span>
+                        </div>
+                        <div class="col-md-3 pb-3 ">
+                            <img src="../../../../../assets/images/landing-page/details/icon-unit.svg" alt="">
+                            <span class="d-block mt-1">7 unit ready</span>
+                        </div>
+                        <div class="col-md-3 pb-3 ">
+                            <img src="../../../../../assets/images/landing-page/details/icon-refrigrator.svg" alt="">
+                            <span class="d-block mt-1">2 refigrator</span>
+                        </div>
+                        <div class="col-md-3 pb-3 ">
+                            <img src="../../../../../assets/images/landing-page/details/icon-tv.svg" alt="">
+                            <span class="d-block mt-1">4 television</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="card-booking  p-5">
+                    <div class="header">
+                        <h4>Start Booking</h4>
+                        <p>
+                            <span>$280</span> per night
+                        </p>
+                        <span>Discount 20% Off </span>
+                    </div>
+                   <div class="footer">
+                        <h4> Pick a Date </h4>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-calendar"></i></span>
+                            <input type="date" class="form-control" placeholder="Pick a date" aria-label="date" aria-describedby="basic-addon1">
+                        </div>
+                        <p>
+                            You will pay <span>$480 USD</span> per <span>2 Person</span>
+                        </p>
+                        <button class="button primary">Continue Book </button>
+                   </div>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+
+<!-- Rating section  -->
+<section class="rating">
+    <article class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Rate</h2>
+                <div class="star-container my-1  ">
+                    <i *ngFor="let star of stars" class="fa-solid fa-star"></i>
+                </div>
+                <label for="message">Message</label>
+                <textarea name="message" id="message"></textarea>
+                <button class="button primary w-50 mt-3">Rate</button>
+            </div>
+            <div class="col-md-6 d-flex flex-column align-content-between">
+                <h2 class="">Add Your Comment</h2>
+                
+                <textarea class="mt-1 h-100" name="comment" id="comment"></textarea>
+                <button class="button primary w-50 mt-3 align-self-end">Send</button>
+            </div>
+        </div>
+    </article>
+</section>
