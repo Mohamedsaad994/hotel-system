@@ -13,8 +13,9 @@ import { SharedModule } from '../shared/shared.module';
 import { TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
-import { MostAdsComponent } from './modules/client-home/components/most-ads/most-ads.component';
 
+import { ROUTES, RouterModule } from '@angular/router';
+import { CarouselModule } from 'ngx-owl-carousel-o';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,6 @@ import { MostAdsComponent } from './modules/client-home/components/most-ads/most
     NavAuthorizedComponent,
     ExploreComponent,
     FooterComponent,
-    MostAdsComponent
 
   ],
   imports: [
@@ -32,6 +32,8 @@ import { MostAdsComponent } from './modules/client-home/components/most-ads/most
     HttpClientModule,
     AuthModule,
     SharedModule,
+    CarouselModule,
+
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {
@@ -42,5 +44,7 @@ import { MostAdsComponent } from './modules/client-home/components/most-ads/most
     }),
   ],
   providers: [TranslateService],
+
+
 })
 export class LandingPageModule {}
