@@ -8,10 +8,12 @@ import { NavAuthorizedComponent } from './components/nav-authorized/nav-authoriz
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '../auth/auth.module';
 import { ExploreComponent } from './components/explore/explore.component';
+import { FooterComponent } from '../shared/components/footer/footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { HttpLoaderFactory } from 'src/app/app.module';
     NavUnautorizedComponent,
     NavAuthorizedComponent,
     ExploreComponent,
+    FooterComponent
+
   ],
   imports: [
     CommonModule,
