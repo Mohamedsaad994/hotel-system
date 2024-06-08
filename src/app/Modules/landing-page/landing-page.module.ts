@@ -13,6 +13,7 @@ import { SharedModule } from '../shared/shared.module';
 import { TranslateLoader, TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpLoaderFactory } from 'src/app/app.module';
+import { MostAdsComponent } from './modules/client-home/components/most-ads/most-ads.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HttpLoaderFactory } from 'src/app/app.module';
     NavUnautorizedComponent,
     NavAuthorizedComponent,
     ExploreComponent,
-    FooterComponent
+    FooterComponent,
+    MostAdsComponent
 
   ],
   imports: [
