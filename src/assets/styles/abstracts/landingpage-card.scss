@@ -1,0 +1,31 @@
+.ads-card{
+  border-radius: 20px;
+  overflow: hidden;
+
+  .img-holder{
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+
+    span{
+      position: absolute;
+      top:0;
+      right:0;
+      display: block;
+      padding:10px 20px;
+      background-color: #FF498B;
+      color:#fff;
+      border-radius:0 20px;
+    }
+  }
+
+  h3{
+    color:#152C5B;
+    font-weight: bold;
+    margin: 0
+  }
+
+  p{
+    color:#B0B0B0
+  }
+}
