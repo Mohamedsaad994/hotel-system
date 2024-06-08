@@ -33,16 +33,12 @@
         <img [src]="currentUser?.profileImage" alt="">
         <p class="m-0 mx-3">{{currentUser?.userName}}</p>
 
-        <div class="dropdown-center">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <select name="" [class]="lang == 'en'? 'ms-3': 'me-3'" id="" #myLang (change)="onChangeValue(myLang.value)">
+          <option value="en">EN</option>
+          <option value="ar">AR</option>
+        </select>
 
-          </button>
-          <ul class="dropdown-menu">
-            <li (click)="logOut()"><a class="dropdown-item" href="#">Log Out</a></li>
-            <li><a class="dropdown-item" href="#">Action two</a></li>
-            <li><a class="dropdown-item" href="#">Action three</a></li>
-          </ul>
-        </div>
+        <i (click)="logOut()" class="fa-solid fa-right-from-bracket fa-2x ms-3"></i>
 
 
       </div>

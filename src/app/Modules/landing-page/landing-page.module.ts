@@ -25,7 +25,9 @@ import { DetailsComponent } from './components/details/details.component';
     NavAuthorizedComponent,
     ExploreComponent,
     FooterComponent,
+
     DetailsComponent,
+
   ],
   imports: [
     CommonModule,
@@ -45,7 +47,7 @@ import { DetailsComponent } from './components/details/details.component';
     }),
   ],
   providers: [TranslateService],
-    
-  
+
+
 })
 export class LandingPageModule {}
