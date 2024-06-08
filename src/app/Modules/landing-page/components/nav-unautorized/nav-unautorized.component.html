@@ -16,22 +16,22 @@
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="collapsibleNavId">
-        <ul class="navbar-nav ms-auto mt-2 mt-lg-0 align-items-center">
+        <ul class="navbar-nav  mt-2 mt-lg-0 align-items-center"  [class]="lang == 'en'? 'ms-auto' : 'me-auto'">
 
           <li class="nav-item">
-            <a class="nav-link" routerLink="user-home">Home</a>
+            <a class="nav-link" routerLink="clientHome">{{"home" | translate}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link"  routerLink="explore" >Explore</a>
+            <a class="nav-link"  routerLink="explore" > {{"explore" | translate}} </a>
           </li>
 
-          <button class="primary" routerLink="/auth/register">Register</button>
-          <button class="primary" routerLink="/auth">Login Now</button>
+          <button class="primary" routerLink="/auth/register"> {{"register" | translate}} </button>
+          <button class="primary" routerLink="/auth"> {{"login" | translate}} </button>
 
 
         </ul>
 
-        <select name="" id="" #myLang (change)="onChangeValue(myLang.value)">
+        <select name="" [class]="lang == 'en'? 'ms-3': 'me-3'" id="" #myLang (change)="onChangeValue(myLang.value)">
           <option value="en">EN</option>
           <option value="ar">AR</option>
         </select>

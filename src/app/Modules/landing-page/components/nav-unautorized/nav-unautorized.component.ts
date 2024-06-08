@@ -28,5 +28,6 @@ export class NavUnautorizedComponent {
     this.translate.use(val);
     localStorage.setItem('lang', this.lang);
     this._HelperService.onChangeLang(val);
+
   }
 }

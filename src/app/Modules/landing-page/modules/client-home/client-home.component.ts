@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 
 @Component({
@@ -8,7 +9,8 @@ import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 })
 export class ClientHomeComponent {
   private _HelperService = inject(HelperService);
-  language: string = 'en';
+  language: string | any = localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en';
+
 
   ngOnInit(): void {
     this._HelperService.langDirChange.subscribe((lang: string) => {
