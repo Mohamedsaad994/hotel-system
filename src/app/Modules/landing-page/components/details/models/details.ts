@@ -12,10 +12,12 @@ export interface IRoomExplore {
 
 interface IRoomData {
   room: IRoomDetails;
+  totalCount: number;
 }
 
 interface IRoomDataExplore {
   rooms: IRoomDetails[];
+  totalCount: number;
 }
 
 export interface IRoomDetails {
