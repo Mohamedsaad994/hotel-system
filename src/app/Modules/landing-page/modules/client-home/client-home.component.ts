@@ -89,7 +89,7 @@ export class ClientHomeComponent implements OnInit {
   onExploreRooms(roomFilterData: FormGroup) {
     if (localStorage.getItem('userToken') !== null) {
       const queryParams = this.roomFilterForm.value;
-      this._Router.navigate(['/target-component'], { queryParams });
+      this._Router.navigate(['/landing-page/explore-us'], { queryParams });
     } else {
       this._Router.navigate(['/auth']);
     }
