@@ -83,8 +83,8 @@ export class DetailsComponent implements AfterViewInit, OnInit {
 
   onGetRoomId() {
     this._ActivatedRoute.params.subscribe((params: Params) => {
-      this.roomId = `65a9968ea5d9953dd42d11aa`;
-      this.getRoomDetails('65a9968ea5d9953dd42d11aa');
+      this.roomId = params['id'];
+      this.getRoomDetails(this.roomId);
     })
   }
 
