@@ -1,133 +1,153 @@
 <!-- pics section  -->
 <section>
-    <article class="container">
-        <div class="d-flex flex-column justify-content-center pb-5">
-            <h1 class="text-center mb-1">Village Angga</h1>
-            <span class="text-center">Bogor, Indonesia</span>
-        </div>
+  <article class="container">
+    <div class="row align-items-baseline">
+      <div class="col-md-5 d-flex gap-3">
+        <span routerLink="/landing-page/clientHome" role="button">Home</span> <span>/</span> <span
+          class="main-blue fw-semibold">Room Details</span>
+      </div>
+      <div class="col-md-7 d-flex flex-column gap-2 text-start pb-5">
+        <h1 class="m-0">Village Angga</h1>
+        <span>Bogor, Indonesia</span>
+      </div>
+    </div>
 
-        <div class="row">
-            <div class="col-md-7 ">
-                <div class="img">
-                    <img class="w-100 h-100" src="../../../../../assets/images/landing-page/details/details-header1.png" alt="">
-                </div>
-            </div>
-            <div class="col-md-5 d-flex flex-column g-1 ">
-                <div class="img h-50">
-                    <img class="w-100" src="../../../../../assets/images/landing-page/details/details-header2.png" alt="">
-                </div>
-                <div class="img h-50">
-                    <img class="w-100" src="../../../../../assets/images/landing-page/details/details-header3.png" alt="">
-                </div>
-            </div>
+    <div class="row align-items-center gy-sm-3 gx-md-3">
+      <div
+        [ngClass]="{'col-12': roomDetails?.images?.length == 1, 'col-md-7': roomDetails.images.length > 2, 'col-md-6': roomDetails.images.length == 2 }">
+        <div class="img" *ngIf="roomDetails.images">
+          <img class="w-100" [src]="roomDetails?.images?.at(0)" [alt]="roomDetails.roomNumber">
         </div>
-    </article>
+      </div>
+      <div class="d-flex flex-column p-0" [ngClass]="{'col-md-7': roomDetails.images.length > 2, 'col-md-6': roomDetails.images.length == 2, 'gap-3': roomDetails.images.length > 2}">
+        <div class="img" *ngIf="roomDetails?.images?.at(1)">
+          <img class="w-100" [ngClass]="{'h-100': roomDetails.images.length == 2, 'h-50': roomDetails.images.length > 2}" [src]="roomDetails?.images?.at(1)" [alt]="roomDetails.roomNumber">
+        </div>
+        <div class="img" *ngIf="roomDetails?.images?.at(2)">
+          <img class="w-100" [ngClass]="{'h-100': roomDetails.images.length == 2, 'h-50': roomDetails.images.length > 2}" [src]="roomDetails?.images?.at(2)" [alt]="roomDetails.roomNumber">
+        </div>
+      </div>
+    </div>
+  </article>
 </section>
 
 <section>
-    <article class="container">
-        <div class="row">
-            <div class="col-md-7">
-                <div class="text">
-                    <p>
-                        Minimal techno is a minimalist subgenre of techno music. 
-                        It is characterized by a stripped-down aesthetic that exploits the use of repetition and understated development. 
-                        Minimal techno is thought to have been originally developed in the early 1990s by Detroit-based producers Robert Hood and Daniel Bell.
-                    </p>
-                    <p>
-                        Such trends saw the demise of the soul-infused techno that typified the original Detroit sound. 
-                        Robert Hood has noted that he and Daniel Bell both realized something was missing from techno in the post-rave era.
-                    </p>
-                    <p>
-                        Design is a plan or specification for the construction of an object or system or for the implementation of an activity or process, 
-                        or the result of that plan or specification in the form of a prototype, product or process. The national agency for design: 
-                        enabling Singapore to use design for economic growth and to make lives better.
-                    </p>
-                </div>
-                
-                <div class="features-icons py-3">
-                    <div class="row">
-                        <div class="col-md-3 pb-3 ">
-                            <img src="../../../../../assets/images/landing-page/details/icon-bedroom.svg" alt="">
-                            <span class="d-block mt-1">5 bedroom</span>
-                        </div>
-                        <div class="col-md-3 pb-3 ">
-                            <img src="../../../../../assets/images/landing-page/details/living-icon.svg" alt="">
-                            <span class="d-block mt-1">1 living room</span>
-                        </div>
-                        <div class="col-md-3 pb-3 ">
-                            <img src="../../../../../assets/images/landing-page/details/icon-bathroom.svg" alt="">
-                            <span class="d-block mt-1">3 bathroom</span>
-                        </div>
-                        <div class="col-md-3 pb-3 ">
-                            <img src="../../../../../assets/images/landing-page/details/icon-dining.svg" alt="">
-                            <span class="d-block mt-1">1 dining room</span>
-                        </div>
-                        <div class="col-md-3 pb-3 ">
-                            <img src="../../../../../assets/images/landing-page/details/icon-wifi.svg" alt="">
-                            <span class="d-block mt-1">10 mbp/s</span>
-                        </div>
-                        <div class="col-md-3 pb-3 ">
-                            <img src="../../../../../assets/images/landing-page/details/icon-unit.svg" alt="">
-                            <span class="d-block mt-1">7 unit ready</span>
-                        </div>
-                        <div class="col-md-3 pb-3 ">
-                            <img src="../../../../../assets/images/landing-page/details/icon-refrigrator.svg" alt="">
-                            <span class="d-block mt-1">2 refigrator</span>
-                        </div>
-                        <div class="col-md-3 pb-3 ">
-                            <img src="../../../../../assets/images/landing-page/details/icon-tv.svg" alt="">
-                            <span class="d-block mt-1">4 television</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-5">
-                <div class="card-booking  p-5">
-                    <div class="header">
-                        <h4>Start Booking</h4>
-                        <p>
-                            <span>$280</span> per night
-                        </p>
-                        <span>Discount 20% Off </span>
-                    </div>
-                   <div class="footer">
-                        <h4> Pick a Date </h4>
-                        <div class="input-group mb-3">
-                            <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-calendar"></i></span>
-                            <input type="date" class="form-control" placeholder="Pick a date" aria-label="date" aria-describedby="basic-addon1">
-                        </div>
-                        <p>
-                            You will pay <span>$480 USD</span> per <span>2 Person</span>
-                        </p>
-                        <button class="button primary">Continue Book </button>
-                   </div>
-
-                </div>
-            </div>
+  <article class="container">
+    <div class="row g-4 g-3">
+      <div class="col-md-7">
+        <div class="text-container">
+          <p id="styled-text">
+            Minimal techno is a minimalist subgenre of techno music.
+            It is characterized by a stripped-down aesthetic that exploits the use of repetition and understated
+            development.
+            Minimal techno is thought to have been originally developed in the early 1990s by Detroit-based producers
+            Robert Hood and Daniel Bell.
+            Such trends saw the demise of the soul-infused techno that typified the original Detroit sound.
+            Robert Hood has noted that he and Daniel Bell both realized something was missing from techno in the
+            post-rave era.
+            Design is a plan or specification for the construction of an object or system or for the implementation of
+            an activity or process,
+            or the result of that plan or specification in the form of a prototype, product or process.
+            The national agency for design: enabling Singapore to use design for economic growth and to make lives
+            better.
+          </p>
         </div>
-    </article>
+
+        <div class="features-icons py-3">
+          <div class="row g-4">
+            <div class="col-lg-3 col-md-4 col-sm-6 text-sm-center text-md-start">
+              <img src="../../../../../assets/images/landing-page/details/icon-bedroom.svg" alt="">
+              <span class="d-block mt-2 main-grey"><span class="main-blue">5</span> bedroom</span>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 text-sm-center text-md-start">
+              <img src="../../../../../assets/images/landing-page/details/living-icon.svg" alt="">
+              <span class="d-block mt-2 main-grey"><span class="main-blue">1</span> living room</span>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 text-sm-center text-md-start">
+              <img src="../../../../../assets/images/landing-page/details/icon-bathroom.svg" alt="">
+              <span class="d-block mt-2 main-grey"><span class="main-blue">3</span> bathroom</span>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 text-sm-center text-md-start">
+              <img src="../../../../../assets/images/landing-page/details/icon-dining.svg" alt="">
+              <span class="d-block mt-2 main-grey"><span class="main-blue">1</span> dining room</span>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 text-sm-center text-md-start">
+              <img src="../../../../../assets/images/landing-page/details/icon-wifi.svg" alt="">
+              <span class="d-block mt-2 main-grey"><span class="main-blue">10</span> mbp/s</span>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 text-sm-center text-md-start">
+              <img src="../../../../../assets/images/landing-page/details/icon-unit.svg" alt="">
+              <span class="d-block mt-2 main-grey"><span class="main-blue">7</span> unit ready</span>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 text-sm-center text-md-start">
+              <img src="../../../../../assets/images/landing-page/details/icon-refrigrator.svg" alt="">
+              <span class="d-block mt-2 main-grey"><span class="main-blue">2</span> refigrator</span>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 text-sm-center text-md-start">
+              <img src="../../../../../assets/images/landing-page/details/icon-tv.svg" alt="">
+              <span class="d-block mt-2 main-grey"><span class="main-blue">4</span> television</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5 align-self-stretch">
+        <div class="card-booking  p-5 d-flex gap-5 flex-column justify-content-between h-100">
+          <div class="header">
+            <h4>Start Booking</h4>
+            <p>
+              <span class="fw-bold">{{((roomDetails.price - (roomDetails.price * Math.min(roomDetails.discount, 100) / 100))) | currency}} <span class="text-decoration-line-through main-grey discount" *ngIf="roomDetails.discount"> {{ roomDetails.price | currency}} </span></span> per night
+            </p>
+            <span>Discount {{roomDetails.discount}}% Off </span>
+          </div>
+          <div class="footer d-flex flex-column gap-5">
+            <div>
+              <h4> Pick a Date </h4>
+              <div class="input-group">
+                <span class="input-group-text" id="basic-addon1"><i class="fa-regular fa-calendar"></i></span>
+                <input type="date" class="form-control" placeholder="Pick a date" aria-label="date"
+                  aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <div class="d-flex gap-2 flex-column">
+              <p class="text-center">
+                You will pay <span>{{((roomDetails.price - (roomDetails.price * Math.min(roomDetails.discount, 100) / 100)) * 2) | currency}}</span> per <span>2 Person</span>
+              </p>
+              <button class="button primary d-block mx-auto">Continue Book </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </article>
 </section>
 
 <!-- Rating section  -->
 <section class="rating">
-    <article class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h2>Rate</h2>
-                <div class="star-container my-1  ">
-                    <i *ngFor="let star of stars" class="fa-solid fa-star"></i>
-                </div>
-                <label for="message">Message</label>
-                <textarea name="message" id="message"></textarea>
-                <button class="button primary w-50 mt-3">Rate</button>
-            </div>
-            <div class="col-md-6 d-flex flex-column align-content-between">
-                <h2 class="">Add Your Comment</h2>
-                
-                <textarea class="mt-1 h-100" name="comment" id="comment"></textarea>
-                <button class="button primary w-50 mt-3 align-self-end">Send</button>
-            </div>
+  <article class="container">
+    <div class="row py-5">
+      <div class="col-md-6 px-5">
+        <h2>Rate</h2>
+        <div class="star-container my-1" #starContainer>
+          <i *ngFor="let star of stars" class="fa-solid fa-star"></i>
         </div>
-    </article>
+
+        <form [formGroup]="reviewForm" (ngSubmit)="addReview(reviewForm)">
+          <label for="message">Message</label>
+          <textarea name="message" id="message" formControlName="review"></textarea>
+          <button class="button primary w-50 mt-3">Rate</button>
+        </form>
+      </div>
+      <div class="col-md-6 px-5 d-flex flex-column align-content-between">
+        <form [formGroup]="commentForm" (ngSubmit)="addComment(commentForm)">
+          <h2>Add Your Comment</h2>
+
+          <textarea class="mt-1 h-100" name="comment" id="comment" formControlName="comment"></textarea>
+          <div class="d-flex justify-content-end">
+            <button class="button primary w-50 mt-3" [disabled]="commentForm.invalid">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </article>
 </section>

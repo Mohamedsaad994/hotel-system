@@ -7,8 +7,10 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MostAdsComponent } from './components/most-ads/most-ads.component';
 import { RoomAdsComponent } from './components/room-ads/room-ads.component';
 import { ClientHomeService } from './service/clientHome.service';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     CommonModule,
     ClientHomeRoutingModule,
     TranslateModule,
+    ReactiveFormsModule,
     CarouselModule
   ],
   providers:[
