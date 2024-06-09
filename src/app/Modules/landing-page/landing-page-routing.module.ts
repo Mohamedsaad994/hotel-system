@@ -7,10 +7,13 @@ import { DetailsComponent } from './components/details/details.component';
 const routes: Routes = [
   { path: '', component: LandingPageComponent, children:[
     {path: '', redirectTo: 'clientHome', pathMatch: 'full'},
-    {path: 'explore', component: ExploreComponent},
     {path: 'details/:id', component: DetailsComponent},
-    { path: 'clientHome', loadChildren: () => import('./modules/client-home/client-home.module').then(m => m.ClientHomeModule) }
+    { path: 'clientHome', loadChildren: () => import('./modules/client-home/client-home.module').then(m => m.ClientHomeModule) },
+    { path: 'explore-us', loadChildren: () => import('./modules/explore-us/explore-us.module').then(m => m.ExploreUsModule) },
+    { path: 'favorite', loadChildren: () => import('./modules/favorite/favorite.module').then(m => m.FavoriteModule) },
+    { path: 'our-reviews', loadChildren: () => import('./modules/out-reviews/out-reviews.module').then(m => m.OutReviewsModule) },
   ]},
+
 ];
 
 @NgModule({

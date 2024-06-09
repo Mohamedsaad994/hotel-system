@@ -18,16 +18,16 @@
       <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav me-4 mt-2 mt-lg-0" [class]="lang == 'en'? 'ms-auto' : 'me-auto'">
           <li class="nav-item">
-            <a class="nav-link" routerLink="user-home">{{"home" | translate}}</a>
+            <a class="nav-link" routerLink="clientHome">{{"home" | translate}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="explore">{{"explore" | translate}}</a>
+            <a class="nav-link" routerLink="explore-us">{{"explore" | translate}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">{{"reviews" | translate}}</a>
+            <a class="nav-link" routerLink="our-reviews">{{"reviews" | translate}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"> {{"favorite" | translate}} </a>
+            <a class="nav-link" routerLink="favorite"> {{"favorite" | translate}} </a>
           </li>
         </ul>
         <div class="d-flex align-items-center">
