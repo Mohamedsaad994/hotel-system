@@ -10,5 +10,15 @@
   "date" : "اختر تاريخا",
   "capacity" : "عدد الاشخاص",
   "reviews" : "التقييمات",
-  "favorite" : "المفضله"
+  "favorite" : "المفضله",
+  "footer-caption" : "انت على موعد مع عطله جميله معنا لا تنسى",
+  "beginner" : "للمبتدئين",
+  "account" : "حساب جديد",
+  "roomBooking": "احجز غرفتك الان",
+  "payment" : "استخدم بطاقاتك الائتمانيه",
+  "we": "من نحن",
+  "Our Careers" : "خدماتنا",
+  "Privacy" : "الخصوصيه",
+  "Terms & Conditions" : "الشروط والاحكام",
+  "Connect Us": "تواصل معنا"
 }

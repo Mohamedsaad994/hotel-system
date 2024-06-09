@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { ClientHomeService } from '../../service/clientHome.service';
 import { OwlOptions } from 'ngx-owl-carousel-o';
 import { RoomReview } from '../../models/IClientHome';
