@@ -73,3 +73,35 @@ export interface User {
   userName: string
   profileImage: string
 }
+
+
+
+export interface RoomsData {
+  success: boolean
+  message: string
+  data: Data
+}
+
+export interface Data {
+  rooms: Room[]
+  totalCount: number
+}
+
+export interface Room {
+  _id: string
+  roomNumber: string
+  price: number
+  capacity: number
+  discount: number
+  facilities: string[]
+  createdBy: string
+  images: string[]
+  createdAt: string
+  updatedAt: string
+  isBooked: boolean
+}
+
+export interface Facility {
+  _id: string
+  name: string
+}

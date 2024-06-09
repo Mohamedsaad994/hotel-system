@@ -11,19 +11,23 @@
 
           <h3 class="fw-bold"> {{"booking" | translate}} </h3>
 
-          <div class="input-item">
-            <label for="date"> {{"date" | translate}} </label>
-            <input class="form-control" id="date" type="date">
-          </div>
-          <div class="input-item">
-            <label for="number"> {{"capacity" | translate}} </label>
-            <div class="d-flex">
-              <button class="control minus">-</button>
-              <input class="form-control" id="number" type="text">
-              <button class=" control plus">+</button>
+          <form>
+
+            <div class="input-item">
+              <label for="date"> {{"date" | translate}} </label>
+              <input class="form-control" id="date" type="date">
             </div>
-          </div>
-          <button class="primary w-50"> {{"explore" | translate}} </button>
+            <div class="input-item">
+              <label for="number"> {{"capacity" | translate}} </label>
+              <div class="d-flex">
+                <button type="button" class="control minus">-</button>
+                <input class="form-control" id="number" type="text">
+                <button type="button" class=" control plus">+</button>
+              </div>
+            </div>
+
+            <button type="submit" class="primary w-50"> {{"explore" | translate}} </button>
+          </form>
         </div>
       </div>
       <div class="col-md-5">

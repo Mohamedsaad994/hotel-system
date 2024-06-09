@@ -1,0 +1,18 @@
+@import '../../../../../assets/styles/abstracts/landingpage-card.scss';
+
+h1{
+  font-size: 50px;
+  color:#152C5B
+}
+h3{
+  color:#152C5B;
+  font-weight: bold;
+}
+p:first-of-type{
+  color:#B0B0B0;
+
+  a{
+    text-decoration: none;
+    color:#B0B0B0
+  }
+}

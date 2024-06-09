@@ -7,7 +7,6 @@ import { NavUnautorizedComponent } from './components/nav-unautorized/nav-unauto
 import { NavAuthorizedComponent } from './components/nav-authorized/nav-authorized.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { AuthModule } from '../auth/auth.module';
-import { ExploreComponent } from './components/explore/explore.component';
 import { FooterComponent } from '../shared/components/footer/footer.component';
 import { SharedModule } from '../shared/shared.module';
 import { TranslateLoader, TranslateService } from '@ngx-translate/core';
@@ -25,7 +24,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     LandingPageComponent,
     NavUnautorizedComponent,
     NavAuthorizedComponent,
-    ExploreComponent,
     FooterComponent,
 
     DetailsComponent,

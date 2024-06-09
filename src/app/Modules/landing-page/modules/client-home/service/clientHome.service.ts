@@ -17,4 +17,8 @@ constructor(private _HttpClient:HttpClient) { }
     return this._HttpClient.get('portal/room-reviews/65aa752bcc8304619b0fd7e4')
   }
 
+  getAllRooms(params?: any): Observable<any>{
+    return this._HttpClient.get(`portal/rooms/available?${params}`)
+  }
+
 }
