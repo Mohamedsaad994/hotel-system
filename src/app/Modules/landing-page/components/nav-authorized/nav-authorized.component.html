@@ -1,48 +1,49 @@
-<nav
-  class="navbar navbar-expand-sm navbar-light bg-white"
->
-  <div class="container">
-    <a class="navbar-brand" href="#">Staycation</a>
-    <button
-      class="navbar-toggler d-lg-none"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#collapsibleNavId"
-      aria-controls="collapsibleNavId"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavId">
-      <ul class="navbar-nav ms-auto me-4 mt-2 mt-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="user-home">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="explore">Explore</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Reviews</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Favorite</a>
-        </li>
-      </ul>
-      <div class="d-flex align-items-center">
-        <img [src]="currentUser?.profileImage" alt="">
-        <p class="m-0 mx-3">{{currentUser?.userName}}</p>
+<section [dir]="lang == 'en'? 'ltr': 'rtl'">
+  <nav
+    class="navbar navbar-expand-sm navbar-light bg-white"
+  >
+    <div class="container">
+      <a class="navbar-brand" href="#">Staycation</a>
+      <button
+        class="navbar-toggler d-lg-none"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav me-4 mt-2 mt-lg-0" [class]="lang == 'en'? 'ms-auto' : 'me-auto'">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="clientHome">{{"home" | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="explore-us">{{"explore" | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="our-reviews">{{"reviews" | translate}}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="favorite"> {{"favorite" | translate}} </a>
+          </li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <img [src]="currentUser?.profileImage" alt="">
+          <p class="m-0 mx-3">{{currentUser?.userName}}</p>
 
-        <select name="" [class]="lang == 'en'? 'ms-3': 'me-3'" id="" #myLang (change)="onChangeValue(myLang.value)">
-          <option value="en">EN</option>
-          <option value="ar">AR</option>
-        </select>
+          <select name="" [class]="lang == 'en'? 'me-3': 'ms-3'" id="" #myLang (change)="onChangeValue(myLang.value)">
+            <option value="en">EN</option>
+            <option value="ar">AR</option>
+          </select>
 
-        <i (click)="logOut()" class="fa-solid fa-right-from-bracket fa-2x ms-3"></i>
+          <i (click)="logOut()" class="fa-solid fa-right-from-bracket fa-2x ms-3"></i>
 
-
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</section>
 

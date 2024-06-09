@@ -48,6 +48,15 @@ h6 {
 .bg-main-background {
   background-color: $white-color;
 }
+
+.bg-light-grey {
+  background-color: #F5F6F8;
+}
+
+.bg-blue-color {
+  background-color: $dark-blue;
+}
+
 .main-transition {
   transition: $main-transition;
 }
