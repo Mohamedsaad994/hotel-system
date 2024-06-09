@@ -2,7 +2,7 @@
 <section class="mt-5" [dir]="language == 'en' ? 'ltr' : 'rtl'">
   <div class="container">
     <div class="row justify-content-between">
-      <div class="col-md-6">
+      <div class="col-md-6" [dir]="language == 'en' ? 'ltr' : 'rtl'">
         <div>
           <h2 class="mb-4"> {{"first-h2" | translate}} </h2>
           <h2> {{"second h2" | translate}} </h2>

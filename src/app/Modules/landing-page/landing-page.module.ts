@@ -17,6 +17,8 @@ import { HttpLoaderFactory } from 'src/app/app.module';
 import { ROUTES, RouterModule } from '@angular/router';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { DetailsComponent } from './components/details/details.component';
+import { DetailsService } from './components/details/services/details.service';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -45,8 +47,9 @@ import { DetailsComponent } from './components/details/details.component';
         deps: [HttpClient],
       },
     }),
+    ReactiveFormsModule
   ],
-  providers: [TranslateService],
+  providers: [TranslateService, DetailsService],
 
 
 })

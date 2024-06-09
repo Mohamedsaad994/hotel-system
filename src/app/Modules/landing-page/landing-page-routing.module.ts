@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: '', component: LandingPageComponent, children:[
     {path: '', redirectTo: 'clientHome', pathMatch: 'full'},
     {path: 'explore', component: ExploreComponent},
-    {path: 'details', component: DetailsComponent},
+    {path: 'details/:id', component: DetailsComponent},
     { path: 'clientHome', loadChildren: () => import('./modules/client-home/client-home.module').then(m => m.ClientHomeModule) }
   ]},
 ];
