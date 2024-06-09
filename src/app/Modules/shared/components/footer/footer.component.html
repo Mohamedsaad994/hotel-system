@@ -1,4 +1,4 @@
-<section>
+<section [dir]="language == 'en'? 'ltr': 'rtl'">
     <article class="container">
         <div class="row justify-content-center">
             <div class="col-md-3 align-self-start">
@@ -6,44 +6,43 @@
                     <span>Stay</span>cation.
                 </h2>
                 <p>
-                    We kaboom your beauty holiday
-                    instantly and memorable.
+                    {{"footer-caption" | translate}}
                 </p>
             </div>
-            
+
             <div class="col-md-3">
                 <ul class="list-unstyled">
-                    <h3>For Beginners</h3>
+                    <h3> {{"beginner" | translate}} </h3>
                     <li>
-                        <a routerLink="">New Account</a>
+                        <a routerLink=""> {{"account" | translate}} </a>
                     </li>
                     <li>
-                        <a href="">Start Booking a Room</a>
+                        <a href=""> {{"roomBooking" | translate}} </a>
                     </li>
                     <li>
-                        <a href="">Use Payments</a>
+                        <a href=""> {{"payment" | translate}} </a>
                     </li>
                 </ul>
             </div>
 
             <div class="col-md-3">
                 <ul class="list-unstyled">
-                    <h3>Explore Us</h3>
+                    <h3>{{"we" | translate}}</h3>
                     <li>
-                        <a href="">Our Careers</a>
+                        <a href=""> {{"Our Careers" | translate}} </a>
                     </li>
                     <li>
-                        <a href="">Privacy</a>
+                        <a href=""> {{"Privacy" | translate}} </a>
                     </li>
                     <li>
-                        <a href="">Terms & Conditions</a>
+                        <a href=""> {{"Terms & Conditions" | translate}} </a>
                     </li>
                 </ul>
             </div>
 
             <div class="col-md-3">
                 <ul class="list-unstyled">
-                    <h3>Connect Us</h3>
+                    <h3> {{"Connect Us" | translate}} </h3>
                     <li>
                         <a href="">support@staycation.id</a>
                     </li>

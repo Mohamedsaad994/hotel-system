@@ -1,4 +1,4 @@
-<section>
+<section [dir]="language == 'en'? 'ltr': 'rtl'">
   <div class="container">
     <div class="row">
       <div *ngFor="let ad of arrayOfAds.slice(0, 4)" class="col-md-3">

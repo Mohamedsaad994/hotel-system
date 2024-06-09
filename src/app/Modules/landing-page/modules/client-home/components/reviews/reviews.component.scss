@@ -1,0 +1,37 @@
+// section{
+//   height: 500px;
+// }
+i{
+  color:#ccc;
+  margin-right: 10px;
+}
+.rating-color{
+  color:gold
+}
+h3, h2{
+  color:#152C5B
+}
+h2{
+  font-size: 32px;
+}
+.img-holder{
+  border: 3px solid #E5E5E5;
+  border-radius: 20px;
+
+  img{
+    display: block;
+    width:100%;
+    border-radius: 20px 80px 20px 20px;
+    transform: translate(25px, -25px);
+    height: 300px
+  }
+}
+
+// .owl-carousel .owl-item{
+//   display: block;
+//   height:1000px !important;
+// }
+.height{
+  // display: block;
+  height: 400px !important;
+}
