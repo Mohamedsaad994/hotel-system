@@ -42,3 +42,19 @@ h3{
     transform: translate(-25px, -25px);
   }
 }
+
+.date-picker {
+  display: none;
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px;
+  z-index: 1000;
+  border-radius: 10px;
+  box-shadow: $main-box-shadow;
+}
+
+.date-picker.show {
+  display: flex;
+  gap: 0.4rem;
+}
