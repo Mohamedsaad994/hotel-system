@@ -4,8 +4,18 @@ export interface IRoom {
   data: IRoomData;
 }
 
+export interface IRoomExplore {
+  success: true;
+  message: string;
+  data: IRoomDataExplore;
+}
+
 interface IRoomData {
   room: IRoomDetails;
+}
+
+interface IRoomDataExplore {
+  rooms: IRoomDetails[];
 }
 
 export interface IRoomDetails {
