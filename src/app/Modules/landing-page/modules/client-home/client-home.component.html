@@ -11,19 +11,36 @@
 
           <h3 class="fw-bold"> {{"booking" | translate}} </h3>
 
-          <div class="input-item">
-            <label for="date"> {{"date" | translate}} </label>
-            <input class="form-control" id="date" type="date">
-          </div>
-          <div class="input-item">
-            <label for="number"> {{"capacity" | translate}} </label>
-            <div class="d-flex">
-              <button class="control minus">-</button>
-              <input class="form-control" id="number" type="text">
-              <button class=" control plus">+</button>
+          <form [formGroup]="roomFilterForm" (ngSubmit)="onExploreRooms(roomFilterForm)">
+            <div>
+              <label for="dateRange"> {{"date" | translate}} </label>
+              <div class="input-group mb-3">
+                <span class="input-group-text bg-blue-color" id="basic-addon1">
+                  <i class="fa-regular fa-calendar text-white"></i>
+                </span>
+                <input type="text" id="dateRange" class="form-control" placeholder="start date - end date" (focus)="openDatePicker()" readonly>
+              </div>
+
+              <div id="datePicker" class="date-picker" [class.show]="showDatePicker">
+                <input type="date" class="form-control bg-light-grey" [(ngModel)]="startDate" formControlName="startDate" (change)="updateDateRange()" />
+                <input type="date" class="form-control bg-light-grey" [(ngModel)]="endDate" formControlName="endDate" (change)="updateDateRange()" />
+                <button type="button" (click)="closeDatePicker()">Close</button>
+              </div>
             </div>
-          </div>
-          <button class="primary w-50"> {{"explore" | translate}} </button>
+
+            <div class="input-item">
+              <label for="number"> {{"capacity" | translate}} </label>
+              <div class="d-flex bg-light-grey rounded-4">
+                <button (click)="subtractRoomCapacity()" class="control minus" type="button">-</button>
+                <p class="main-blue w-100 d-flex align-items-center justify-content-center fw-semibold m-0">
+                  {{ roomCapacity + " " + roomCapacityPeople }}
+                </p>
+                <button (click)="addRoomCapacity()" class="control plus" type="button">+</button>
+              </div>
+            </div>
+            
+            <button class="primary w-50" [disabled]="roomFilterForm.invalid"> {{"explore" | translate}} </button>
+          </form>
         </div>
       </div>
       <div class="col-md-5">

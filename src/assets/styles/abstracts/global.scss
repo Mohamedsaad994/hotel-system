@@ -54,6 +54,15 @@ h6 {
 .main-box-shadow {
   box-shadow: $main-box-shadow;
 }
+
+.bg-light-grey {
+  background-color: #F5F6F8;
+}
+
+.bg-blue-color {
+  background-color: $dark-blue;
+}
+
 .main-color {
   color: $main-btn;
 }
