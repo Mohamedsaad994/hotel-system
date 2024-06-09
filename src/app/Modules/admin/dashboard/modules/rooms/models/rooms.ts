@@ -14,7 +14,14 @@ export interface IRoomsData {
   rooms: IRoomsArrayData[];
   totalCount: number;
 }
-
+export interface IRoomsUserDetails {
+  page: number;
+  size: number;
+  data: {
+    rooms: IRoomsArrayData[];
+    totalCount: number;
+  };
+}
 export interface IRoomsArrayData {
   _id: string;
   roomNumber: string;

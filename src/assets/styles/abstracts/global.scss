@@ -81,6 +81,12 @@ h6 {
 .dark-red{
   color: $dark-red;
 }
+.dark-danger{
+  background-color: $dark-danger;
+}
+.pointer {
+  cursor: pointer;
+}
 ul {
   list-style: none;
 }
