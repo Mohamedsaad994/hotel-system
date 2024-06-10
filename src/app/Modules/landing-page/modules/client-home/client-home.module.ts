@@ -10,6 +10,9 @@ import { ClientHomeService } from './service/clientHome.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FavouritesService } from './service/favourites.service';
+import { BackyardComponent } from './components/backyard/backyard.component';
+import { LivingComponent } from './components/living/living.component';
 
 
 
@@ -18,7 +21,9 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     ClientHomeComponent,
     MostAdsComponent,
     RoomAdsComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    BackyardComponent,
+    LivingComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +34,8 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
     FormsModule
   ],
   providers:[
-    ClientHomeService
+    ClientHomeService,
+    FavouritesService
   ]
 })
 export class ClientHomeModule { }
