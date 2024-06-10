@@ -31,8 +31,8 @@
           </li>
         </ul>
         <div class="d-flex align-items-center">
-          <img [src]="currentUser?.profileImage" alt="">
-          <p class="m-0 mx-3">{{currentUser?.userName}}</p>
+          <img [src]="currentUser.profileImage" alt="">
+          <p class="m-0 mx-3">{{currentUser.userName}}</p>
 
           <select name="" [class]="lang == 'en'? 'me-3': 'ms-3'" id="" #myLang (change)="onChangeValue(myLang.value)">
             <option value="en">EN</option>

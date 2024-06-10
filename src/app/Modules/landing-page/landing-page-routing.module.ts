@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from './landing-page.component';
 import { ExploreComponent } from './components/explore/explore.component';
 import { DetailsComponent } from './components/details/details.component';
+import { FavoriteComponent } from './modules/favorite/favorite.component';
+
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent, children:[

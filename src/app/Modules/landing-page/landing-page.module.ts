@@ -27,7 +27,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     NavAuthorizedComponent,
     ExploreComponent,
     FooterComponent,
-
     DetailsComponent,
 
   ],
