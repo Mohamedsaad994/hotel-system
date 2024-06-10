@@ -17,7 +17,9 @@ import { FormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TranslateModule } from '@ngx-translate/core';
+import { UserSignComponent } from './components/user-sign/user-sign.component';
 import { PaginatorModule } from 'primeng/paginator';
+
 
 @NgModule({
   declarations: [
@@ -27,6 +29,7 @@ import { PaginatorModule } from 'primeng/paginator';
     DynamicPipe,
     SharedHeaderComponent,
     DeleteComponent,
+    UserSignComponent,
   ],
   imports: [
     CommonModule,

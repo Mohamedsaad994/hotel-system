@@ -30,3 +30,20 @@ input {
 .controlName-invalid {
   transform: translateY(0px)
 }
+
+.card-auth {
+  width: 75%;
+  margin: auto;
+  margin-top: 1rem;
+  .header-auth {
+    margin-bottom: 2rem;
+    h2 {
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    span {
+      color: $text-secondryColor;
+      font-weight: bold;
+    }
+  }
+}
