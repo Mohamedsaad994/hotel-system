@@ -14,6 +14,8 @@ import { UserSignComponent } from 'src/app/Modules/shared/components/user-sign/u
   styleUrls: ['./most-ads.component.scss']
 })
 export class MostAdsComponent {
+
+  emptyImage: string = '../../../../../../../assets/images/emptyImage.jpg';
   roomRespnse:IRoomsUserDetails|undefined;
   roomsData:IRoomsArrayData[] | any=[];
   pageNumber: number = 1;
@@ -33,7 +35,7 @@ onGetAllRooms() {
   return this._ClientHomeService.getAllRoom(params).subscribe({
     next: (res) => {
       this.roomRespnse = res;
-      this.roomsData = res.data.rooms;        
+      this.roomsData = res.data.rooms;
     },
   });
 }
@@ -44,7 +46,7 @@ addFavouriteById(roomId: string){
   return this._FavouritesService.addFavourite(roomId).subscribe({
     next: (res) => {
     },
-    error:(err:HttpErrorResponse)=> this._HelperService.error(err.error.message),
+    error:(err:HttpErrorResponse)=> {this._HelperService.error(err.error.message)},
     complete:()=>{
       this._HelperService.success('Room added to favorites successfully');
     }

@@ -1,11 +1,15 @@
 .ads-card{
   border-radius: 20px;
   overflow: hidden;
+  transition:.5s;
 
   .img-holder{
     border-radius: 20px;
     overflow: hidden;
     position: relative;
+    img{
+      transition: .5s;
+    }
 
     span{
       position: absolute;
@@ -27,5 +31,11 @@
 
   p{
     color:#B0B0B0
+  }
+
+  &:hover{
+    img{
+      transform: scale(1.1);
+    }
   }
 }
