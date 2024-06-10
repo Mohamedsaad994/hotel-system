@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ExploreUsRoutingModule } from './explore-us-routing.module';
 import { ExploreUsComponent } from './explore-us.component';
 import { ExploreService } from './servieces/explore.service';
+import { SharedModule } from 'src/app/Modules/shared/shared.module';
+
 
 
 @NgModule({
@@ -12,7 +14,8 @@ import { ExploreService } from './servieces/explore.service';
   ],
   imports: [
     CommonModule,
-    ExploreUsRoutingModule
+    ExploreUsRoutingModule,
+    SharedModule
   ],
   providers: [
     ExploreService

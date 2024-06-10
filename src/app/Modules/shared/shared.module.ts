@@ -18,6 +18,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { TranslateModule } from '@ngx-translate/core';
 import { UserSignComponent } from './components/user-sign/user-sign.component';
+import { PaginatorModule } from 'primeng/paginator';
+
 
 @NgModule({
   declarations: [
@@ -41,8 +43,8 @@ import { UserSignComponent } from './components/user-sign/user-sign.component';
     MatSelectModule,
     MatInputModule,
     MatPaginatorModule,
-    TranslateModule
-
+    TranslateModule,
+    PaginatorModule
   ],
   exports: [
     SidebarComponent,
@@ -58,7 +60,8 @@ import { UserSignComponent } from './components/user-sign/user-sign.component';
     MatSelectModule,
     MatInputModule,
     MatPaginatorModule,
-    TranslateModule
+    TranslateModule,
+    PaginatorModule
   ],
 })
 export class SharedModule {}

@@ -9,7 +9,7 @@
       <div *ngFor="let room of roomsArray" class="col-md-4">
         <div class="ads-card">
           <div class="img-holder">
-            <img class="w-100" height="200" [src]="room.images? room.images: emptyImage" alt="">
+            <img class="w-100" height="200" [src]="room.images[0] ? room.images[0] : emptyImage" [alt]="room._id">
             <span>{{room.discount| currency: 'EGP '}} Off</span>
           </div>
           <h3>{{room.roomNumber}}</h3>
@@ -18,5 +18,10 @@
       </div>
     </div>
   </div>
+  <div class="card-paginator mx-auto d-flex justify-content-center my-4">
+    <p-paginator (onPageChange)="onPageChange($event)" [first]="page" [rows]="size" [totalRecords]="roomData.data.totalCount"
+      [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
+  </div>
+
 
 </section>
