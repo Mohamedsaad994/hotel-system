@@ -66,13 +66,21 @@ export class ExploreUsComponent {
   }
 
   getAllRooms() {
-    const roomExplore: IExploreUsFiltration = {
-      size: this.size,
-      page: this.page,
-      startDate: this.startDate,
-      endDate: this.endDate,
-      capacity: this.capacity,
-    };
+    let roomExplore!: IExploreUsFiltration;
+    if (this.startDate && this.endDate && this.capacity) {
+      roomExplore = {
+        size: this.size,
+        page: this.page,
+        startDate: this.startDate,
+        endDate: this.endDate,
+        capacity: this.capacity,
+      };
+    } else {
+      roomExplore = {
+        size: this.size,
+        page: this.page,
+      };
+    }
     this._ExploreService.getAllRooms(roomExplore).subscribe({
       next: (res: IRoomExplore) => {
         this.roomData = res;
