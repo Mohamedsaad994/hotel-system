@@ -1,3 +1,4 @@
+import { Params } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -14,8 +15,8 @@ getFavouriteRooms():Observable<IFavRoomResponse>{
   return this._HttpClient.get<IFavRoomResponse>(`portal/favorite-rooms`);
 }
 
-deleteRoom(id: string):Observable<any>{
-  return this._HttpClient.delete(`portal/favorite-rooms/${id}`);
+deleteRoom(roomId: any):Observable<any>{
+  return this._HttpClient.delete(`portal/favorite-rooms/` ,{params: roomId});
 }
 
 }

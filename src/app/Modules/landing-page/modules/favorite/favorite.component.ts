@@ -25,13 +25,13 @@ export class FavoriteComponent {
   rooms: string[] = [];
 
   room: IRoom[] = [];
-  
+
   favouriteRooms:IFavRoom[] = [];
   data: IAllFavResData = {
     favoriteRooms: this.favouriteRooms,
     totalCount: 0
   }
-  
+
   iDeleteFavResRoom: IDeleteFavResRoom = {
     _id: '',
     rooms: this.rooms,
@@ -57,10 +57,10 @@ export class FavoriteComponent {
 
   ){}
 
-  
+
   ngOnInit(): void{
     this._TranslateService.onLangChange.subscribe((event: LangChangeEvent) => {
-      
+
       this.lang = event.lang;
     });
     this.getAllFavourites();
@@ -81,8 +81,8 @@ export class FavoriteComponent {
     })
   }
 
-  
-  
+
+
 
 
   // toLogin(): void {
@@ -109,12 +109,14 @@ export class FavoriteComponent {
     });
     dialog.afterClosed().subscribe(res => {
       if (res != null) {
-        this.onDeleteItem(id)
+        this.onDeleteItem(res)
       }
     })
   }
 
   onDeleteItem(roomId: string) {
+    console.log(roomId);
+
     this._FavouriteService.deleteRoom(roomId).subscribe({
       next: (res) => {  },
       error: (err: HttpErrorResponse) => {
@@ -128,11 +130,11 @@ export class FavoriteComponent {
     });
   }
 
-  
+
   iconClass = 'fa-solid fa-heart';
-  
+
   toggleIconClass() {
-   
+
     // Toggle between 'fa-solid' and 'fa-regular'
     this.iconClass = this.iconClass === 'fa-solid fa-heart' ? 'fa-regular fa-heart' : 'fa-solid fa-heart';
   }
@@ -142,7 +144,7 @@ export class FavoriteComponent {
     setTimeout(()=>{
       this.openDeleteDialog('700ms', '350ms', roomId, roomNumber, 'Room')
     }, 1000);
-    
+
   }
 
   pageNumberEvent(event: number): void {
@@ -155,7 +157,7 @@ export class FavoriteComponent {
     this.getAllFavourites();
   }
 
-  
+
   SuccessToaster(toastEnAr:string) {
     this._TranslateService.get('toaster.'+toastEnAr).subscribe((res: string) => {
       this._ToastrService.success(res);

@@ -10,6 +10,9 @@ import { HelperService } from 'src/app/Modules/shared/services/helper.service';
 })
 export class RoomAdsComponent  implements OnInit{
 
+  emptyImage: string = '../../../../../../../assets/images/emptyImage.jpg';
+
+
   private _HelperService = inject(HelperService);
   language: string | any = localStorage.getItem('lang') !== null ? localStorage.getItem('lang') : 'en';
   arrayOfAds:Ad[] = []

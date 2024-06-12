@@ -6,6 +6,9 @@ import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { UserCreated } from 'src/app/Modules/auth/interfaces/auth';
 import { AuthService } from 'src/app/Modules/auth/services/auth/auth.service';
+import { ChangePasswordComponent } from 'src/app/Modules/auth/components/change-password/change-password.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ViewCurrentUserComponent } from 'src/app/Modules/admin/dashboard/components/view-current-user/view-current-user.component';
 
 @Component({
   selector: 'app-nav-authorized',
@@ -24,7 +27,8 @@ export class NavAuthorizedComponent implements OnInit{
     private translate: TranslateService,
     private _Router: Router,
     private _AuthService:AuthService,
-    private _HelperService:HelperService
+    private _HelperService:HelperService,
+    public dialog: MatDialog
   ) {
     // this language will be used as a fallback when a translation isn't found in the current language
 
@@ -52,6 +56,33 @@ export class NavAuthorizedComponent implements OnInit{
     localStorage.setItem('lang', this.lang);
     this._HelperService.onChangeLang(val);
 
+  }
+
+  openChangeDialog(): void {
+
+    const dialogRef = this.dialog.open(ChangePasswordComponent, {
+    data: {},
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log('result',result);
+    });
+  }
+
+  openViewDialog(): void {
+
+    const dialogRef = this.dialog.open(ViewCurrentUserComponent, {
+      data: this.currentUser,
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log('result',result);
+      // this.getCurrentUser()
+    });
   }
 
   logOut(){

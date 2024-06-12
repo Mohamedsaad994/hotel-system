@@ -34,12 +34,41 @@
           <img [src]="currentUser.profileImage" alt="">
           <p class="m-0 mx-3">{{currentUser.userName}}</p>
 
-          <select name="" [class]="lang == 'en'? 'me-3': 'ms-3'" id="" #myLang (change)="onChangeValue(myLang.value)">
+          <!-- <select name="" [class]="lang == 'en'? 'me-3': 'ms-3'" id="" #myLang (change)="onChangeValue(myLang.value)">
             <option value="en">EN</option>
             <option value="ar">AR</option>
-          </select>
+          </select> -->
 
-          <i (click)="logOut()" class="fa-solid fa-right-from-bracket fa-2x ms-3"></i>
+          <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+            <mat-icon>language</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu" >
+            <button value="en" mat-menu-item >
+              <span>EN</span>
+            </button>
+            <button value="er" mat-menu-item>
+              <span>AR</span>
+            </button>
+          </mat-menu>
+
+
+          <button mat-icon-button [matMenuTriggerFor]="menu2" aria-label="Example icon-button with a menu">
+            <mat-icon><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-344 240-584l56-56 184 184 184-184 56 56-240 240Z"/></svg></mat-icon>
+          </button>
+          <mat-menu #menu2="matMenu">
+            <button (click)="logOut()" mat-menu-item>
+              <mat-icon>logout</mat-icon>
+              <span>Log Out</span>
+            </button>
+            <button (click)="openChangeDialog()" mat-menu-item>
+              <mat-icon>lock_open</mat-icon>
+              <span>Change Password</span>
+            </button>
+            <button (click)="openViewDialog()" mat-menu-item>
+              <mat-icon>visibility</mat-icon>
+              <span>View Profile</span>
+            </button>
+          </mat-menu>
 
         </div>
       </div>
