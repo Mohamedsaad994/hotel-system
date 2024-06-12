@@ -23,4 +23,16 @@ constructor(private _HttpClient:HttpClient) { }
   getAllRoom(params: any): Observable<any> {
     return this._HttpClient.get('portal/rooms/available', { params: params });
   }
+
+  getAllComments(id: string): Observable<any>{
+    return this._HttpClient.get(`portal/room-comments/${id}`)
+  }
+
+  deleteComment(id: string):Observable<any>{
+    return this._HttpClient.delete(`portal/room-comments/${id}`)
+  }
+
+  updataComment(id: string, newData: object):Observable<any>{
+    return this._HttpClient.patch(`portal/room-comments/${id}`, newData)
+  }
 }
