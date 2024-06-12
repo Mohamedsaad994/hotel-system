@@ -35,6 +35,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     AuthModule,
     SharedModule,
     CarouselModule,
+    
 
     TranslateModule.forRoot({
       defaultLanguage: 'en',

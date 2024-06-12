@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IFavRoomResponse } from '../models/favourite';
+import { IFavRoomResponse, IDeleteFavRes } from '../models/favourite';
 
 @Injectable({
   providedIn: 'root'
@@ -14,8 +14,8 @@ getFavouriteRooms():Observable<IFavRoomResponse>{
   return this._HttpClient.get<IFavRoomResponse>(`portal/favorite-rooms`);
 }
 
-deleteRoom(id: string):Observable<any>{
-  return this._HttpClient.delete(`portal/favorite-rooms/${id}`);
+deleteRoom(roomId: string):Observable<IDeleteFavRes>{
+  return this._HttpClient.delete<IDeleteFavRes>(`portal/favorite-rooms/${roomId}`);
 }
 
 }

@@ -3,9 +3,9 @@
         <h1 class="text-center">Your Favorites</h1>
 
         <h2>Your Rooms</h2>
-        <div class="row g-2 "  *ngIf="favouriteRooms[0].rooms.length > 0">
-            <div *ngFor="let item of favouriteRooms" class="col-md-4">
-                <div class="ads-card card-sm" *ngFor="let room of item.rooms">
+        <div class=" "  *ngIf="favouriteRooms[0].rooms.length > 0">
+            <div *ngFor="let item of favouriteRooms" class="row g-2">
+                <div class="ads-card card-sm col-md-4" *ngFor="let room of item.rooms">
                     <div class="img-holder" >
                     <img class="w-100" height="200" [src]="room.images[0]? room.images[0]:emptyImage" alt="">
                     <div class="imag-icon">
@@ -14,7 +14,7 @@
                         </a>
                         
                         <a class=" text-decoration-none text-white" >
-                            <i [className]="iconClass" (click)="handleDeleteItem(item._id, room.roomNumber)"></i>
+                            <i [className]="iconClass" (click)="handleDeleteItem(room._id,room.roomNumber )"></i>
                         </a>
                     </div>
                     <span>{{room.discount| currency: 'EGP '}} Off</span>
@@ -29,12 +29,10 @@
                 <img class="w-100" src="../../../../../assets/images/emptyImage.jpg" alt="">
             </div>
         </div>
-        
-        <!-- 
         <div class="card-paginator mx-auto d-flex justify-content-center my-4">
-            <p-paginator (onPageChange)="onPageChange($event)" [first]="page" [rows]="size" [totalRecords]="roomData.data.totalCount"
+            <p-paginator (onPageChange)="onPageChange($event)" [first]="page" [rows]="size" [totalRecords]="totalCount"
               [rowsPerPageOptions]="[10, 20, 30]"></p-paginator>
-        </div> -->
-
+          </div>
+        
     </article>
 </section>

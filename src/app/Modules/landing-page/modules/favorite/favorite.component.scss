@@ -150,6 +150,10 @@ section.favourites{
   }
   
   
+.card-paginator {
+    width: fit-content;
+  }
+  
   @media screen and (max-width:1199px) {
     h4{
       &.h4 {
@@ -184,4 +188,6 @@ section.favourites{
   }
   
   }
+
+  
   }

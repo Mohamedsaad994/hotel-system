@@ -6,21 +6,27 @@ import { IRoom, IFavRoom, IDeleteFavResRoom,IFavRoomResponse, IAllFavResData } f
 import { ToastrService } from 'ngx-toastr';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { SharedModule } from 'src/app/Modules/shared/shared.module';
-import { PageEvent } from '@angular/material/paginator';
 import { DeleteComponent } from 'src/app/Modules/shared/components/delete/delete.component';
 import { MatDialog } from '@angular/material/dialog';
+import { PaginatorState } from 'primeng/paginator';
 
-
+interface PageEvent {
+  first: number;
+  rows: number;
+  page: number;
+  pageCount: number;
+}
 @Component({
   selector: 'app-favorite',
   templateUrl: './favorite.component.html',
   styleUrls: ['./favorite.component.scss']
 })
 export class FavoriteComponent {
+  size: number = 10;
+  page: number = 1;
 
-  pageSize: number = 10;
-  pageNumber: number = 0;
+  // pageSize: number = 10;
+  // pageNumber: number = 0;
   totalCount!: number;
   rooms: string[] = [];
 
@@ -82,50 +88,49 @@ export class FavoriteComponent {
   }
 
   
+  first: number = 0;
+
+  rows: number = 10;
   
-
-
-  // toLogin(): void {
-  //   this._ToastrService.error('You need to login first')
-  //   this._Router.navigate(['/auth'])
-
-  // }
-  // backToHome() {
-  //   this._Router.navigate(['../'])
-
-  // }
-  //delete
-
-  openDeleteDialog(enterAnimationDuration: string, exitAnimationDuration: string, id: string, itname: string, componentName: string): void {
-    const dialog = this.dialog.open(DeleteComponent, {
-      // width: '500px',
-      enterAnimationDuration,
-      exitAnimationDuration,
-      data: {
-        comp: componentName,
-        id: id,
-        name: itname
-      }
-    });
-    dialog.afterClosed().subscribe(res => {
-      if (res != null) {
-        this.onDeleteItem(id)
-      }
-    })
+  onPageChange(event: PaginatorState) {
+    this.first = event.first ?? 0;
+    this.rows = event.rows ?? 10;
+    this.page = Math.floor(this.first / this.rows) + 1;
+    this.size = this.rows;
+    this.getAllFavourites();
   }
 
-  onDeleteItem(roomId: string) {
-    this._FavouriteService.deleteRoom(roomId).subscribe({
-      next: (res) => {  },
-      error: (err: HttpErrorResponse) => {
-        console.log(err);
-        this._HelperService.error(err);
-      },
-      complete: () => {
-        this._HelperService.success('Room Has Been Deleted');
-        this.getAllFavourites();
+
+  
+  openDeleteDialog(id:string, roomNum:string): void {
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      data: {itemId:id, name:roomNum},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      console.log(result);
+      
+      if(result){
+        this.onDeleteItem(result);
       }
     });
+  }
+
+
+
+  
+  onDeleteItem(id: string){
+    this._FavouriteService.deleteRoom(id).subscribe({
+      next:(res) => {
+        console.log(res)
+      }, error:(err: HttpErrorResponse) => {
+        console.log(err);
+        this._HelperService.error(err);
+      },complete:()=> {
+        this.getAllFavourites();
+      }
+    })
   }
 
   
@@ -137,22 +142,12 @@ export class FavoriteComponent {
     this.iconClass = this.iconClass === 'fa-solid fa-heart' ? 'fa-regular fa-heart' : 'fa-solid fa-heart';
   }
 
-  handleDeleteItem(roomId: string, roomNumber: string) {
+  handleDeleteItem(id:string, roomNum:string) {
     this.toggleIconClass();
     setTimeout(()=>{
-      this.openDeleteDialog('700ms', '350ms', roomId, roomNumber, 'Room')
+      this.openDeleteDialog(id, roomNum)
     }, 1000);
     
-  }
-
-  pageNumberEvent(event: number): void {
-    this.pageNumber = event;
-    this.getAllFavourites();
-  }
-
-  pageSizeEvent(event: number): void {
-    this.pageSize = event;
-    this.getAllFavourites();
   }
 
   
