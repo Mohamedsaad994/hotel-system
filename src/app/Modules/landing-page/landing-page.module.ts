@@ -18,6 +18,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { DetailsComponent } from './components/details/details.component';
 import { DetailsService } from './components/details/services/details.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ClientHomeService } from './modules/client-home/service/clientHome.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     }),
     ReactiveFormsModule
   ],
-  providers: [TranslateService, DetailsService],
+  providers: [
+    TranslateService,
+    DetailsService,
+    ClientHomeService
+  ],
 
 
 })

@@ -1,8 +1,13 @@
+import { RoomComment } from './../../modules/client-home/models/IClientHome';
 import { Component, AfterViewInit, OnInit, inject, ElementRef, ViewChild } from '@angular/core';
 import { DetailsService } from './services/details.service';
 import { IRoom, IRoomDetails, ICreateRoomComment, ICreateRoomReviews, ICreateRoomCommentResponse, ICreateRoomReviewsResponse } from './models/details';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ClientHomeService } from '../../modules/client-home/service/clientHome.service';
+import { ThisReceiver } from '@angular/compiler';
+import { DeleteComponent } from 'src/app/Modules/shared/components/delete/delete.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-details',
@@ -35,6 +40,11 @@ export class DetailsComponent implements AfterViewInit, OnInit {
     updatedAt: ''
   };
 
+  roomComments: RoomComment[] = []
+
+  currentComment: any
+  check!: boolean
+
   commentForm: FormGroup = new FormGroup({
     roomId: new FormControl(null),
     comment: new FormControl(null, [Validators.required]),
@@ -49,11 +59,14 @@ export class DetailsComponent implements AfterViewInit, OnInit {
   constructor(
     private _DetailsService: DetailsService,
     private _ActivatedRoute: ActivatedRoute,
-    private _Router: Router
+    private _Router: Router,
+    private _ClientHomeService:ClientHomeService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
     this.onGetRoomId();
+    this.getRoomComments()
   }
 
   ngAfterViewInit() {
@@ -94,8 +107,10 @@ export class DetailsComponent implements AfterViewInit, OnInit {
       this._DetailsService.createComment(commentForm.value).subscribe({
         next: (res: ICreateRoomCommentResponse) => {
           console.log(res);
+          this.commentForm.reset()
           console.log('Comment Form Valid:', commentForm.valid);
           console.log('Comment Form Errors:', commentForm.errors);
+          this.getRoomComments()
           // console.log(res);
         }
       });
@@ -164,5 +179,64 @@ export class DetailsComponent implements AfterViewInit, OnInit {
         star.style.color = '#B0B0B0';
       }
     });
+  }
+
+  getRoomComments(){
+    // this._ActivatedRoute.params.subscribe((params: Params)=>{
+    //   this.roomId = params['id']
+    // })
+    this._ClientHomeService.getAllComments(this.roomId).subscribe({
+      next: (res)=>{
+        this.roomComments = res.data.roomComments
+      }
+    })
+  }
+
+  openDeleteDialog(commentId: string): void {
+
+    const dialogRef = this.dialog.open(DeleteComponent, {
+      data: {
+        name: 'this Comment',
+        id: commentId
+      },
+    });
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteComment(commentId)
+      }
+  });
+  }
+
+
+  deleteComment(commentId: string){
+    this._ClientHomeService.deleteComment(commentId).subscribe({
+      next: (res)=>{
+        console.log(res);
+      },
+      error:(err)=>{
+        console.log(err);
+      },
+      complete:()=>{
+        this.getRoomComments()
+      }
+    })
+  }
+
+  setData(commentData: any){
+
+    window.scrollTo(0, 800)
+    this.currentComment = commentData;
+    console.log(this.currentComment);
+    this.commentForm.get('comment')?.setValue(this.currentComment.comment)
+    this.check = true
+  }
+
+  updateComment(){
+    this._ClientHomeService.updataComment(this.currentComment._id, {comment: this.currentComment.comment}).subscribe({
+      next: (res)=>{
+        console.log(res);
+        this.check= false
+      }
+    })
   }
 }

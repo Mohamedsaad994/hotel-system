@@ -143,3 +143,46 @@ img {
   font-size: 1rem !important;
   color: $light-gray !important;
 }
+.comments-holder{
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 20px
+}
+.comment-img{
+  width:50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.edit-btn{
+  border:none;
+  border-radius: 10px;
+  border:1px solid rgb(184, 214, 47);
+  transition: 0.4s;
+}
+.edit-btn i{
+  color:rgb(184, 214, 47);
+  transition: 0.4s;
+}
+.edit-btn:hover{
+  background-color:rgb(184, 214, 47) ;
+}
+.edit-btn:hover i{
+  color:#fff;
+}
+.del-btn{
+  border:none;
+  border-radius: 10px;
+  border:1px solid rgb(219, 48, 48);
+  transition: 0.4s;
+}
+.del-btn i{
+  color:rgb(219, 48, 48);
+  transition: 0.4s;
+}
+.del-btn:hover{
+  background-color:rgb(219, 48, 48) ;
+}
+.del-btn:hover i{
+  color:#fff;
+}
